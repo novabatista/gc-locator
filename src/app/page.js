@@ -70,13 +70,13 @@ export default async function Home({ searchParams }) {
 
 
       {hasSearchCoords && (
-        <div className="grid grid-cols-2 gap-8 pt-8">
+        <div className="grid md:grid-cols-2 gap-8 pt-8">
           {gcsList.map((gc, index) => <GCCard key={index} gc={gc} />)}
         </div>
       )}
 
       {!hasSearchCoords && gcsList.map(([sectorId, gcs]) => (
-        <div key={sectorId} className="grid grid-cols-2 gap-8 pt-8">
+        <div key={sectorId} className="grid md:grid-cols-2 gap-8 pt-8">
           {gcs.map((gc, index) => <GCCard key={index} gc={gc} />)}
         </div>
       ))}

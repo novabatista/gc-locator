@@ -136,7 +136,7 @@ export default function GCFinder(props) {
     })
   }, [search.loading])
   return (
-    <section className="flex flex-col gap-4 items-center m-auto w-1/2">
+    <section className="flex flex-col gap-4 items-center m-auto w-full md:w-1/2">
       <form className="flex flex-row gap-2 justify-center w-full" onSubmit={handleFormSubmit}>
         <input
           className="flex-grow px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-950 focus:border-gray-800 placeholder-gray-400"
