@@ -4,7 +4,7 @@ import Image from 'next/image'
 import {useState, useEffect, useCallback} from 'react'
 import {useRouter} from 'next/navigation'
 
-export default function GCFinder(props) {
+export default function GCFinder() {
   const router = useRouter()
 
 
