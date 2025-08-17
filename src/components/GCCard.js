@@ -1,0 +1,42 @@
+import ContactPhoneWA from '@/components/ContactPhoneWA'
+import Image from 'next/image'
+
+export default function GCCard(props) {
+  const {id, name, address, distance, contacts, schedules, config} = props.gc
+
+  function formatDistance(distance){
+    const unit = distance > 1 ? 'km' : 'm'
+    return `${distance} ${unit}`
+  }
+  return (
+    <div key={id} className="rounded-xl p-5 border" style={{borderColor: config.color.primary}}>
+      <div className="flex flex-row justify-between">
+        <div style={{color: config.color.primary}}>
+          <span className="font-extrabold text-3xl">GC</span><br/>
+          <span className="text-md">{name}</span>
+        </div>
+        <div className="text-sm text-right self-end" style={{color: config.color.primary}}>
+          {distance && <div className="mb-2">{formatDistance(distance)}</div>}
+
+          {schedules.map(({weekday, hour}, scheduleIndex) => (
+            <div key={scheduleIndex}>
+              <span className="">{weekday}</span>
+              <br/>
+              <span className="">{hour}h</span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      <div className="flex flex-row justify-between text-sm my-4">
+        {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} />)}
+      </div>
+
+      <div className="flex flex-row items-center text-sm cursor-pointer fle">
+        <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
+        <p className="underline">{address.text}</p>
+      </div>
+    </div>
+  )
+}

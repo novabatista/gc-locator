@@ -1,0 +1,351 @@
+{
+  "mosaico1": {
+    "id": "mosaico1",
+    "name": "Mosaico",
+    "sector": {
+      "id": "orange",
+      "name": "Laranja"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffb000"
+      }
+    },
+    "address": {
+      "text": "R. Ipanema, 654-772 - Mooca, São Paulo - SP, 03164-200",
+      "lat": -23.5464746,
+      "lng": -46.605623
+    },
+    "contacts": [
+      {"name": "Maiky", "phone": "11 94860-2707"},
+      {"name": "Natalia", "phone": "11 98622-4611"}
+    ],
+    "schedules": [
+      {"weekday": "Sábado", "hour": "17:00"}
+    ]
+  },
+  "conexao1": {
+    "id": "conexao1",
+    "name": "Conexão",
+    "sector": {
+      "id": "orange",
+      "name": "Laranja"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffb000"
+      }
+    },
+    "address": {
+      "text": "Moment Anália Franco, R. Quixadá, 60 - Vila Invernada, São Paulo - SP, 03350-060",
+      "lat": -23.5659707,
+      "lng": -46.6494203
+    },
+    "contacts": [
+      {"name": "Luan", "phone": "11 94744-3796"},
+      {"name": "Camile", "phone": "11 95912-2249"}
+    ],
+    "schedules": [
+      {"weekday": "Sábado", "hour": "16:00"}
+    ]
+  },
+  "aricanduva1": {
+    "id": "aricanduva1",
+    "name": "Aricanduva",
+    "sector": {
+      "id": "blue",
+      "name": "Azul"
+    },
+    "config": {
+      "color": {
+        "primary": "#2186ed"
+      }
+    },
+    "address": {
+      "text": "Jardim Santa Teresinha, São Paulo - SP, 03572-130",
+      "lat": -23.5752039,
+      "lng": -46.5843508
+    },
+    "contacts": [
+      {"name": "Neto", "phone": "11 94907-4928"},
+      {"name": "Luiza", "phone": "11 98529-5614"}
+    ],
+    "schedules": [
+      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+    ]
+  },
+  "penha1": {
+    "id": "penha1",
+    "name": "Penha",
+    "sector": {
+      "id": "blue",
+      "name": "Azul"
+    },
+    "config": {
+      "color": {
+        "primary": "#2186ed"
+      }
+    },
+    "address": {
+      "text": "no mapa de gc (qrode dos cartoes) esta como kleber e fernanda na R. São Severiano",
+      "lat": 0,
+      "lng": 0
+    },
+    "contacts": [
+      {"name": "Eduardo", "phone": "11 99903-1063"},
+      {"name": "Beatriz", "phone": "11 95375-0621"}
+    ],
+    "schedules": [
+      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+    ]
+  },
+  "vilaformosa1": {
+    "id": "vilaformosa",
+    "name": "Vila Formosa",
+    "sector": {
+      "id": "blue",
+      "name": "Azul"
+    },
+    "config": {
+      "color": {
+        "primary": "#2186ed"
+      }
+    },
+    "address": {
+      "text": "R. João Fanfa Ribas, 38-80 - Chácara Belenzinho, São Paulo - SP, 03377-030",
+      "lat": -23.5731416,
+      "lng": -46.6289561
+    },
+    "contacts": [
+      {"name": "Roberto", "phone": "11 99634-4950"},
+      {"name": "Katia", "phone": "11 99548-3825"}
+    ],
+    "schedules": [
+      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+    ]
+  },
+  "vilauniao1": {
+    "id": "vilauniao1",
+    "name": "Vila União",
+    "sector": {
+      "id": "green",
+      "name": "Verde"
+    },
+    "config": {
+      "color": {
+        "primary": "#029248"
+      }
+    },
+    "address": {
+      "text": "R. Frei Diogo das Chagas, 3 - Jardim Angela, São Paulo - SP, 03985-060",
+      "lat": -23.6047074,
+      "lng": -46.5218949
+    },
+    "contacts": [
+      {"name": "Luizão", "phone": "11 99238-8937"},
+      {"name": "Janete", "phone": "11 98949-6918"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  },
+  "vilaindustrial1": {
+    "id": "vilaindustrial1",
+    "name": "Vila Industrial",
+    "sector": {
+      "id": "green",
+      "name": "Verde"
+    },
+    "config": {
+      "color": {
+        "primary": "#029248"
+      }
+    },
+    "address": {
+      "text": "R. Marema, 2-70 - Vila Alzira, São Paulo - SP, 03986-190",
+      "lat": -23.6082395,
+      "lng": -46.6021032
+    },
+    "contacts": [
+      {"name": "Danilo", "phone": "11 99291-4712"},
+      {"name": "Tati", "phone": "11 98200-1226"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  },
+  "jdgrimaldi1": {
+    "id": "jdgrimaldi1",
+    "name": "JD Grimaldi",
+    "sector": {
+      "id": "green",
+      "name": "Verde"
+    },
+    "config": {
+      "color": {
+        "primary": "#029248"
+      }
+    },
+    "address": {
+      "text": "R. Egídio Alves da Costa, 233 - Sapopemba, São Paulo - SP, 03271-040",
+      "lat": -23.6009679,
+      "lng": -46.5223147
+    },
+    "contacts": [
+      {"name": "Ronaldo", "phone": "11 96462-1175"},
+      {"name": "Rose", "phone": "11 96094-4370"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  },
+  "tatuape1": {
+    "id": "tatuape1",
+    "name": "Tatuapé I",
+    "sector": {
+      "id": "white",
+      "name": "Branco"
+    },
+    "config": {
+      "color": {
+        "primary": "#000"
+      }
+    },
+    "address": {
+      "text": "R. Cantagalo, 430 - Tatuapé, São Paulo - SP, 03319-000",
+      "lat": -23.5463726,
+      "lng": -46.6522243
+    },
+    "contacts": [
+      {"name": "Marco", "phone": "11 94729-0045"},
+      {"name": "Priscila", "phone": "11 94786-6180"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  },
+  "tatuape2": {
+    "id": "tatuape2",
+    "name": "Tatuapé II",
+    "sector": {
+      "id": "white",
+      "name": "Branco"
+    },
+    "config": {
+      "color": {
+        "primary": "#000"
+      }
+    },
+    "address": {
+      "text": "R. Guaraciaba, 268 - Chácara Califórnia, São Paulo - SP, 03404-000",
+      "lat": -23.5388487,
+      "lng": -46.5600875
+    },
+    "contacts": [
+      {"name": "Adriano", "phone": "11 97645-5988"},
+      {"name": "Juliana", "phone": "11 99257-2746"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  },
+  "cantagalo": {
+    "id": "cantagalo",
+    "name": "Cantagalo",
+    "sector": {
+      "id": "white",
+      "name": "Branco"
+    },
+    "config": {
+      "color": {
+        "primary": "#000"
+      }
+    },
+    "address": {
+      "text": "Edifício Jardim Ilha de Capri - R. Sete de Outubro, 156 - Chácara Califórnia, São Paulo - SP, 03407-040",
+      "lat": -23.5415366,
+      "lng": -46.5531409
+    },
+    "contacts": [
+      {"name": "Edu", "phone": "11 99903-1063"},
+      {"name": "Bia", "phone": "11 95375-0621"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  },
+  "carrao": {
+    "id": "carrao",
+    "name": "Carrão",
+    "sector": {
+      "id": "white",
+      "name": "Branco"
+    },
+    "config": {
+      "color": {
+        "primary": "#000"
+      }
+    },
+    "address": {
+      "text": "R. Reboujo, 287-173 - Chácara Santo Antônio (Zona Leste), São Paulo - SP, 03408-050",
+      "lat": -23.55138,
+      "lng": -46.6343583
+    },
+    "contacts": [
+      {"name": "Ricardo", "phone": "11 94762-4869"},
+      {"name": "Aline", "phone": "11 94725-3994"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  },
+  "aguarasa1": {
+    "id": "aguarasa1",
+    "name": "Água Rasa",
+    "sector": {
+      "id": "orange",
+      "name": "Laranja"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffb000"
+      }
+    },
+    "address": {
+      "text": "R. Pantojo, 2-118 - Vila Reg. Feijó, São Paulo - SP",
+      "lat": -23.5569329,
+      "lng": -46.658431
+    },
+    "contacts": [
+      {"name": "Josué", "phone": "11 997342-9581"},
+      {"name": "Val", "phone": "11 98121-8991"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  },
+  "mooca1": {
+    "id": "mooca1",
+    "name": "Mooca",
+    "sector": {
+      "id": "orange",
+      "name": "Laranja"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffb000"
+      }
+    },
+    "address": {
+      "text": "R. Itabaiana, 385-221 - Belenzinho, São Paulo - SP, 03171-010",
+      "lat": -23.5489002,
+      "lng": -46.674258
+    },
+    "contacts": [
+      {"name": "Lia", "phone": "11 95495-5447"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ]
+  }
+}

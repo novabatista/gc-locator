@@ -1,103 +1,86 @@
-import Image from "next/image";
+import Image from 'next/image'
+import gcs from '@/assets/gcs.json'
+import GCCard from '@/components/GCCard'
+import GCFinder from '@/components/GCFinder'
+import calculateDistance from '@/map/distance'
 
-export default function Home() {
+
+export default async function Home({ searchParams }) {
+  const { lat, lng } = await searchParams
+  const searchCoords = {lat, lng}
+  const hasSearchCoords = lat && lng
+
+  let gcsList = Object.values(gcs)
+
+  if (hasSearchCoords) {
+    gcsList = sortByDistance()
+  }else{
+    gcsList = groupBySector()
+  }
+
+  function sortByDistance(){
+    return gcsList.map(gc => ({
+      ...gc,
+      distance: calculateDistance(
+        searchCoords,
+        gc.address,
+      )
+    }))
+      .sort((a, b) => a.distance - b.distance)
+  }
+
+  function groupBySector(){
+    return Object.entries(gcsList.reduce((acc, gc) => {
+      const sectorId = gc.sector.id
+      if (!acc[sectorId]) {
+        acc[sectorId] = []
+      }
+      acc[sectorId].push(gc)
+      acc[sectorId].sort((a, b) => a.name.localeCompare(b.name))
+      return acc
+    }, {}))
+  }
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="">
+      <header className="flex flex-row items-center gap-2 mb-8">
+        <Image src="/logo-8.svg" alt="logo  gc nova batista" width={64} height={64} />
+        <h1 className="text-5xl">
+          <span className="font-extrabold">GC</span> <small>Nova Batista</small>
+        </h1>
+      </header>
+      <section className="flex flex-col gap-4 text-base">
+        <p>
+          Um GC (Grupo de Crescimento) é como a igreja se encontra nas casas, exatamente como foi pensado na Bíblia. É o lugar onde você não é apenas mais um na multidão, mas alguém que vai ser cuidado, ouvido e acompanhado de perto.
+        </p>
+        <p>
+          Nos GCs da Nova Batista, cada encontro segue o tema do culto de domingo, então dá pra aprofundar na Palavra e conversar sobre como ela se aplica na vida de cada um. É também um espaço pra compartilhar experiências, tirar dúvidas, apoiar uns aos outros e crescer junto na fé de um jeito bem real e acolhedor.
+        </p>
+        <p>
+          GC é lugar de crescimento, amizade e cuidado, tudo isso com muito diálogo e coração aberto, e aquela comunhão que todo crente adora.
+        </p>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <section className="mt-8">
+        <h2 className="text-4xl font-extrabold mb-4">Encontre o GC mais próximo de você</h2>
+        <GCFinder />
+      </section>
+
+      <section className="search-result mt-8">
+
+
+      {hasSearchCoords && (
+        <div className="grid grid-cols-2 gap-8 pt-8">
+          {gcsList.map((gc, index) => <GCCard key={index} gc={gc} />)}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      )}
+
+      {!hasSearchCoords && gcsList.map(([sectorId, gcs]) => (
+        <div key={sectorId} className="grid grid-cols-2 gap-8 pt-8">
+          {gcs.map((gc, index) => <GCCard key={index} gc={gc} />)}
+        </div>
+      ))}
+      </section>
+    </main>
+  )
 }
