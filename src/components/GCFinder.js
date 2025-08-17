@@ -43,7 +43,6 @@ export default function GCFinder() {
   const fetchNearbyFromCoordinates = useCallback(async () => {
     const isSameCoords = isSameLocation(prevSearch, search.coordinates)
     const canSearch = !isSameCoords && !search.loading
-    debugger
     if (!canSearch) {
       return
     }
