@@ -3,11 +3,13 @@ import Image from 'next/image'
 
 export default function GCCard(props) {
   const {id, name, address, distance, contacts, schedules, config} = props.gc
+  const {lat, lng} = address
 
   function formatDistance(distance){
     const unit = distance > 1 ? 'km' : 'm'
     return `${distance} ${unit}`
   }
+
   return (
     <div key={id} className="rounded-xl p-5 border" style={{borderColor: config.color.primary}}>
       <div className="flex flex-row justify-between">
@@ -33,10 +35,11 @@ export default function GCCard(props) {
         {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} />)}
       </div>
 
-      <div className="flex flex-row items-center text-sm cursor-pointer fle">
+      <a className="flex flex-row items-center text-sm cursor-pointer" href={`https://www.google.com/maps/dir//${lat},${lng}`} target={id}>
         <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
-        <p className="underline">{address.text}</p>
-      </div>
+        <p className="">{address.text}</p>
+        <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
+      </a>
     </div>
   )
 }

@@ -11,7 +11,7 @@ export default function ContactPhoneWA(props) {
   }
 
   return (
-    <div className="flex flex-row items-center underline cursor-pointer" onClick={handleOpenWhatsapp(phone)}>
+    <div className="flex flex-row items-center cursor-pointer" onClick={handleOpenWhatsapp(phone)}>
       <span>
         <span className="font-semibold">{name}:</span> <span className="">{phone}</span>
       </span>
