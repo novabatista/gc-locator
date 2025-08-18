@@ -1,5 +1,6 @@
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
+import { uniformFont } from '@/app/fonts'
 
 export default function GCCard(props) {
   const {id, name, address, distance, contacts, schedules, config} = props.gc
@@ -14,8 +15,8 @@ export default function GCCard(props) {
     <div key={id} className="rounded-xl p-5 border" style={{borderColor: config.color.primary}}>
       <div className="flex flex-row justify-between">
         <div style={{color: config.color.primary}}>
-          <span className="font-extrabold text-3xl">GC</span><br/>
-          <span className="text-md">{name}</span>
+          <span className="text-4xl uniform-black">GC</span><br/>
+          <span className="text-md uniform">{name}</span>
         </div>
         <div className="text-sm text-right self-end" style={{color: config.color.primary}}>
           {distance && <div className="mb-2">{formatDistance(distance)}</div>}

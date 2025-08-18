@@ -44,9 +44,9 @@ export default async function Home({ searchParams }) {
   return (
     <main className="">
       <header className="flex flex-row items-center gap-2 mb-8">
-        <Image src="/logo-8.svg" alt="logo  gc nova batista" width={64} height={64} />
-        <h1 className="text-5xl">
-          <span className="font-extrabold">GC</span> <small>Nova Batista</small>
+        <Image src="/logo-8.svg" alt="logo gc nova batista" width={64} height={64} />
+        <h1 className="text-5xl ">
+          <span className="uniform-black">GC</span> <small className="uniform">Nova Batista</small>
         </h1>
       </header>
       <section className="flex flex-col gap-4 text-base">
