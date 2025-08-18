@@ -38,8 +38,8 @@
     },
     "address": {
       "text": "Moment Anália Franco, R. Quixadá, 60 - Vila Invernada, São Paulo - SP, 03350-060",
-      "lat": -23.5659707,
-      "lng": -46.6494203
+      "lat": -23.5659924,
+      "lng": -46.5670187
     },
     "contacts": [
       {"name": "Luan", "phone": "11 94744-3796"},
@@ -63,8 +63,8 @@
     },
     "address": {
       "text": "Jardim Santa Teresinha, São Paulo - SP, 03572-130",
-      "lat": -23.5752039,
-      "lng": -46.5843508
+      "lat": -23.5752256,
+      "lng": -46.5019492
     },
     "contacts": [
       {"name": "Neto", "phone": "11 94907-4928"},
@@ -113,8 +113,8 @@
     },
     "address": {
       "text": "R. João Fanfa Ribas, 38-80 - Chácara Belenzinho, São Paulo - SP, 03377-030",
-      "lat": -23.5731416,
-      "lng": -46.6289561
+      "lat": -23.5731633,
+      "lng": -46.5465545
     },
     "contacts": [
       {"name": "Roberto", "phone": "11 99634-4950"},
@@ -138,8 +138,8 @@
     },
     "address": {
       "text": "R. Frei Diogo das Chagas, 3 - Jardim Angela, São Paulo - SP, 03985-060",
-      "lat": -23.6047074,
-      "lng": -46.5218949
+      "lat": -23.6047075,
+      "lng": -46.516745
     },
     "contacts": [
       {"name": "Luizão", "phone": "11 99238-8937"},
@@ -163,8 +163,8 @@
     },
     "address": {
       "text": "R. Marema, 2-70 - Vila Alzira, São Paulo - SP, 03986-190",
-      "lat": -23.6082395,
-      "lng": -46.6021032
+      "lat": -23.6082612,
+      "lng": -46.5197016
     },
     "contacts": [
       {"name": "Danilo", "phone": "11 99291-4712"},
@@ -188,8 +188,8 @@
     },
     "address": {
       "text": "R. Egídio Alves da Costa, 233 - Sapopemba, São Paulo - SP, 03271-040",
-      "lat": -23.6009679,
-      "lng": -46.5223147
+      "lat": -23.600968,
+      "lng": -46.5171648
     },
     "contacts": [
       {"name": "Ronaldo", "phone": "11 96462-1175"},
@@ -213,8 +213,8 @@
     },
     "address": {
       "text": "R. Cantagalo, 430 - Tatuapé, São Paulo - SP, 03319-000",
-      "lat": -23.5463726,
-      "lng": -46.6522243
+      "lat": -23.5463943,
+      "lng": -46.5698227
     },
     "contacts": [
       {"name": "Marco", "phone": "11 94729-0045"},
@@ -238,8 +238,8 @@
     },
     "address": {
       "text": "R. Guaraciaba, 268 - Chácara Califórnia, São Paulo - SP, 03404-000",
-      "lat": -23.5388487,
-      "lng": -46.5600875
+      "lat": -23.5388488,
+      "lng": -46.5549376
     },
     "contacts": [
       {"name": "Adriano", "phone": "11 97645-5988"},
@@ -249,33 +249,8 @@
       {"weekday": "Quinta-feira", "hour": "20:00"}
     ]
   },
-  "cantagalo": {
-    "id": "cantagalo",
-    "name": "Cantagalo",
-    "sector": {
-      "id": "white",
-      "name": "Branco"
-    },
-    "config": {
-      "color": {
-        "primary": "#000"
-      }
-    },
-    "address": {
-      "text": "Edifício Jardim Ilha de Capri - R. Sete de Outubro, 156 - Chácara Califórnia, São Paulo - SP, 03407-040",
-      "lat": -23.5415366,
-      "lng": -46.5531409
-    },
-    "contacts": [
-      {"name": "Edu", "phone": "11 99903-1063"},
-      {"name": "Bia", "phone": "11 95375-0621"}
-    ],
-    "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
-    ]
-  },
-  "carrao": {
-    "id": "carrao",
+  "carrao1": {
+    "id": "carrao1",
     "name": "Carrão",
     "sector": {
       "id": "white",
@@ -288,8 +263,8 @@
     },
     "address": {
       "text": "R. Reboujo, 287-173 - Chácara Santo Antônio (Zona Leste), São Paulo - SP, 03408-050",
-      "lat": -23.55138,
-      "lng": -46.6343583
+      "lat": -23.5514017,
+      "lng": -46.5519567
     },
     "contacts": [
       {"name": "Ricardo", "phone": "11 94762-4869"},
@@ -313,8 +288,8 @@
     },
     "address": {
       "text": "R. Pantojo, 2-118 - Vila Reg. Feijó, São Paulo - SP",
-      "lat": -23.5569329,
-      "lng": -46.658431
+      "lat": -23.5569546,
+      "lng": -46.5760294
     },
     "contacts": [
       {"name": "Josué", "phone": "11 997342-9581"},
@@ -338,8 +313,8 @@
     },
     "address": {
       "text": "R. Itabaiana, 385-221 - Belenzinho, São Paulo - SP, 03171-010",
-      "lat": -23.5489002,
-      "lng": -46.674258
+      "lat": -23.5489219,
+      "lng": -46.5918569
     },
     "contacts": [
       {"name": "Lia", "phone": "11 95495-5447"}
