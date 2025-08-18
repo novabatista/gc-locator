@@ -79,6 +79,13 @@ export default function GCFinder() {
       },
       (error) => {
         console.error('Error getting location:', error)
+        const errorMessages = {
+          1: 'Você precisa permitir o acesso à sua localização para usar este recurso.',
+          2: 'Não foi possível obter sua localização. Por favor, tente novamente.',
+          3: 'O tempo para obter sua localização expirou. Por favor, tente novamente.',
+        }
+        const message = errorMessages[error.code] || 'Ocorreu um erro ao tentar obter sua localização.'
+        alert(message)
       },
     )
   }, [])
