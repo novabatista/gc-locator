@@ -62,22 +62,17 @@ export default async function Home({ searchParams }) {
         </p>
       </section>
 
-      <section className="mt-8">
-        <h2 className="text-4xl font-extrabold mb-4">Encontre o GC mais próximo de você</h2>
-        <GCFinder />
-      </section>
+      <GCFinder />
 
-      <section className="search-result mt-8">
-
-
+      <section className="search-result">
       {hasSearchCoords && (
-        <div className="grid md:grid-cols-2 gap-8 pt-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {gcsList.map((gc, index) => <GCCard key={index} gc={gc} />)}
         </div>
       )}
 
       {!hasSearchCoords && gcsList.map(([sectorId, gcs]) => (
-        <div key={sectorId} className="grid md:grid-cols-2 gap-8 pt-8">
+        <div key={sectorId} className="grid md:grid-cols-2 gap-8 mt-8">
           {gcs.map((gc, index) => <GCCard key={index} gc={gc} />)}
         </div>
       ))}

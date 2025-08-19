@@ -6,8 +6,9 @@ import {useRouter} from 'next/navigation'
 
 export default function GCFinder() {
   const router = useRouter()
+  const locator = new URL(window.location.href).searchParams.get('finder')
 
-
+  const isLocatorVisible = !!locator
   const [prevSearch, setPrevSearch] = useState()
   const [search, setSearch] = useState({loading: false, text: '', coordinates: undefined})
   const [searchResult, setSearchResult] = useState()
@@ -16,7 +17,7 @@ export default function GCFinder() {
   const loadStart = () => setSearch((s) => ({...s, loading: true}))
   const loadStop = () => setSearch((s) => ({...s, loading: false}))
   const redirectWithCoords = (coordinates) => {
-    router.push(`/?lat=${coordinates.lat}&lng=${coordinates.lng}`, { scroll: false})
+    router.push(`/?lat=${coordinates.lat}&lng=${coordinates.lng}&finder=true`, { scroll: false})
   }
 
   const redirectRoot = () => {
@@ -155,8 +156,15 @@ export default function GCFinder() {
       iconId: 'loading',
     })
   }, [search.loading])
+
+
+  if(!isLocatorVisible) {
+    return null
+  }
+
   return (
-    <section className="flex flex-col gap-4 items-center m-auto w-full md:w-1/2">
+    <section className="flex flex-col gap-4 items-center m-auto w-full md:w-1/2 my-8">
+      <h2 className="text-4xl font-extrabold mb-4">Encontre o GC mais próximo</h2>
       <form className="flex flex-row gap-2 justify-center w-full" onSubmit={handleFormSubmit}>
         <input
           className="flex-grow px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-950 focus:border-gray-800 placeholder-gray-400"
@@ -177,7 +185,7 @@ export default function GCFinder() {
 
       </form>
       {searchResult?.error && <small className="text-xs text-red-900">{searchResult?.data.message}</small>}
-      {!searchResult?.error && searchResult?.data.address && (
+      {!searchResult?.error && hasSearch && (
         <div className="flex flex-row items-center gap-2">
           <small className="text-xs">{searchResult?.data.address}</small>
           <Image alt="buscar" src={`/icons/close.svg`} width={18} height={18} onClick={handleSearchClear} className="cursor-pointer" />
