@@ -4,7 +4,7 @@ import GCCard from '@/components/GCCard'
 import GCFinder from '@/components/GCFinder'
 import calculateDistance from '@/map/distance'
 
-
+const MAX_SEARCH_RADIUS_KM = 4
 export default async function Home({ searchParams }) {
   const { lat, lng } = await searchParams
   const searchCoords = {lat, lng}
@@ -27,6 +27,7 @@ export default async function Home({ searchParams }) {
       )
     }))
       .sort((a, b) => a.distance - b.distance)
+      .filter(gc => gc.distance < MAX_SEARCH_RADIUS_KM)
   }
 
   function groupBySector(){

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import {useState, useEffect, useCallback} from 'react'
+import {useState, useEffect, useCallback, useMemo} from 'react'
 import {useRouter} from 'next/navigation'
 
 export default function GCFinder() {
@@ -18,6 +18,12 @@ export default function GCFinder() {
   const redirectWithCoords = (coordinates) => {
     router.push(`/?lat=${coordinates.lat}&lng=${coordinates.lng}`, { scroll: false})
   }
+
+  const redirectRoot = () => {
+    router.push('/', { scroll: false})
+  }
+
+  const hasSearch = useMemo(()=>search.text || search.coordinates, [search.text, search.coordinates])
 
   const fetchNearbyFromAddress = useCallback(async (addr) => {
     const canSearch = prevSearch !== search.text && search.text && !search.loading
@@ -91,9 +97,17 @@ export default function GCFinder() {
   }, [])
 
   const handleOnInputChange = (e) => setSearch((s) => ({...s, text: e.target.value}))
+
   const handleFormSubmit = (e) => {
     e.preventDefault()
     fetchNearbyFromAddress(search.text)
+  }
+
+  function handleSearchClear(){
+    setSearch({loading: false, text: '', coordinates: undefined})
+    setPrevSearch(undefined)
+    setSearchResult(undefined)
+    redirectRoot()
   }
 
   /**
@@ -163,7 +177,12 @@ export default function GCFinder() {
 
       </form>
       {searchResult?.error && <small className="text-xs text-red-900">{searchResult?.data.message}</small>}
-      {!searchResult?.error && <small className="text-xs">{searchResult?.data.address}</small>}
+      {!searchResult?.error && searchResult?.data.address && (
+        <div className="flex flex-row items-center gap-2">
+          <small className="text-xs">{searchResult?.data.address}</small>
+          <Image alt="buscar" src={`/icons/close.svg`} width={18} height={18} onClick={handleSearchClear} className="cursor-pointer" />
+        </div>
+      )}
 
       <h3>OU</h3>
 
