@@ -6,9 +6,8 @@ import {useRouter} from 'next/navigation'
 
 export default function GCFinder() {
   const router = useRouter()
-  const locator = new URL(window.location.href).searchParams.get('finder')
 
-  const isLocatorVisible = !!locator
+  const [isLocatorVisible, setLocatorVisibility] = useState(false)
   const [prevSearch, setPrevSearch] = useState()
   const [search, setSearch] = useState({loading: false, text: '', coordinates: undefined})
   const [searchResult, setSearchResult] = useState()
@@ -157,6 +156,9 @@ export default function GCFinder() {
     })
   }, [search.loading])
 
+  useEffect(() => {
+    setLocatorVisibility(!!(new URL(window.location.href).searchParams.get('finder')))
+  }, [])
 
   if(!isLocatorVisible) {
     return null
