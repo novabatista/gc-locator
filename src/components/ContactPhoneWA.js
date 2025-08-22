@@ -1,10 +1,11 @@
 import Image from 'next/image'
 
 export default function ContactPhoneWA(props) {
+  const gcName = props.name ?? ''
   const {name, phone} = props.contact
 
   return (
-    <a className="flex flex-row items-center cursor-pointer" href={`https://wa.me/55${phone.replace(/\D/g, '')}?text=${encodeURIComponent('Olá, gostaria de conhecer o GC')}`}>
+    <a className="flex flex-row items-center cursor-pointer" href={`https://wa.me/55${phone.replace(/\D/g, '')}?text=${encodeURIComponent('Olá, gostaria de conhecer o GC '+gcName)}`}>
       <span>
         <span className="font-semibold">{name}:</span> <span className="">{phone}</span>
       </span>

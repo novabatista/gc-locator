@@ -62,7 +62,7 @@ export default async function PageGCDetail({params}) {
 
           <div className="flex flex-col gap-2">
             <span className="text-xl" style={{color: config.color.primary}}>Líderes</span>
-            {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} />)}
+            {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} />)}
           </div>
         </div>
 

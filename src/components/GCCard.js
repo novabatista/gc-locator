@@ -33,7 +33,7 @@ export default function GCCard(props) {
       </div>
 
       <div className="flex flex-row justify-between text-sm my-4">
-        {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} />)}
+        {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} />)}
       </div>
 
       <a className="flex flex-row items-center text-sm cursor-pointer" href={`https://www.google.com/maps/dir//${lat},${lng}`} target={id}>
