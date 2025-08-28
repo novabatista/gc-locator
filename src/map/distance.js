@@ -1,4 +1,5 @@
 
+export const EARTH_RADIUS_KM = 6371;
 /**
  * Calculate the distance between two points using the Haversine formula
  * @param {{lat:number, lng:number}} sourceCoord - Latitude & Longitude of source point
@@ -10,7 +11,6 @@ export default function calculateDistance(sourceCoord, destinationCoord) {
     return Infinity;
   }
 
-  const R = 6371; // Radius of the Earth in km
   const dLat = (destinationCoord.lat - sourceCoord.lat) * (Math.PI / 180);
   const dLng = (destinationCoord.lng - sourceCoord.lng) * (Math.PI / 180);
 
@@ -20,7 +20,34 @@ export default function calculateDistance(sourceCoord, destinationCoord) {
     Math.sin(dLng / 2) * Math.sin(dLng / 2);
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = R * c; // Distance in km
+  const distance = EARTH_RADIUS_KM * c; // Distance in km
 
   return distance.toFixed(2);
+}
+
+/**
+ * Generates a set of latitude and longitude points forming a circle around a given center point.
+ *
+ * @param {number} lat - The latitude of the center point in degrees.
+ * @param {number} lng - The longitude of the center point in degrees.
+ * @param {number} radiusInMeters - The radius of the circle in meters.
+ * @param {number} [numPoints=40] - The number of points to generate along the circumference of the circle.
+ * @return {string} A pipe-separated string of points, where each point is represented as "latitude,longitude".
+ */
+export function generateCirclePoints(lat, lng, radiusInMeters, numPoints = 40) {
+  const earthRadius = EARTH_RADIUS_KM * 1000 // meters
+  const points = [];
+
+  for (let i = 0; i < numPoints; i++) {
+    const angle = (i * 2 * Math.PI) / numPoints;
+    const dx = (radiusInMeters * Math.cos(angle)) / (earthRadius * Math.cos(lat * Math.PI / 180));
+    const dy = (radiusInMeters * Math.sin(angle)) / earthRadius;
+
+    const pointLat = lat + (dy * 180 / Math.PI);
+    const pointLng = lng + (dx * 180 / Math.PI);
+
+    points.push(`${pointLat},${pointLng}`);
+  }
+
+  return points.join('|');
 }
