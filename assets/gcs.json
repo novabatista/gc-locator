@@ -13,8 +13,14 @@
     },
     "address": {
       "text": "R. Ipanema - Mooca, São Paulo - SP, 03164-200",
-      "lat": -23.5464746,
-      "lng": -46.605623
+      "street_number": 686,
+      "complement": "apto: 21A",
+      "lat": -23.546476105261394,
+      "lng": -46.605468727665006,
+      "fake": {
+        "lat": -23.546684530775345,
+        "lng": -46.606016843611634
+      }
     },
     "contacts": [
       {"name": "Maiky", "phone": "11 94860-2707"},
@@ -50,8 +56,14 @@
     },
     "address": {
       "text": "R. Quixadá - Vila Invernada, São Paulo - SP, 03350-060",
-      "lat": -23.5659924,
-      "lng": -46.5670187
+      "street_number": 60,
+      "complement": "",
+      "lat": -23.5660249,
+      "lng": -46.5672434,
+      "fake": {
+        "lat": -23.565880983606537,
+        "lng": -46.56677138675617
+      }
     },
     "contacts": [
       {"name": "Luan", "phone": "11 94744-3796"},
@@ -78,12 +90,52 @@
     },
     "address": {
       "text": "Av. Matapi - Jardim Santa Teresinha, São Paulo - SP, 03572-130",
-      "lat": -23.5752256,
-      "lng": -46.5019492
+      "street_number": 40,
+      "complement": "apto: 102 Bloco 2",
+      "lat": -23.574934,
+      "lng": -46.5021076,
+      "fake": {
+        "lat": -23.575402340795105,
+        "lng": -46.50238147088641
+      }
     },
     "contacts": [
       {"name": "Neto", "phone": "11 94907-4928"},
       {"name": "Luiza", "phone": "11 98529-5614"}
+    ],
+    "schedules": [
+      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+    ],
+    "links": [],
+    "images": [],
+    "description": []
+  },
+  "cantagalo1": {
+    "id": "cantagalo1",
+    "name": "Cantagalo",
+    "sector": {
+      "id": "blue",
+      "name": "Azul"
+    },
+    "config": {
+      "color": {
+        "primary": "#2186ed"
+      }
+    },
+    "address": {
+      "text": "R. Sete de Outubro - Chácara Califórnia, São Paulo - SP, 03407-040",
+      "street_number": 156,
+      "complement": "apto: 144",
+      "lat": -23.5421709,
+      "lng": -46.5521343,
+      "fake": {
+        "lat": -23.542541336027544,
+        "lng": -46.55192782556272
+      }
+    },
+    "contacts": [
+      {"name": "Edu", "phone": "11 99903-1063"},
+      {"name": "Beatriz", "phone": "11 95375-0621"}
     ],
     "schedules": [
       {"weekday":  "Quinta-feira", "hour":  "20:00"}
@@ -106,8 +158,14 @@
     },
     "address": {
       "text": "R. São Severiano - Vila Santana, São Paulo - SP, 03613-030",
-      "lat": -23.5185944,
-      "lng": -46.5350246
+      "street_number": 54,
+      "complement": "",
+      "lat": -23.5185801,
+      "lng": -46.53493,
+      "fake": {
+        "lat": -23.518373955571985,
+        "lng": -46.53442053049735
+      }
     },
     "contacts": [
       {"name": "Kleber", "phone": "11 98567-6120"},
@@ -134,8 +192,14 @@
     },
     "address": {
       "text": "R. João Fanfa Ribas - Chácara Belenzinho, São Paulo - SP, 03377-030",
-      "lat": -23.5731633,
-      "lng": -46.5465545
+      "street_number": 11,
+      "complement": "",
+      "lat": -23.5731756,
+      "lng": -46.54653709,
+      "fake": {
+        "lat": -23.572909266077456,
+        "lng": -46.54636868147624
+      }
     },
     "contacts": [
       {"name": "Roberto", "phone": "11 99634-4950"},
@@ -148,37 +212,9 @@
     "images": [],
     "description": []
   },
-  "cantagalo1": {
-    "id": "cantagalo1",
-    "name": "Cantagalo",
-    "sector": {
-      "id": "blue",
-      "name": "Azul"
-    },
-    "config": {
-      "color": {
-        "primary": "#2186ed"
-      }
-    },
-    "address": {
-      "text": "R. Sete de Outubro - Chácara Califórnia, São Paulo - SP, 03407-040",
-      "lat": -23.5731633,
-      "lng": -46.5465545
-    },
-    "contacts": [
-      {"name": "Edu", "phone": "11 99903-1063"},
-      {"name": "Beatriz", "phone": "11 95375-0621"}
-    ],
-    "schedules": [
-      {"weekday":  "Quinta-feira", "hour":  "20:00"}
-    ],
-    "links": [],
-    "images": [],
-    "description": []
-  },
-  "vilauniao1": {
-    "id": "vilauniao1",
-    "name": "Vila União",
+  "jdgrimaldi1": {
+    "id": "jdgrimaldi1",
+    "name": "JD Grimaldi",
     "sector": {
       "id": "green",
       "name": "Verde"
@@ -189,13 +225,19 @@
       }
     },
     "address": {
-      "text": "R. Frei Diogo das Chagas - Jardim Angela, São Paulo - SP, 03985-060",
-      "lat": -23.6047075,
-      "lng": -46.516745
+      "text": "R. Egídio Alves da Costa - Sapopemba, São Paulo - SP, 03271-040",
+      "street_number": 233,
+      "complement": "",
+      "lat": -23.600968,
+      "lng": -46.5171648,
+      "fake": {
+        "lat": -23.601438101208565,
+        "lng": -46.517579727167465
+      }
     },
     "contacts": [
-      {"name": "Luizão", "phone": "11 99238-8937"},
-      {"name": "Janete", "phone": "11 98949-6918"}
+      {"name": "Ronaldo", "phone": "11 96462-1175"},
+      {"name": "Rose", "phone": "11 96094-4370"}
     ],
     "schedules": [
       {"weekday": "Quinta-feira", "hour": "20:00"}
@@ -218,8 +260,14 @@
     },
     "address": {
       "text": "R. Marema - Vila Alzira, São Paulo - SP, 03986-190",
-      "lat": -23.6082612,
-      "lng": -46.5197016
+      "street_number": 63,
+      "complement": "",
+      "lat": -23.6081641,
+      "lng": -46.5196654,
+      "fake": {
+        "lat": -23.608357462928193,
+        "lng": -46.52002438230167
+      }
     },
     "contacts": [
       {"name": "Danilo", "phone": "11 99291-4712"},
@@ -232,9 +280,9 @@
     "images": [],
     "description": []
   },
-  "jdgrimaldi1": {
-    "id": "jdgrimaldi1",
-    "name": "JD Grimaldi",
+  "vilauniao1": {
+    "id": "vilauniao1",
+    "name": "Vila União",
     "sector": {
       "id": "green",
       "name": "Verde"
@@ -245,13 +293,19 @@
       }
     },
     "address": {
-      "text": "R. Egídio Alves da Costa - Sapopemba, São Paulo - SP, 03271-040",
-      "lat": -23.600968,
-      "lng": -46.5171648
+      "text": "R. Frei Diogo das Chagas - Jardim Angela, São Paulo - SP, 03985-060",
+      "street_number": 69,
+      "complement": "",
+      "lat": -23.6047397,
+      "lng": -46.5161022,
+      "fake": {
+        "lat": -23.604793292955932,
+        "lng": -46.5164695621174
+      }
     },
     "contacts": [
-      {"name": "Ronaldo", "phone": "11 96462-1175"},
-      {"name": "Rose", "phone": "11 96094-4370"}
+      {"name": "Luizão", "phone": "11 99238-8937"},
+      {"name": "Janete", "phone": "11 98949-6918"}
     ],
     "schedules": [
       {"weekday": "Quinta-feira", "hour": "20:00"}
@@ -274,8 +328,14 @@
     },
     "address": {
       "text": "R. Cantagalo - Tatuapé, São Paulo - SP, 03319-000",
-      "lat": -23.5463943,
-      "lng": -46.5698227
+      "street_number": 430,
+      "complement": "apto: 123",
+      "lat": -23.5466123,
+      "lng": -46.5697781,
+      "fake": {
+        "lat": -23.54618312443365,
+        "lng": -46.569056269280196
+      }
     },
     "contacts": [
       {"name": "Marco", "phone": "11 94729-0045"},
@@ -302,8 +362,14 @@
     },
     "address": {
       "text": "R. Guaraciaba - Chácara Califórnia, São Paulo - SP, 03404-000",
-      "lat": -23.5388488,
-      "lng": -46.5549376
+      "street_number": 266,
+      "complement": "apto: 101",
+      "lat": -23.5388984,
+      "lng": -46.5549256,
+      "fake": {
+        "lat": -23.53868421356169,
+        "lng": -46.554523485543726
+      }
     },
     "contacts": [
       {"name": "Adriano", "phone": "11 97645-5988"},
@@ -316,50 +382,28 @@
     "images": [],
     "description": []
   },
-  "carrao1": {
-    "id": "carrao1",
-    "name": "Carrão",
-    "sector": {
-      "id": "white",
-      "name": "Branco"
-    },
-    "config": {
-      "color": {
-        "primary": "#000"
-      }
-    },
-    "address": {
-      "text": "R. Reboujo - Chácara Santo Antônio (Zona Leste), São Paulo - SP, 03408-050",
-      "lat": -23.5514017,
-      "lng": -46.5519567
-    },
-    "contacts": [
-      {"name": "Ricardo", "phone": "11 94762-4869"},
-      {"name": "Aline", "phone": "11 94725-3994"}
-    ],
-    "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
-    ],
-    "links": [],
-    "images": [],
-    "description": []
-  },
   "aguarasa1": {
     "id": "aguarasa1",
     "name": "Água Rasa",
     "sector": {
-      "id": "orange",
-      "name": "Laranja"
+      "id": "yellow",
+      "name": "Amarelo"
     },
     "config": {
       "color": {
-        "primary": "#ffb000"
+        "primary": "#ffe500"
       }
     },
     "address": {
       "text": "R. Pantojo - Vila Reg. Feijó, São Paulo - SP",
-      "lat": -23.5569546,
-      "lng": -46.5760294
+      "street_number": 50,
+      "complement": "apt: 61",
+      "lat": -23.5570666,
+      "lng": -46.5761739,
+      "fake": {
+        "lat": -23.557077106433425,
+        "lng": -46.57568857519759
+      }
     },
     "contacts": [
       {"name": "Josué", "phone": "11 997342-9581"},
@@ -372,22 +416,62 @@
     "images": [],
     "description": []
   },
+  "carrao1": {
+    "id": "carrao1",
+    "name": "Carrão",
+    "sector": {
+      "id": "yellow",
+      "name": "Amarelo"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffe500"
+      }
+    },
+    "address": {
+      "text": "R. Reboujo - Chácara Santo Antônio (Zona Leste), São Paulo - SP, 03408-050",
+      "street_number": 250,
+      "complement": "apto: 32",
+      "lat": -23.5516724,
+      "lng": -46.551994,
+      "fake": {
+        "lat": -23.551341150140118,
+        "lng": -46.5519655234979
+      }
+    },
+    "contacts": [
+      {"name": "Ricardo", "phone": "11 94762-4869"},
+      {"name": "Aline", "phone": "11 94725-3994"}
+    ],
+    "schedules": [
+      {"weekday": "Quinta-feira", "hour": "20:00"}
+    ],
+    "links": [],
+    "images": [],
+    "description": []
+  },
   "mooca1": {
     "id": "mooca1",
     "name": "Mooca",
     "sector": {
-      "id": "orange",
-      "name": "Laranja"
+      "id": "yellow",
+      "name": "Amarelo"
     },
     "config": {
       "color": {
-        "primary": "#ffb000"
+        "primary": "#ffe500"
       }
     },
     "address": {
       "text": "R. Itabaiana - Belenzinho, São Paulo - SP, 03171-010",
-      "lat": -23.5489219,
-      "lng": -46.5918569
+      "street_number": 250,
+      "complement": "",
+      "lat": -23.5490084,
+      "lng": -46.5919312,
+      "fake": {
+        "lat": -23.5491964859404,
+        "lng": -46.59154285566274
+      }
     },
     "contacts": [
       {"name": "Lia", "phone": "11 95495-5447"}
