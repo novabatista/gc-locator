@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <div
-        className="font-sans min-h-screen w-full md:w-2/3 m-auto px-8 sm:px-20 py-8 sm:py-12">
+        className="font-sans min-h-screen w-11/12 md:w-10/12 lg:w-10/12 xl:w-8/12 2xl:w-8/12 m-auto sm:py-12">
         {children}
       </div>
       </body>
