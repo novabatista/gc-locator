@@ -12,7 +12,7 @@
       }
     },
     "address": {
-      "text": "R. Ipanema, 654-772 - Mooca, São Paulo - SP, 03164-200",
+      "text": "R. Ipanema, 626-746 - Mooca, São Paulo - SP, 03164-200",
       "lat": -23.5464746,
       "lng": -46.605623
     },
@@ -49,7 +49,7 @@
       }
     },
     "address": {
-      "text": "Moment Anália Franco, R. Quixadá, 60 - Vila Invernada, São Paulo - SP, 03350-060",
+      "text": "R. Quixadá, 7-118 - Vila Invernada, São Paulo - SP, 03350-060",
       "lat": -23.5659924,
       "lng": -46.5670187
     },
@@ -77,7 +77,7 @@
       }
     },
     "address": {
-      "text": "Jardim Santa Teresinha, São Paulo - SP, 03572-130",
+      "text": "Av. Matapi, 25-138 - Jardim Santa Teresinha, São Paulo - SP, 03572-130",
       "lat": -23.5752256,
       "lng": -46.5019492
     },
@@ -105,13 +105,13 @@
       }
     },
     "address": {
-      "text": "no mapa de gc (qrode dos cartoes) esta como kleber e fernanda na R. São Severiano",
-      "lat": 0,
-      "lng": 0
+      "text": "R. São Severiano, 14-138 - Vila Santana, São Paulo - SP, 03613-030",
+      "lat": -23.5185944,
+      "lng": -46.5350246
     },
     "contacts": [
-      {"name": "Eduardo", "phone": "11 99903-1063"},
-      {"name": "Beatriz", "phone": "11 95375-0621"}
+      {"name": "Kleber", "phone": "11 98567-6120"},
+      {"name": "Fernanda", "phone": "11 96309-1678"}
     ],
     "schedules": [
       {"weekday":  "Quinta-feira", "hour":  "20:00"}
@@ -148,6 +148,34 @@
     "images": [],
     "description": []
   },
+  "cantagalo1": {
+    "id": "cantagalo1",
+    "name": "Cantagalo",
+    "sector": {
+      "id": "blue",
+      "name": "Azul"
+    },
+    "config": {
+      "color": {
+        "primary": "#2186ed"
+      }
+    },
+    "address": {
+      "text": "R. Sete de Outubro, 82-209 - Chácara Califórnia, São Paulo - SP, 03407-040",
+      "lat": -23.5731633,
+      "lng": -46.5465545
+    },
+    "contacts": [
+      {"name": "Edu", "phone": "11 99903-1063"},
+      {"name": "Beatriz", "phone": "11 95375-0621"}
+    ],
+    "schedules": [
+      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+    ],
+    "links": [],
+    "images": [],
+    "description": []
+  },
   "vilauniao1": {
     "id": "vilauniao1",
     "name": "Vila União",
@@ -161,7 +189,7 @@
       }
     },
     "address": {
-      "text": "R. Frei Diogo das Chagas, 3 - Jardim Angela, São Paulo - SP, 03985-060",
+      "text": "R. Frei Diogo das Chagas, 33-174 - Jardim Angela, São Paulo - SP, 03985-060",
       "lat": -23.6047075,
       "lng": -46.516745
     },
@@ -189,7 +217,7 @@
       }
     },
     "address": {
-      "text": "R. Marema, 2-70 - Vila Alzira, São Paulo - SP, 03986-190",
+      "text": "R. Marema, 12-86 - Vila Alzira, São Paulo - SP, 03986-190",
       "lat": -23.6082612,
       "lng": -46.5197016
     },
@@ -217,7 +245,7 @@
       }
     },
     "address": {
-      "text": "R. Egídio Alves da Costa, 233 - Sapopemba, São Paulo - SP, 03271-040",
+      "text": "R. Egídio Alves da Costa, 205-303 - Sapopemba, São Paulo - SP, 03271-040",
       "lat": -23.600968,
       "lng": -46.5171648
     },
@@ -245,7 +273,7 @@
       }
     },
     "address": {
-      "text": "R. Cantagalo, 430 - Tatuapé, São Paulo - SP, 03319-000",
+      "text": "R. Cantagalo, 391-521 - Tatuapé, São Paulo - SP, 03319-000",
       "lat": -23.5463943,
       "lng": -46.5698227
     },
@@ -273,7 +301,7 @@
       }
     },
     "address": {
-      "text": "R. Guaraciaba, 268 - Chácara Califórnia, São Paulo - SP, 03404-000",
+      "text": "R. Guaraciaba, 116-293 - Chácara Califórnia, São Paulo - SP, 03404-000",
       "lat": -23.5388488,
       "lng": -46.5549376
     },
@@ -301,7 +329,7 @@
       }
     },
     "address": {
-      "text": "R. Reboujo, 287-173 - Chácara Santo Antônio (Zona Leste), São Paulo - SP, 03408-050",
+      "text": "R. Reboujo, 173-287 - Chácara Santo Antônio (Zona Leste), São Paulo - SP, 03408-050",
       "lat": -23.5514017,
       "lng": -46.5519567
     },
@@ -357,7 +385,7 @@
       }
     },
     "address": {
-      "text": "R. Itabaiana, 385-221 - Belenzinho, São Paulo - SP, 03171-010",
+      "text": "R. Itabaiana, 211-385 - Belenzinho, São Paulo - SP, 03171-010",
       "lat": -23.5489219,
       "lng": -46.5918569
     },
