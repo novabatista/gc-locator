@@ -1,10 +1,28 @@
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import { uniformFont } from '@/app/fonts'
+import {generateCirclePoints, getMapStaticConfig} from '@/map/distance'
+
+const MAP_STATIC_CONFIG = getMapStaticConfig({width: 640, height: 180})
 
 export default function GCCard(props) {
-  const {id, name, address, distance, contacts, schedules, config} = props.gc
+  const {id, name, address, distance, contacts, schedules, config, sector} = props.gc
   const {lat, lng} = address
+  const radiusInMeters = 200;
+  const circlePoints = generateCirclePoints(lat, lng, radiusInMeters);
+
+  const mapImageAlt = `Mapa GC ${name}`
+  const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
+
+  const mapImageUrl = [
+    'https://maps.googleapis.com/maps/api/staticmap',
+    `?center=${lat},${lng}`,
+    `&zoom=${MAP_STATIC_CONFIG.zoom}`,
+    `&size=${MAP_STATIC_CONFIG.width}x${MAP_STATIC_CONFIG.height}`,
+    // `&markers=color:${sector.id}%7C${lat},${lng}`,
+    `&path=color:${MAP_STATIC_CONFIG.path.color}|fillcolor:${MAP_STATIC_CONFIG.path.fill}|weight:${MAP_STATIC_CONFIG.path.weight}|${circlePoints}`,
+    `&key=${process.env.GOOGLE_MAPS_STATIC_KEY}`,
+  ].join('');
 
   function formatDistance(distance){
     const unit = distance > 1 ? 'km' : 'm'
@@ -36,11 +54,19 @@ export default function GCCard(props) {
         {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} />)}
       </div>
 
-      <a className="flex flex-row items-center text-sm cursor-pointer" href={`https://www.google.com/maps/dir//${lat},${lng}`} target={id}>
-        <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
-        <p className="">{address.text}</p>
-        <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
-      </a>
+      <div>
+        <div className="flex flex-row items-center text-sm mb-2">
+          <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
+          <p className="">{address.text}</p>
+        </div>
+        <Image
+          alt={mapImageAlt}
+          src={mapImageUrl}
+          width={MAP_STATIC_CONFIG.width}
+          height={MAP_STATIC_CONFIG.height}
+          className="rounded-lg"
+        />
+      </div>
     </div>
   )
 }

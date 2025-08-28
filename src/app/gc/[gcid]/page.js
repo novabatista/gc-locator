@@ -3,17 +3,9 @@ import {notFound} from 'next/navigation'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {Fragment} from 'react'
-import {generateCirclePoints} from '@/map/distance'
+import {generateCirclePoints, getMapStaticConfig} from '@/map/distance'
 
-const MAP_STATIC_CONFIG = {
-  width: 1200,
-  height: 280,
-  zoom: 15,
-  path:{
-    color: '0x0078dbAA',
-    fill: '0x0078db22',
-  }
-}
+const MAP_STATIC_CONFIG = getMapStaticConfig()
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
   const gc = gcs[gcid]
@@ -88,13 +80,13 @@ export default async function PageGCDetail({params}) {
             <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
             <p className="">{address.text}</p>
           </div>
-            <Image
-              alt={mapImageAlt}
-              src={mapImageUrl}
-              width={MAP_STATIC_CONFIG.width}
-              height={MAP_STATIC_CONFIG.height}
-              className="rounded-lg"
-            />
+          <Image
+            alt={mapImageAlt}
+            src={mapImageUrl}
+            width={MAP_STATIC_CONFIG.width}
+            height={MAP_STATIC_CONFIG.height}
+            className="rounded-lg"
+          />
         </div>
       </section>
 

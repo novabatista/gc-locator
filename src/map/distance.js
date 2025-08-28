@@ -1,5 +1,18 @@
 
 export const EARTH_RADIUS_KM = 6371;
+
+export const getMapStaticConfig = (overrides={})=>({
+    width: 1200,
+    height: 280,
+    zoom: 15,
+    path:{
+      weight: 3,
+      color: '0x0078dbAA',
+      fill: '0x0078db22',
+    },
+    ...overrides,
+  })
+
 /**
  * Calculate the distance between two points using the Haversine formula
  * @param {{lat:number, lng:number}} sourceCoord - Latitude & Longitude of source point
