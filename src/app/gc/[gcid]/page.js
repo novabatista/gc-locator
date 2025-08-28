@@ -3,9 +3,10 @@ import {notFound} from 'next/navigation'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {Fragment} from 'react'
-import {generateCirclePoints, getMapStaticConfig} from '@/map/distance'
+import {getMapStaticConfig} from '@/map/distance'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
+
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
   const gc = gcs[gcid]
@@ -17,21 +18,9 @@ export default async function PageGCDetail({params}) {
   const {id, name, address, description, contacts, schedules, config, links, sector} = gc
   const {lat, lng} = address
 
-  const radiusInMeters = 200;
-  const circlePoints = generateCirclePoints(lat, lng, radiusInMeters);
-
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
-
-  const mapImageUrl = [
-    'https://maps.googleapis.com/maps/api/staticmap',
-    `?center=${lat},${lng}`,
-    `&zoom=${MAP_STATIC_CONFIG.zoom}`,
-    `&size=${MAP_STATIC_CONFIG.width}x${MAP_STATIC_CONFIG.height}`,
-    // `&markers=color:${sector.id}%7C${lat},${lng}`,
-    `&path=color:${MAP_STATIC_CONFIG.path.color}|fillcolor:${MAP_STATIC_CONFIG.path.fill}|weight:2|${circlePoints}`,
-    `&key=${process.env.GOOGLE_MAPS_STATIC_KEY}`,
-    ].join('');
+  const mapImageUrl = `/maps/map-${id}-full.png?v=${MAP_STATIC_CONFIG.version}`
 
   return (
     <main>

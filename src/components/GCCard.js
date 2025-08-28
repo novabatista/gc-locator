@@ -1,28 +1,16 @@
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
-import { uniformFont } from '@/app/fonts'
-import {generateCirclePoints, getMapStaticConfig} from '@/map/distance'
+import {getMapStaticConfig} from '@/map/distance'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig({width: 640, height: 180})
 
 export default function GCCard(props) {
   const {id, name, address, distance, contacts, schedules, config, sector} = props.gc
   const {lat, lng} = address
-  const radiusInMeters = 200;
-  const circlePoints = generateCirclePoints(lat, lng, radiusInMeters);
 
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
-
-  const mapImageUrl = [
-    'https://maps.googleapis.com/maps/api/staticmap',
-    `?center=${lat},${lng}`,
-    `&zoom=${MAP_STATIC_CONFIG.zoom}`,
-    `&size=${MAP_STATIC_CONFIG.width}x${MAP_STATIC_CONFIG.height}`,
-    // `&markers=color:${sector.id}%7C${lat},${lng}`,
-    `&path=color:${MAP_STATIC_CONFIG.path.color}|fillcolor:${MAP_STATIC_CONFIG.path.fill}|weight:${MAP_STATIC_CONFIG.path.weight}|${circlePoints}`,
-    `&key=${process.env.GOOGLE_MAPS_STATIC_KEY}`,
-  ].join('');
+  const mapImageUrl = `/maps/map-${id}-min.png?v=${MAP_STATIC_CONFIG.version}`
 
   function formatDistance(distance){
     const unit = distance > 1 ? 'km' : 'm'

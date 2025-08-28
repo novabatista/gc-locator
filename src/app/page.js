@@ -5,8 +5,8 @@ import GCFinder from '@/components/GCFinder'
 import calculateDistance from '@/map/distance'
 
 const MAX_SEARCH_RADIUS_KM = 4
-export default async function Home({ searchParams }) {
-  const { lat, lng } = await searchParams
+export default function Home({ searchParams }) {
+  const { lat, lng } = searchParams
   const searchCoords = {lat, lng}
   const hasSearchCoords = lat && lng
 
