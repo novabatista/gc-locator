@@ -3,11 +3,16 @@ import {notFound} from 'next/navigation'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {Fragment} from 'react'
+import {generateCirclePoints} from '@/map/distance'
 
 const MAP_STATIC_CONFIG = {
   width: 1200,
   height: 280,
-  zoom: 16,
+  zoom: 15,
+  path:{
+    color: '0x0078dbAA',
+    fill: '0x0078db22',
+  }
 }
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
@@ -17,12 +22,24 @@ export default async function PageGCDetail({params}) {
     return notFound()
   }
 
-  const {id, name, address, description, contacts, schedules, config, links} = gc
+  const {id, name, address, description, contacts, schedules, config, links, sector} = gc
   const {lat, lng} = address
 
+  const radiusInMeters = 200;
+  const circlePoints = generateCirclePoints(lat, lng, radiusInMeters);
+
   const mapImageAlt = `Mapa GC ${name}`
-  const mapImageUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${MAP_STATIC_CONFIG.zoom}&size=${MAP_STATIC_CONFIG.width}x${MAP_STATIC_CONFIG.height}&markers=color:red%7C${lat},${lng}&key=${process.env.GOOGLE_MAPS_STATIC_KEY}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
+
+  const mapImageUrl = [
+    'https://maps.googleapis.com/maps/api/staticmap',
+    `?center=${lat},${lng}`,
+    `&zoom=${MAP_STATIC_CONFIG.zoom}`,
+    `&size=${MAP_STATIC_CONFIG.width}x${MAP_STATIC_CONFIG.height}`,
+    // `&markers=color:${sector.id}%7C${lat},${lng}`,
+    `&path=color:${MAP_STATIC_CONFIG.path.color}|fillcolor:${MAP_STATIC_CONFIG.path.fill}|weight:2|${circlePoints}`,
+    `&key=${process.env.GOOGLE_MAPS_STATIC_KEY}`,
+    ].join('');
 
   return (
     <main>
@@ -67,12 +84,10 @@ export default async function PageGCDetail({params}) {
         </div>
 
         <div className="mt-4">
-          <a className="flex flex-row items-center justify-center mb-2" href={mapNavigationUrl} target={id}>
+          <div className="flex flex-row items-center justify-center mb-2">
             <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
             <p className="">{address.text}</p>
-            <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
-          </a>
-          <a className="" href={mapNavigationUrl} target={id}>
+          </div>
             <Image
               alt={mapImageAlt}
               src={mapImageUrl}
@@ -80,7 +95,6 @@ export default async function PageGCDetail({params}) {
               height={MAP_STATIC_CONFIG.height}
               className="rounded-lg"
             />
-          </a>
         </div>
       </section>
 
