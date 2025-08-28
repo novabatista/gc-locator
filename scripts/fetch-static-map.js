@@ -1,16 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const { generateCirclePoints, getMapStaticConfig } = require('../src/map/distance');
+const { generateStaticMapUrl, getMapStaticConfig } = require('../src/map/map');
 const gcs = require('../assets/gcs.json')
 const { loadEnvConfig } = require('@next/env');
 
 loadEnvConfig(process.cwd());
 
-
-const STATIC_MAP_KEY = process.env.GOOGLE_MAPS_STATIC_KEY;
-
-const radiusInMeters = 250;
 const mapConfigFull = getMapStaticConfig();
 const mapConfigMin = getMapStaticConfig({width: 640, height: 180})
 
@@ -46,27 +42,15 @@ function downloadImage(url, filename) {
   });
 }
 
-function generateMapUrl(gc, config) {
-  const { lat, lng } = gc.address;
-  const circlePoints = generateCirclePoints(lat, lng, radiusInMeters);
 
-  return [
-    'https://maps.googleapis.com/maps/api/staticmap',
-    `?center=${lat},${lng}`,
-    `&zoom=${config.zoom}`,
-    `&size=${config.width}x${config.height}`,
-    `&path=color:${config.path.color}|fillcolor:${config.path.fill}|weight:2|${circlePoints}`,
-    `&key=${STATIC_MAP_KEY}`,
-  ].join('');
-}
 async function fetchAllMaps() {
   const promises = [];
 
   Object.keys(gcs).forEach(gcid => {
     const gc = gcs[gcid];
 
-    promises.push(downloadImage(generateMapUrl(gc, mapConfigFull), `map-${gcid}-full.png`));
-    promises.push(downloadImage(generateMapUrl(gc, mapConfigMin), `map-${gcid}-min.png`));
+    promises.push(downloadImage(generateStaticMapUrl(gc, mapConfigFull), `map-${gcid}-full.png`));
+    promises.push(downloadImage(generateStaticMapUrl(gc, mapConfigMin), `map-${gcid}-min.png`));
   });
 
   try {

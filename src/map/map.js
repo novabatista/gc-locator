@@ -5,7 +5,8 @@ export const getMapStaticConfig = (overrides={})=>({
   version: '1.0',
   width: 1200,
   height: 280,
-  zoom: 15,
+  zoom: 16,
+  radius: 180,
   path:{
     weight: 3,
     color: '0x0078dbAA',
@@ -64,4 +65,19 @@ export function generateCirclePoints(lat, lng, radiusInMeters, numPoints = 40) {
   }
 
   return points.join('|');
+}
+
+export function generateStaticMapUrl(gc, config) {
+  const { lat, lng } = gc.address.fake ?? gc.address;
+  const circlePoints = generateCirclePoints(lat, lng, config.radius);
+
+  return [
+    'https://maps.googleapis.com/maps/api/staticmap',
+    `?center=${lat},${lng}`,
+    `&zoom=${config.zoom}`,
+    `&size=${config.width}x${config.height}`,
+    // `&markers=color:red|${lat},${lng}`,
+    `&path=color:${config.path.color}|fillcolor:${config.path.fill}|weight:2|${circlePoints}`,
+    `&key=${process.env.GOOGLE_MAPS_STATIC_KEY}`,
+  ].join('');
 }

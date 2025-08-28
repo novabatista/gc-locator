@@ -3,7 +3,7 @@ import {notFound} from 'next/navigation'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {Fragment} from 'react'
-import {getMapStaticConfig} from '@/map/distance'
+import {generateStaticMapUrl, getMapStaticConfig} from '@/map/map'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
@@ -15,12 +15,13 @@ export default async function PageGCDetail({params}) {
     return notFound()
   }
 
-  const {id, name, address, description, contacts, schedules, config, links, sector} = gc
-  const {lat, lng} = address
+  const {id, name, address, description, contacts, schedules, config, links} = gc
+  const {lat, lng} = address.fake ?? address
 
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
   const mapImageUrl = `/maps/map-${id}-full.png?v=${MAP_STATIC_CONFIG.version}`
+  // const mapImageUrl = generateStaticMapUrl(gc, MAP_STATIC_CONFIG)
 
   return (
     <main>
@@ -65,17 +66,20 @@ export default async function PageGCDetail({params}) {
         </div>
 
         <div className="mt-4">
-          <div className="flex flex-row items-center justify-center mb-2">
+          <a className="flex flex-row items-center justify-center mb-2" href={mapNavigationUrl} target={id}>
             <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
             <p className="">{address.text}</p>
-          </div>
-          <Image
-            alt={mapImageAlt}
-            src={mapImageUrl}
-            width={MAP_STATIC_CONFIG.width}
-            height={MAP_STATIC_CONFIG.height}
-            className="rounded-lg"
-          />
+            <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
+          </a>
+          <a className="" href={mapNavigationUrl} target={id}>
+            <Image
+              alt={mapImageAlt}
+              src={mapImageUrl}
+              width={MAP_STATIC_CONFIG.width}
+              height={MAP_STATIC_CONFIG.height}
+              className="rounded-lg"
+            />
+          </a>
         </div>
       </section>
 

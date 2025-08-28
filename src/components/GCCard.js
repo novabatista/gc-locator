@@ -1,12 +1,12 @@
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
-import {getMapStaticConfig} from '@/map/distance'
+import {getMapStaticConfig} from '@/map/map'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig({width: 640, height: 180})
 
 export default function GCCard(props) {
   const {id, name, address, distance, contacts, schedules, config, sector} = props.gc
-  const {lat, lng} = address
+  const {lat, lng} = address.fake ?? address
 
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
@@ -43,17 +43,20 @@ export default function GCCard(props) {
       </div>
 
       <div>
-        <div className="flex flex-row items-center text-sm mb-2">
+        <a className="flex flex-row items-center text-sm mb-2" href={`https://www.google.com/maps/dir//${lat},${lng}`} target={id}>
           <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
           <p className="">{address.text}</p>
-        </div>
-        <Image
-          alt={mapImageAlt}
-          src={mapImageUrl}
-          width={MAP_STATIC_CONFIG.width}
-          height={MAP_STATIC_CONFIG.height}
-          className="rounded-lg"
-        />
+          <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
+        </a>
+        <a href={`https://www.google.com/maps/dir//${lat},${lng}`} target={id}>
+          <Image
+            alt={mapImageAlt}
+            src={mapImageUrl}
+            width={MAP_STATIC_CONFIG.width}
+            height={MAP_STATIC_CONFIG.height}
+            className="rounded-lg"
+          />
+        </a>
       </div>
     </div>
   )

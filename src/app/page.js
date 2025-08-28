@@ -2,7 +2,7 @@ import Image from 'next/image'
 import gcs from '@/assets/gcs.json'
 import GCCard from '@/components/GCCard'
 import GCFinder from '@/components/GCFinder'
-import calculateDistance from '@/map/distance'
+import calculateDistance from '@/map/map'
 
 const MAX_SEARCH_RADIUS_KM = 4
 export default function Home({ searchParams }) {
