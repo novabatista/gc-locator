@@ -9,7 +9,8 @@
     "config": {
       "color": {
         "primary": "#ffb000"
-      }
+      },
+      "logo": "mosaico"
     },
     "address": {
       "text": "R. Ipanema - Mooca, São Paulo - SP, 03164-200",
@@ -442,39 +443,6 @@
     "contacts": [
       {"name": "Ricardo", "phone": "11 94762-4869"},
       {"name": "Aline", "phone": "11 94725-3994"}
-    ],
-    "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
-    ],
-    "links": [],
-    "images": [],
-    "description": []
-  },
-  "mooca1": {
-    "id": "mooca1",
-    "name": "Mooca",
-    "sector": {
-      "id": "yellow",
-      "name": "Amarelo"
-    },
-    "config": {
-      "color": {
-        "primary": "#ffe500"
-      }
-    },
-    "address": {
-      "text": "R. Itabaiana - Belenzinho, São Paulo - SP, 03171-010",
-      "street_number": 250,
-      "complement": "",
-      "lat": -23.5490084,
-      "lng": -46.5919312,
-      "fake": {
-        "lat": -23.5491964859404,
-        "lng": -46.59154285566274
-      }
-    },
-    "contacts": [
-      {"name": "Lia", "phone": "11 95495-5447"}
     ],
     "schedules": [
       {"weekday": "Quinta-feira", "hour": "20:00"}

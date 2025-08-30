@@ -4,6 +4,7 @@ import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {Fragment} from 'react'
 import {generateStaticMapUrl, getMapStaticConfig} from '@/map/map'
+import CustomLogo from '@/components/CustomLogo'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
@@ -25,7 +26,8 @@ export default async function PageGCDetail({params}) {
 
   return (
     <main>
-      <header style={{color: config.color.primary}}>
+      <header className="flex flex-row items-center" style={{color: config.color.primary}}>
+        <CustomLogo logo={config.logo} color={config.color.primary} className="mr-2" width={64} height={64} />
         <span className="text-5xl uniform-black mr-2">GC</span>
         <span className="text-3xl uniform">{name}</span>
       </header>

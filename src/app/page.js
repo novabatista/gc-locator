@@ -3,6 +3,7 @@ import gcs from '@/assets/gcs.json'
 import GCCard from '@/components/GCCard'
 import GCFinder from '@/components/GCFinder'
 import calculateDistance from '@/map/map'
+import GCLogo from '@/assets/logo-8.svg'
 
 const MAX_SEARCH_RADIUS_KM = 4
 export default function Home({ searchParams }) {
@@ -45,7 +46,7 @@ export default function Home({ searchParams }) {
   return (
     <main className="">
       <header className="flex flex-row items-center gap-2 mb-8">
-        <Image src="/logo-8.svg" alt="logo gc nova batista" width={64} height={64} />
+        <GCLogo stroke="#000" width={64} height={64} />
         <h1 className="text-5xl ">
           <span className="uniform-black">GC</span> <small className="uniform">Nova Batista</small>
         </h1>

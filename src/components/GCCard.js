@@ -1,6 +1,7 @@
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {getMapStaticConfig} from '@/map/map'
+import CustomLogo from '@/components/CustomLogo'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig({width: 640, height: 180})
 
@@ -22,11 +23,13 @@ export default function GCCard(props) {
       <div className="flex flex-row justify-between">
         <div style={{color: config.color.primary}}>
           <span className="text-4xl uniform-black">GC</span><br/>
-          <span className="text-md uniform">{name}</span>
+          <div className="text-md uniform flex flex-row items-center">
+            <CustomLogo logo={config.logo} color={config.color.primary} />
+            <span className="text-md uniform">{name}</span>
+          </div>
         </div>
         <div className="text-sm text-right self-end" style={{color: config.color.primary}}>
           {distance && <div className="mb-2">{formatDistance(distance)}</div>}
-
           {schedules.map(({weekday, hour}, scheduleIndex) => (
             <div key={scheduleIndex}>
               <span className="">{weekday}</span>
@@ -43,12 +46,12 @@ export default function GCCard(props) {
       </div>
 
       <div>
-        <a className="flex flex-row items-center text-sm mb-2" href={`https://www.google.com/maps/dir//${lat},${lng}`} target={id}>
+        <a className="flex flex-row items-center text-sm mb-2" href={mapNavigationUrl} target={id}>
           <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
           <p className="">{address.text}</p>
           <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
         </a>
-        <a href={`https://www.google.com/maps/dir//${lat},${lng}`} target={id}>
+        <a href={mapNavigationUrl} target={id}>
           <Image
             alt={mapImageAlt}
             src={mapImageUrl}
