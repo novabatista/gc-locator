@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import {useState, useEffect, useCallback, useMemo} from 'react'
 import {useRouter} from 'next/navigation'
+import Button from '@/components/ui/Button'
 
 export default function GCFinder() {
   const router = useRouter()
@@ -177,14 +178,9 @@ export default function GCFinder() {
           onChange={handleOnInputChange}
         />
 
-        <button
-          type="submit"
-          disabled={!search.text || search.loading}
-          className="flex flex-row gap-1 px-4 py-2 text-white bg-gray-800 border-gray-900 rounded-md shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 transition-colors cursor-pointer"
-        >
+        <Button type="submit" disabled={!search.text || search.loading}>
           Buscar <Image alt="buscar" src={`/icons/${loadConf.loading ? loadConf.iconId : 'search'}.svg`} width={18} height={18} className={`invert ${loadConf.class}`} />
-        </button>
-
+        </Button>
       </form>
       {searchResult?.error && <small className="text-xs text-red-900">{searchResult?.data.message}</small>}
       {!searchResult?.error && hasSearch && (
@@ -196,15 +192,10 @@ export default function GCFinder() {
 
       <h3>OU</h3>
 
-      <button
-        onClick={getCurrentPosition}
-        type="button"
-        className="flex flex-row items-center gap-1 px-4 py-2 text-white bg-gray-800 border-gray-900 rounded-md shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 transition-colors cursor-pointer"
-      >
+      <Button onClick={getCurrentPosition} type="button">
         usar a minha localização atual
-
         {loadConf.loading && <Image alt="icone busca por localizacao" src={loadConf.icon} width={18} height={18} className={`invert ${loadConf.class}`} />}
-      </button>
+      </Button>
     </section>
   )
 }
