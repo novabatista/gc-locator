@@ -28,7 +28,7 @@
       {"name": "Natalia", "phone": "11 98622-4611"}
     ],
     "schedules": [
-      {"weekday": "Sábado", "hour": "17:00"}
+      {"day_index": 6, "weekday": "Sábados", "hour": "17:00"}
     ],
     "links": [
       {
@@ -71,7 +71,7 @@
       {"name": "Camile", "phone": "11 95912-2249"}
     ],
     "schedules": [
-      {"weekday": "Sábado", "hour": "16:00"}
+      {"day_index": 6, "weekday": "Sábados", "hour": "16:00"}
     ],
     "links": [],
     "images": [],
@@ -105,7 +105,7 @@
       {"name": "Luiza", "phone": "11 98529-5614"}
     ],
     "schedules": [
-      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+      {"day_index": 4, "weekday":  "Quintas-feiras", "hour":  "20:00"}
     ],
     "links": [],
     "images": [],
@@ -139,7 +139,7 @@
       {"name": "Beatriz", "phone": "11 95375-0621"}
     ],
     "schedules": [
-      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+      {"day_index": 4, "weekday":  "Quintas-feiras", "hour":  "20:00"}
     ],
     "links": [],
     "images": [],
@@ -173,7 +173,7 @@
       {"name": "Fernanda", "phone": "11 96309-1678"}
     ],
     "schedules": [
-      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+      {"day_index": 4, "weekday":  "Quintas-feiras", "hour":  "20:00"}
     ],
     "links": [],
     "images": [],
@@ -207,7 +207,7 @@
       {"name": "Katia", "phone": "11 99548-3825"}
     ],
     "schedules": [
-      {"weekday":  "Quinta-feira", "hour":  "20:00"}
+      {"day_index": 4, "weekday":  "Quintas-feiras", "hour":  "20:00"}
     ],
     "links": [],
     "images": [],
@@ -241,7 +241,7 @@
       {"name": "Rose", "phone": "11 96094-4370"}
     ],
     "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
     ],
     "links": [],
     "images": [],
@@ -275,7 +275,7 @@
       {"name": "Tati", "phone": "11 98200-1226"}
     ],
     "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
     ],
     "links": [],
     "images": [],
@@ -309,7 +309,7 @@
       {"name": "Janete", "phone": "11 98949-6918"}
     ],
     "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
     ],
     "links": [],
     "images": [],
@@ -343,7 +343,7 @@
       {"name": "Priscila", "phone": "11 94786-6180"}
     ],
     "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
     ],
     "links": [],
     "images": [],
@@ -377,7 +377,7 @@
       {"name": "Juliana", "phone": "11 99257-2746"}
     ],
     "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
     ],
     "links": [],
     "images": [],
@@ -411,7 +411,7 @@
       {"name": "Val", "phone": "11 98121-8991"}
     ],
     "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
     ],
     "links": [],
     "images": [],
@@ -445,7 +445,7 @@
       {"name": "Aline", "phone": "11 94725-3994"}
     ],
     "schedules": [
-      {"weekday": "Quinta-feira", "hour": "20:00"}
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
     ],
     "links": [],
     "images": [],

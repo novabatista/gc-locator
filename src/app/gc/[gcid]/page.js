@@ -3,10 +3,13 @@ import {notFound} from 'next/navigation'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {Fragment} from 'react'
-import {generateStaticMapUrl, getMapStaticConfig} from '@/map/map'
+import {getMapStaticConfig} from '@/map/map'
 import CustomLogo from '@/components/CustomLogo'
+import Button from '@/components/ui/Button'
+import googleCalendarLink from '@/calendar/calendar'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
+
 
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
@@ -23,6 +26,8 @@ export default async function PageGCDetail({params}) {
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
   const mapImageUrl = `/maps/map-${id}-full.png?v=${MAP_STATIC_CONFIG.version}`
   // const mapImageUrl = generateStaticMapUrl(gc, MAP_STATIC_CONFIG)
+
+  const addToAgendaUrl = googleCalendarLink(gc)
 
   return (
     <main>
@@ -50,20 +55,21 @@ export default async function PageGCDetail({params}) {
 
       <section>
         <div className="flex flex-row justify-between">
-          <div>
-            <span className="text-xl mb-1" style={{color: config.color.primary}}>Reuniões</span>
-            <div className="">
-              {schedules.map(({weekday, hour}, scheduleIndex) => (
-                <Fragment key={scheduleIndex}>
-                  <span className="">{weekday}s</span> às <span className="">{hour}h</span>
-                </Fragment>
-              ))}
-            </div>
-          </div>
-
           <div className="flex flex-col gap-2">
             <span className="text-xl" style={{color: config.color.primary}}>Líderes</span>
             {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} />)}
+          </div>
+
+          <div>
+            <span className="text-xl mb-1" style={{color: config.color.primary}}>Reuniões</span>
+            <div className="mb-2">
+              {schedules.map(({weekday, hour}, scheduleIndex) => (
+                <Fragment key={scheduleIndex}>
+                  <span className="">{weekday}</span> às <span className="">{hour}h</span>
+                </Fragment>
+              ))}
+            </div>
+            <Button label="adicionar na agenda" asLink href={addToAgendaUrl} target="_blank" />
           </div>
         </div>
 
