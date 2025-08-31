@@ -43,13 +43,14 @@ function getNextWeekday(targetWeekday, fromDate = new Date()) {
   return nextDate;
 }
 
-export default function googleCalendarLink(gc){
-  const {schedules, address, name} = gc
+export default function googleCalendarLink(gc, schedule){
+  const {address, name, schedules} = gc
+  const curSchedule = schedule ?? schedules[0]
   return [
     'https://calendar.google.com/calendar/render',
     '?action=TEMPLATE',
     `&text=${encodeURIComponent(`GC ${name}, Ooohh Gloria!!`)}`,
-    `&dates=${formatDateRangeForGoogleCalendar(schedules[0])}`,
+    `&dates=${formatDateRangeForGoogleCalendar(curSchedule)}`,
     '&details=Discuss%20project%20timeline',
     `&location=${encodeURIComponent(address.text)}`,
     '&recur=RRULE:FREQ=WEEKLY',

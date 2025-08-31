@@ -12,6 +12,7 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
+      new URL('https://picsum.photos/id/**'),
       {
         protocol: 'https',
         hostname: 'maps.googleapis.com',
