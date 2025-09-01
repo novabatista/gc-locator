@@ -1,7 +1,7 @@
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {getMapStaticConfig} from '@/map/map'
-import CustomLogo from '@/components/CustomLogo'
+import GCLogo from '@/components/GCLogo'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig({width: 640, height: 180})
 
@@ -24,8 +24,7 @@ export default function GCCard(props) {
         <div style={{color: config.color.primary}}>
           <span className="text-4xl uniform-black">GC</span><br/>
           <div className="text-md uniform flex flex-row items-center">
-            <CustomLogo logo={config.logo} color={config.color.primary} />
-            <span className="text-md uniform">{name}</span>
+            <GCLogo config={config} name={name} />
           </div>
         </div>
         <div className="text-sm text-right self-end" style={{color: config.color.primary}}>

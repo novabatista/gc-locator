@@ -10,7 +10,10 @@
       "color": {
         "primary": "#ffb000"
       },
-      "logo": "mosaico"
+      "logo": {
+        "alias": "mosaico",
+        "full_replace": false
+      }
     },
     "address": {
       "text": "R. Ipanema - Mooca, São Paulo - SP, 03164-200",
@@ -56,7 +59,7 @@
   },
   "conexao1": {
     "id": "conexao1",
-    "name": "Conexão",
+    "name": "Conexão Jovem",
     "sector": {
       "id": "orange",
       "name": "Laranja"
@@ -64,6 +67,18 @@
     "config": {
       "color": {
         "primary": "#ffb000"
+      },
+      "logo": {
+        "alias": "conexao",
+        "full_replace": true,
+        "card": {
+          "width": 68,
+          "height": 32
+        },
+        "single": {
+          "width": 103,
+          "height": 48
+        }
       }
     },
     "address": {
