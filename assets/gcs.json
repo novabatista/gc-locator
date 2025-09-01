@@ -248,8 +248,7 @@
       }
     },
     "contacts": [
-      {"name": "Ronaldo", "phone": "11 96462-1175"},
-      {"name": "Rose", "phone": "11 96094-4370"}
+      {"name": "Leo", "phone": "11 96462-1175"}
     ],
     "schedules": [
       {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
@@ -419,7 +418,7 @@
     },
     "contacts": [
       {"name": "Josué", "phone": "11 997342-9581"},
-      {"name": "Val", "phone": "11 98121-8991"}
+      {"name": "Valquiria", "phone": "11 98121-8991"}
     ],
     "schedules": [
       {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
