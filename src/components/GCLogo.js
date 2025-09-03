@@ -21,7 +21,7 @@ export default function GCLogo({
   const LogoComponent = CustomLogoMap[alias]
   const isPng = LogoComponent && typeof LogoComponent === 'object' && LogoComponent.src
 
-  const textSizeClass = `text-${textSize ?? 'md'}`
+  const textSizeClass = `text-${textSize}`
 
   const logoW = logo[location]?.width
   const logoH = logo[location]?.height
