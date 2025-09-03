@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 
 
@@ -26,6 +27,8 @@ export default function RootLayout({ children }) {
       <div
         className="font-sans min-h-screen w-11/12 md:w-10/12 lg:w-10/12 xl:w-8/12 2xl:w-8/12 max-w-[1200px] m-auto sm:py-12">
         {children}
+
+        <Analytics />
       </div>
       </body>
     </html>
