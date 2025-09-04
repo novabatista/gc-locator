@@ -3,6 +3,7 @@
 import {useState} from 'react'
 import Image from 'next/image'
 
+const THUMB_DIMENSION = 140
 export default function Swiper({images}) {
   const [selectedImage, setSelectedImage] = useState(null)
   const [isScrolling, setIsScrolling] = useState(false)
@@ -81,15 +82,15 @@ export default function Swiper({images}) {
         {images.map((image, index) => (
           <div
             key={index}
-            className="flex-shrink-0"
+            className="flex-shrink-0 rounded-md overflow-hidden"
             onClick={handleOpenImage(image)}
           >
             <Image
-              width={160}
-              height={160}
+              width={THUMB_DIMENSION}
+              height={THUMB_DIMENSION}
               alt=""
               src={image.thumb}
-              className="h-40 w-40 object-cover rounded-md"
+              className={`h-[${THUMB_DIMENSION}px] w-[${THUMB_DIMENSION}px] object-cover hover:scale-120 transition-transform`}
               draggable={false}
             />
           </div>
