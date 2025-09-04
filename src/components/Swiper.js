@@ -60,7 +60,7 @@ export default function Swiper({images}) {
             </svg>
           </button>
           <img
-            src={selectedImage}
+            src={selectedImage?.full}
             alt=""
             className="max-w-full max-h-full object-contain"
           />
@@ -85,10 +85,10 @@ export default function Swiper({images}) {
             onClick={handleOpenImage(image)}
           >
             <Image
-              width={40}
-              height={40}
+              width={160}
+              height={160}
               alt=""
-              src={image}
+              src={image.thumb}
               className="h-40 w-40 object-cover rounded-md"
               draggable={false}
             />

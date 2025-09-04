@@ -19,13 +19,33 @@ export default async function PageGCDetail({params}) {
     return notFound()
   }
 
-  const {id, name, address, description, contacts, schedules, images, links, config} = gc
+  const {id, name, address, description, contacts, schedules, links, config} = gc
   const {lat, lng} = address.fake ?? address
 
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
   const mapImageUrl = `/maps/map-${id}-full.png?v=${MAP_STATIC_CONFIG.version}`
 
+  const images = gc.images.map(image => {
+    if(image?.full){
+      return {
+        full: image.full,
+        thumb: image?.thumb ?? image.full,
+      }
+    }
+
+    if(image.startsWith('http')) {
+      return {
+        full: image,
+        thumb: image,
+      }
+    }
+
+    return {
+      full: `/internal/mosaico1/full/${image}`,
+      thumb: `/internal/mosaico1/thumb/${image}`,
+    }
+  })
 
   return (
     <main>
