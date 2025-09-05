@@ -6,8 +6,10 @@ import {Fragment} from 'react'
 import {getMapStaticConfig} from '@/map/map'
 import GCLogo from '@/components/GCLogo'
 import Button from '@/components/ui/Button'
-import googleCalendarLink from '@/calendar/calendar'
+import {googleCalendarLink, iosCalendarLink} from '@/calendar/calendar'
 import Swiper from '@/components/Swiper'
+import SplitButton from '@/components/ui/SplitButton'
+import AddToCalendarOptions from '@/app/gc/[gcid]/AddToCalendarOptions'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
@@ -70,7 +72,7 @@ export default async function PageGCDetail({params}) {
             {schedules.map((schedule, scheduleIndex) => (
               <div className="flex flex-col" key={scheduleIndex}>
                 <span className="mb-2">{schedule.weekday} às {schedule.hour}h</span>
-                <Button label="adicionar na agenda" asLink href={googleCalendarLink(gc, schedule)} target="_blank" />
+                <AddToCalendarOptions gc={gc} schedule={schedule} />
               </div>
             ))}
           </div>

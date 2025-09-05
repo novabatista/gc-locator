@@ -9,15 +9,29 @@ const formatDateGoogle = (date) => {
   return `${year}${month}${day}T${hour}${minute}${second}`;
 };
 
-function formatDateRangeForGoogleCalendar(schedule){
+const formatDateIOS = (date) => {
+  return date.toISOString().replace(/-|:|\.\d+/g, '');
+};
+
+function getDateRanges(schedule){
+  const range = {start: null, end: null}
+
   const nextSchedule = getNextWeekday(schedule.day_index, new Date());
   const [hour, minute] = schedule.hour.split(':')
   nextSchedule.setHours(hour,minute,0,0)
 
-  const dateStart = formatDateGoogle(nextSchedule)
+  range.start = new Date(nextSchedule)
 
   nextSchedule.setHours(nextSchedule.getHours()+1)
-  const dateEnd = formatDateGoogle(nextSchedule)
+  range.end = new Date(nextSchedule)
+
+  return range;
+}
+
+function formatDateRangeForGoogleCalendar(schedule){
+  const {start, end} = getDateRanges(schedule)
+  const dateStart = formatDateGoogle(start)
+  const dateEnd = formatDateGoogle(end)
 
   return `${dateStart}/${dateEnd}`
 }
@@ -43,18 +57,50 @@ function getNextWeekday(targetWeekday, fromDate = new Date()) {
   return nextDate;
 }
 
-export default function googleCalendarLink(gc, schedule){
+export function googleCalendarLink(gc, schedule){
   const {address, name, schedules} = gc
   const curSchedule = schedule ?? schedules[0]
+
   return [
     'https://calendar.google.com/calendar/render',
     '?action=TEMPLATE',
     `&text=${encodeURIComponent(`GC ${name}, Ooohh Gloria!!`)}`,
     `&dates=${formatDateRangeForGoogleCalendar(curSchedule)}`,
-    '&details=Discuss%20project%20timeline',
+    // '&details=',
     `&location=${encodeURIComponent(address.text)}`,
     '&recur=RRULE:FREQ=WEEKLY',
     '&sf=false',
     '&ctz=America/Sao_Paulo',
   ].join('')
+}
+
+export function iosCalendarLink(gc, schedule){
+  const {address, name, schedules} = gc
+  const curSchedule = schedule ?? schedules[0]
+
+  const {start, end} = getDateRanges(curSchedule)
+  const icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//NovaBatistaGC//PT-BR',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    `SUMMARY:GC ${name}, Ooohh Gloria!!`,
+    `UID:${Date.now()}@novabatista.com.br`,
+    'SEQUENCE:0',
+    'STATUS:CONFIRMED',
+    'TRANSP:TRANSPARENT',
+    `DTSTART:${formatDateIOS(start)}`,
+    `DTEND:${formatDateIOS(end)}`,
+    `LOCATION:${address.text || ""}`,
+    // 'DESCRIPTION:',
+    'RRULE:FREQ=WEEKLY',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  const encodedIcs = encodeURIComponent(icsContent);
+  return `data:text/calendar;charset=utf8,${encodedIcs}`;
+
 }

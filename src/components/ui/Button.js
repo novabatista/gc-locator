@@ -1,4 +1,3 @@
-
 export default function Button(props) {
   const Component = props.asLink ? 'a' : 'button'
   return (
@@ -8,8 +7,8 @@ export default function Button(props) {
       {...props}
     >
       {props.label}
-
       {props.children}
+      {props.icon && <img src={props.icon} alt="" width={20} height={20} className="mr-1"/>}
     </Component>
   )
 }
