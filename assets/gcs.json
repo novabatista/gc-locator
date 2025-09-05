@@ -235,14 +235,18 @@
   },
   "jdgrimaldi1": {
     "id": "jdgrimaldi1",
-    "name": "JD Grimaldi",
+    "name": "Mosaico JD Grimaldi",
     "sector": {
-      "id": "green",
-      "name": "Verde"
+      "id": "orange",
+      "name": "Laranja"
     },
     "config": {
       "color": {
-        "primary": "#029248"
+        "primary": "#ffb000"
+      },
+      "logo": {
+        "alias": "mosaico",
+        "full_replace": false
       }
     },
     "address": {
