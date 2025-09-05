@@ -2,13 +2,9 @@ import gcs from '@/assets/gcs.json'
 import {notFound} from 'next/navigation'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
-import {Fragment} from 'react'
 import {getMapStaticConfig} from '@/map/map'
 import GCLogo from '@/components/GCLogo'
-import Button from '@/components/ui/Button'
-import {googleCalendarLink, iosCalendarLink} from '@/calendar/calendar'
 import Swiper from '@/components/Swiper'
-import SplitButton from '@/components/ui/SplitButton'
 import AddToCalendarOptions from '@/app/gc/[gcid]/AddToCalendarOptions'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
