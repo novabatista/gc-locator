@@ -12,6 +12,7 @@ export default function GCCard(props) {
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
   const mapImageUrl = `/maps/map-${id}-min.png?v=${MAP_STATIC_CONFIG.version}`
+  const internalUrl = `/gc/${id}`
 
   function formatDistance(distance){
     const unit = distance > 1 ? 'km' : 'm'
@@ -21,12 +22,12 @@ export default function GCCard(props) {
   return (
     <div key={id} className="rounded-xl p-5 border" style={{borderColor: config.color.primary}}>
       <div className="flex flex-row justify-between">
-        <div style={{color: config.color.primary}}>
+        <a className="block" style={{color: config.color.primary}} href={internalUrl}>
           <span className="text-4xl uniform-black">GC</span><br/>
           <div className="text-md uniform flex flex-row items-center">
             <GCLogo config={config} name={name} />
           </div>
-        </div>
+        </a>
         <div className="text-sm text-right self-end" style={{color: config.color.primary}}>
           {distance && <div className="mb-2">{formatDistance(distance)}</div>}
           {schedules.map(({weekday, hour}, scheduleIndex) => (
@@ -45,12 +46,12 @@ export default function GCCard(props) {
       </div>
 
       <div>
-        <a className="flex flex-row items-center text-sm mb-2" href={mapNavigationUrl} target={id}>
+        <a className="flex flex-row items-center text-sm mb-2" href={internalUrl}>
           <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
           <p className="">{address.text}</p>
           <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
         </a>
-        <a href={mapNavigationUrl} target={id}>
+        <a href={internalUrl}>
           <Image
             alt={mapImageAlt}
             src={mapImageUrl}

@@ -68,7 +68,7 @@ export default function Home({ searchParams }) {
       <section className="search-result">
       {hasSearchCoords && (
         <div className="grid md:grid-cols-2 gap-8">
-          {gcsList.map((gc, index) => <GCCard key={index} gc={gc} />)}
+          {gcsList.map((gc, index) => <GCCard key={gc.id} gc={gc} />)}
         </div>
       )}
 
