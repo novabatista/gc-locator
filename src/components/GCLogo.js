@@ -1,11 +1,8 @@
 import Image from 'next/image'
 import CustomLogoMosaico from '@/assets/mosaico-logo-4.svg'
-import CustomLogoConexao from '@/assets/logo-conexao-orange.png'
+import CustomLogoConexaoOrange from '@/assets/logo-conexao-orange.png'
+import CustomLogoConexaoBlack from '@/assets/logo-conexao.png'
 
-const CustomLogoMap = {
-  'mosaico': CustomLogoMosaico,
-  'conexao': CustomLogoConexao,
-}
 
 export default function GCLogo({
   config,
@@ -14,8 +11,14 @@ export default function GCLogo({
   textSize='md',
   location='card',
   width=32,
-  height=32
+  height=32,
+  applySectorColor=true,
 }) {
+  const CustomLogoMap = {
+    'mosaico': CustomLogoMosaico,
+    'conexao': applySectorColor ? CustomLogoConexaoOrange : CustomLogoConexaoBlack,
+  }
+
   const logo = config?.logo ?? {}
   const {alias, full_replace} = logo
   const LogoComponent = CustomLogoMap[alias]
@@ -29,12 +32,14 @@ export default function GCLogo({
   const finalWidth = logoW ?? width
   const finalHeight = logoH ?? height
 
+  const finalColor = color ?? ( applySectorColor ? config?.color?.primary : '#000') ?? '#000'
+
   return (
     <>
       {LogoComponent && !isPng && <LogoComponent
         width={finalWidth}
         height={finalHeight}
-        stroke={color ?? config?.color?.primary ?? '#000'}
+        stroke={finalColor}
         className="mr-1"
       />}
       {LogoComponent && isPng && <Image

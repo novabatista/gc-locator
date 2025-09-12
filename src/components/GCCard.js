@@ -6,6 +6,8 @@ import GCLogo from '@/components/GCLogo'
 const MAP_STATIC_CONFIG = getMapStaticConfig({width: 640, height: 180})
 
 export default function GCCard(props) {
+  const {applySectorColor=true} = props
+
   const {id, name, address, distance, contacts, schedules, config, sector} = props.gc
   const {lat, lng} = address.fake ?? address
 
@@ -14,21 +16,23 @@ export default function GCCard(props) {
   const mapImageUrl = `/maps/map-${id}-min.png?v=${MAP_STATIC_CONFIG.version}`
   const internalUrl = `/gc/${id}`
 
+  const color = applySectorColor ? config.color.primary : ''
+
   function formatDistance(distance){
     const unit = distance > 1 ? 'km' : 'm'
     return `${distance} ${unit}`
   }
 
   return (
-    <div key={id} className="rounded-xl p-5 border" style={{borderColor: config.color.primary}}>
+    <div key={id} className="rounded-xl p-5 border" style={{borderColor: color}}>
       <div className="flex flex-row justify-between">
-        <a className="block" style={{color: config.color.primary}} href={internalUrl}>
+        <div style={{color}}>
           <span className="text-4xl uniform-black">GC</span><br/>
           <div className="text-md uniform flex flex-row items-center">
-            <GCLogo config={config} name={name} />
+            <GCLogo config={config} name={name} applySectorColor={applySectorColor} />
           </div>
-        </a>
-        <div className="text-sm text-right self-end" style={{color: config.color.primary}}>
+        </div>
+        <div className="text-sm text-right self-end" style={{color}}>
           {distance && <div className="mb-2">{formatDistance(distance)}</div>}
           {schedules.map(({weekday, hour}, scheduleIndex) => (
             <div key={scheduleIndex}>

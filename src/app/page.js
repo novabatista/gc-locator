@@ -32,7 +32,7 @@ export default function Home({ searchParams }) {
   }
 
   function groupBySector(){
-    return Object.entries(gcsList.reduce((acc, gc) => {
+    const groupedBySector = Object.entries(gcsList.reduce((acc, gc) => {
       const sectorId = gc.sector.id
       if (!acc[sectorId]) {
         acc[sectorId] = []
@@ -41,6 +41,8 @@ export default function Home({ searchParams }) {
       acc[sectorId].sort((a, b) => a.name.localeCompare(b.name))
       return acc
     }, {}))
+
+    return groupedBySector.reduce((acc, [sectorId, gcs]) => acc.concat(...gcs), [])
   }
 
   return (
@@ -66,17 +68,9 @@ export default function Home({ searchParams }) {
       <GCFinder />
 
       <section className="search-result">
-      {hasSearchCoords && (
-        <div className="grid md:grid-cols-2 gap-8">
-          {gcsList.map((gc, index) => <GCCard key={gc.id} gc={gc} />)}
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
+          {gcsList.map((gc, index) => <GCCard key={index} gc={gc} applySectorColor={false} />)}
         </div>
-      )}
-
-      {!hasSearchCoords && gcsList.map(([sectorId, gcs]) => (
-        <div key={sectorId} className="grid grid-cols-1 md:grid-cols-2  gap-8 mt-8">
-          {gcs.map((gc, index) => <GCCard key={index} gc={gc} />)}
-        </div>
-      ))}
       </section>
     </main>
   )
