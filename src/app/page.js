@@ -1,48 +1,22 @@
-import Image from 'next/image'
 import gcs from '@/assets/gcs.json'
 import GCCard from '@/components/GCCard'
 import GCFinder from '@/components/GCFinder'
-import calculateDistance from '@/map/map'
 import GCLogo from '@/assets/logo-8.svg'
+import {groupGCBySectorFlat} from '@/gc/group'
+import {sortGcsByDistanceWithRadius} from '@/gc/sort-by-distance'
 
 const MAX_SEARCH_RADIUS_KM = 4
-export default function Home({ searchParams }) {
-  const { lat, lng } = searchParams
+export default async function Home({ searchParams }) {
+  const { lat, lng } = await searchParams
   const searchCoords = {lat, lng}
   const hasSearchCoords = lat && lng
 
-  let gcsList = Object.values(gcs)
+  let gcsList = []
 
   if (hasSearchCoords) {
-    gcsList = sortByDistance()
+    gcsList = sortGcsByDistanceWithRadius(searchCoords, MAX_SEARCH_RADIUS_KM, gcs)
   }else{
-    gcsList = groupBySector()
-  }
-
-  function sortByDistance(){
-    return gcsList.map(gc => ({
-      ...gc,
-      distance: calculateDistance(
-        searchCoords,
-        gc.address,
-      )
-    }))
-      .sort((a, b) => a.distance - b.distance)
-      .filter(gc => gc.distance < MAX_SEARCH_RADIUS_KM)
-  }
-
-  function groupBySector(){
-    const groupedBySector = Object.entries(gcsList.reduce((acc, gc) => {
-      const sectorId = gc.sector.id
-      if (!acc[sectorId]) {
-        acc[sectorId] = []
-      }
-      acc[sectorId].push(gc)
-      acc[sectorId].sort((a, b) => a.name.localeCompare(b.name))
-      return acc
-    }, {}))
-
-    return groupedBySector.reduce((acc, [sectorId, gcs]) => acc.concat(...gcs), [])
+    gcsList = groupGCBySectorFlat(gcs)
   }
 
   return (
