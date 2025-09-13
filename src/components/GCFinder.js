@@ -151,9 +151,7 @@ export default function GCFinder() {
     setLoadConf({
       loading: search.loading,
       class: search.loading ? 'animate-spin' : '',
-      icon: '/icons/loading.svg',
-      iconName: 'loading.svg',
-      iconId: 'loading',
+      icon: search.loading ? 'uil-spinner-alt' : 'uil-search',
     })
   }, [search.loading])
 
@@ -179,14 +177,14 @@ export default function GCFinder() {
         />
 
         <Button type="submit" disabled={!search.text || search.loading}>
-          Buscar <Image alt="buscar" src={`/icons/${loadConf.loading ? loadConf.iconId : 'search'}.svg`} width={18} height={18} className={`invert ${loadConf.class}`} />
+          Buscar <i className={`uil ${loadConf.icon} ${loadConf.class}`} />
         </Button>
       </form>
-      {searchResult?.error && <small className="text-xs text-red-900">{searchResult?.data.message}</small>}
+      {searchResult?.error && <small className="text-xs text-red-900 dark:text-red-500">{searchResult?.data.message}</small>}
       {!searchResult?.error && hasSearch && (
         <div className="flex flex-row items-center gap-2">
           <small className="text-xs">{searchResult?.data.address}</small>
-          <Image alt="buscar" src={`/icons/close.svg`} width={18} height={18} onClick={handleSearchClear} className="cursor-pointer" />
+          <i className="uil uil-times-circle text-2xl cursor-pointer" onClick={handleSearchClear} />
         </div>
       )}
 
@@ -194,7 +192,7 @@ export default function GCFinder() {
 
       <Button onClick={getCurrentPosition} type="button">
         usar a minha localização atual
-        {loadConf.loading && <Image alt="icone busca por localizacao" src={loadConf.icon} width={18} height={18} className={`invert ${loadConf.class}`} />}
+        {loadConf.loading && <i className={`uil ${loadConf.icon} ${loadConf.class}`} />}
       </Button>
     </section>
   )

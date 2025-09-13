@@ -22,7 +22,7 @@ export default async function Home({ searchParams }) {
   return (
     <main className="font-sans min-h-screen w-11/12 md:w-10/12 lg:w-10/12 xl:w-8/12 2xl:w-8/12 max-w-[1200px] m-auto py-8 sm:py-12">
       <header className="flex flex-row items-center gap-2 mb-8">
-        <GCLogo stroke="#000" width={64} height={64} />
+        <GCLogo stroke="currentColor" className="" width={64} height={64}/>
         <h1 className="text-5xl ">
           <span className="uniform-black">GC</span> <small className="uniform">Nova Batista</small>
         </h1>

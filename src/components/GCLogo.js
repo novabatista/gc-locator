@@ -1,8 +1,11 @@
-import Image from 'next/image'
-import CustomLogoMosaico from '@/assets/mosaico-logo-4.svg'
-import CustomLogoConexaoOrange from '@/assets/logo-conexao-orange.png'
-import CustomLogoConexaoBlack from '@/assets/logo-conexao.png'
+'use client'
 
+import Image from 'next/image'
+import {useEffect, useMemo, useState} from 'react'
+import CustomLogoConexaoWhite from '@/assets/logo-conexao-white.png'
+import CustomLogoConexaoBlack from '@/assets/logo-conexao-black.png'
+import CustomLogoConexaoOrange from '@/assets/logo-conexao-orange.png'
+import CustomLogoMosaico from '@/assets/mosaico-logo-4.svg?react'
 
 export default function GCLogo({
   config,
@@ -14,16 +17,12 @@ export default function GCLogo({
   height=32,
   applySectorColor=true,
 }) {
-  const CustomLogoMap = {
-    'mosaico': CustomLogoMosaico,
-    'conexao': applySectorColor ? CustomLogoConexaoOrange : CustomLogoConexaoBlack,
-  }
+  const [isDarkMode, setIsDarkMode] = useState();
+  const [LogoComponent, setLogoComp] = useState();
+  const [isPng, setIsPng] = useState();
 
   const logo = config?.logo ?? {}
   const {alias, full_replace} = logo
-  const LogoComponent = CustomLogoMap[alias]
-  const isPng = LogoComponent && typeof LogoComponent === 'object' && LogoComponent.src
-
   const textSizeClass = `text-${textSize}`
 
   const logoW = logo[location]?.width
@@ -32,11 +31,26 @@ export default function GCLogo({
   const finalWidth = logoW ?? width
   const finalHeight = logoH ?? height
 
-  const finalColor = color ?? ( applySectorColor ? config?.color?.primary : '#000') ?? '#000'
+  const finalColor = color ?? ( applySectorColor ? config?.color?.primary : 'currentColor') ?? 'currentColor'
+
+  useEffect(() => {
+    const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
+    const isDark = matchMedia.matches
+
+    const CustomLogoMap = {
+      'mosaico': CustomLogoMosaico,
+      'conexao': (applySectorColor ? CustomLogoConexaoOrange : (isDark ? CustomLogoConexaoWhite : CustomLogoConexaoBlack)),
+    }
+
+    const comp = CustomLogoMap[alias]
+    const pngCheck = !!(comp && typeof comp === 'object' && comp?.src)
+    setIsPng(pngCheck)
+    setLogoComp(comp)
+  }, [alias, applySectorColor]);
 
   return (
     <>
-      {LogoComponent && !isPng && <LogoComponent
+      {LogoComponent && !isPng && <CustomLogoMosaico
         width={finalWidth}
         height={finalHeight}
         stroke={finalColor}
