@@ -30,8 +30,8 @@ export default async function PageEmbed(props) {
       <main>
         <div className="flex flex-row gap-8 overflow-auto">
           {gcsList.map((gc, index) => (
-            <div className="flex-none w-[375px] sm:w-auto sm:max-w-[640px]" key={index}>
-              <GCCard gc={gc} displayMap={isTruthy(map)} applySectorColor={isTruthy(sectorcolor)}/>
+            <div className="flex-none w-[375px] sm:w-auto max-w-[640px] min-h-[320px]" key={index}>
+              <GCCard gc={gc} displayMap={isTruthy(map)} applySectorColor={isTruthy(sectorcolor)} className="h-full"/>
             </div>
           ))}
         </div>
