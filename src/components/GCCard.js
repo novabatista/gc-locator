@@ -27,7 +27,7 @@ export default function GCCard(props) {
   }
 
   return (
-    <div key={id} className="rounded-xl p-5 border" style={{borderColor: color}}>
+    <div key={id} className={`rounded-xl p-5 border ${props?.className}`} style={{borderColor: color}}>
       <div className="flex flex-row justify-between">
         <div style={{color}}>
           <span className="text-4xl uniform-black">GC</span><br/>
