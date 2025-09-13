@@ -6,7 +6,10 @@ import GCLogo from '@/components/GCLogo'
 const MAP_STATIC_CONFIG = getMapStaticConfig({width: 640, height: 180})
 
 export default function GCCard(props) {
-  const {applySectorColor=true} = props
+  const {
+    applySectorColor=true,
+    displayMap=true,
+  } = props
 
   const {id, name, address, distance, contacts, schedules, config, sector} = props.gc
   const {lat, lng} = address.fake ?? address
@@ -55,7 +58,7 @@ export default function GCCard(props) {
           <p className="">{address.text}</p>
           <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
         </a>
-        <a href={internalUrl}>
+        {displayMap && <a href={internalUrl}>
           <Image
             alt={mapImageAlt}
             src={mapImageUrl}
@@ -63,7 +66,7 @@ export default function GCCard(props) {
             height={MAP_STATIC_CONFIG.height}
             className="rounded-lg"
           />
-        </a>
+        </a>}
       </div>
     </div>
   )
