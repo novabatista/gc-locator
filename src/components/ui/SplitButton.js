@@ -20,7 +20,7 @@ export default function SplitButton({label, options = [], onMainClick, onOptionC
       <div className="relative">
         <Button
           label={label}
-          icon="/icons/chevron-down.svg"
+          icon="uil uil-angle-down"
           onClick={() => setIsOpen(!isOpen)}
         />
         {isOpen && (<div

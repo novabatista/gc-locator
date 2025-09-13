@@ -54,9 +54,9 @@ export default function GCCard(props) {
 
       <div>
         <a className="flex flex-row items-center text-sm mb-2" href={internalUrl}>
-          <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
+          <i className="uil uil-map-marker text-2xl mr-2" />
           <p className="">{address.text}</p>
-          <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
+          <i className="uil uil-external-link-alt ml-1" />
         </a>
         {displayMap && <a href={internalUrl}>
           <Image

@@ -46,7 +46,7 @@ export default async function PageGCDetail({params}) {
   })
 
   return (
-    <main>
+    <main className="font-sans min-h-screen w-11/12 md:w-10/12 lg:w-10/12 xl:w-8/12 2xl:w-8/12 max-w-[1200px] m-auto py-8 sm:py-12">
       <header className="flex flex-row items-center" style={{color: config.color.primary}}>
         <span className="text-5xl uniform-black mr-2">GC</span>
         <GCLogo config={config} name={name} location="single" textSize="4xl" className="mr-2" width={64} height={64} />
@@ -82,9 +82,9 @@ export default async function PageGCDetail({params}) {
       <section id="address" className="mb-8">
         <div className="mt-4">
           <a className="flex flex-row items-center justify-center mb-2" href={mapNavigationUrl} target={id}>
-            <Image alt="" src="/icons/map-pin.svg" className="mr-2" width={24} height={24} />
+            <i className="uil uil-map-marker text-2xl mr-2" />
             <p className="">{address.text}</p>
-            <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
+            <i className="uil uil-external-link-alt ml-1" />
           </a>
           <a className="" href={mapNavigationUrl} target={id}>
             <Image
@@ -100,7 +100,7 @@ export default async function PageGCDetail({params}) {
 
       <footer className="mb-8 mt-12 border-t pt-6">
         <div className="flex flex-row justify-between items-center">
-          <div className="text-sm text-gray-600">
+          <div className="text-sm">
             GC {name} - {address.text}
           </div>
 
@@ -114,13 +114,7 @@ export default async function PageGCDetail({params}) {
                   className=""
                   aria-label={link.label}
                 >
-                  <Image
-                    alt={link.label}
-                    src={link.icon}
-                    width={32}
-                    height={32}
-                    className="drop-shadow-sm"
-                  />
+                  <i className={`${link.icon} text-3xl`} />
                 </a>
               ))}
             </div>

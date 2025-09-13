@@ -13,7 +13,7 @@ export default function ContactPhoneWA(props) {
       <span className="flex flex-col lg:flex-row flex-1 mr-2">
         <span className="font-semibold">{name}:</span> <span className="">{phone}</span>
       </span>
-      <Image alt="" src="/icons/external-link.svg" className="ml-1" width={16} height={16} />
+      <i className="uil uil-external-link-alt" />
     </a>
   )
 }
