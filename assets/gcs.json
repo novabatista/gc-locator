@@ -134,6 +134,44 @@
     "images": [],
     "description": []
   },
+  "analiafranco1": {
+    "id": "analiafranco1",
+    "name": "Mosaico Anália Franco",
+    "sector": {
+      "id": "orange",
+      "name": "Laranja"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffb000"
+      },
+      "logo": {
+        "alias": "mosaico",
+        "full_replace": false
+      }
+    },
+    "address": {
+      "text": "?????",
+      "street_number": 0,
+      "complement": "",
+      "lat": 0,
+      "lng": 0,
+      "fake": {
+        "lat": 0,
+        "lng": 0
+      }
+    },
+    "contacts": [
+      {"name": "Bruno", "phone": "11 97681-1720"},
+      {"name": "Jackline", "phone": "11 98920-9400"}
+    ],
+    "schedules": [
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
+    ],
+    "links": [],
+    "images": [],
+    "description": []
+  },
   "aricanduva1": {
     "id": "aricanduva1",
     "name": "Aricanduva",
