@@ -97,6 +97,43 @@
     "images": [],
     "description": []
   },
+  "jdgrimaldi1": {
+    "id": "jdgrimaldi1",
+    "name": "Mosaico JD Grimaldi",
+    "sector": {
+      "id": "orange",
+      "name": "Laranja"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffb000"
+      },
+      "logo": {
+        "alias": "mosaico",
+        "full_replace": false
+      }
+    },
+    "address": {
+      "text": "R. Egídio Alves da Costa - Sapopemba, São Paulo - SP, 03271-040",
+      "street_number": 233,
+      "complement": "",
+      "lat": -23.600968,
+      "lng": -46.5171648,
+      "fake": {
+        "lat": -23.601438101208565,
+        "lng": -46.517579727167465
+      }
+    },
+    "contacts": [
+      {"name": "Leo", "phone": "11 96462-1175"}
+    ],
+    "schedules": [
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
+    ],
+    "links": [],
+    "images": [],
+    "description": []
+  },
   "aricanduva1": {
     "id": "aricanduva1",
     "name": "Aricanduva",
@@ -228,43 +265,6 @@
     ],
     "schedules": [
       {"day_index": 4, "weekday":  "Quintas-feiras", "hour":  "20:00"}
-    ],
-    "links": [],
-    "images": [],
-    "description": []
-  },
-  "jdgrimaldi1": {
-    "id": "jdgrimaldi1",
-    "name": "Mosaico JD Grimaldi",
-    "sector": {
-      "id": "orange",
-      "name": "Laranja"
-    },
-    "config": {
-      "color": {
-        "primary": "#ffb000"
-      },
-      "logo": {
-        "alias": "mosaico",
-        "full_replace": false
-      }
-    },
-    "address": {
-      "text": "R. Egídio Alves da Costa - Sapopemba, São Paulo - SP, 03271-040",
-      "street_number": 233,
-      "complement": "",
-      "lat": -23.600968,
-      "lng": -46.5171648,
-      "fake": {
-        "lat": -23.601438101208565,
-        "lng": -46.517579727167465
-      }
-    },
-    "contacts": [
-      {"name": "Leo", "phone": "11 96462-1175"}
-    ],
-    "schedules": [
-      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
     ],
     "links": [],
     "images": [],
