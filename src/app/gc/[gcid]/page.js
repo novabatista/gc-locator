@@ -4,7 +4,7 @@ import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {getMapStaticConfig} from '@/map/map'
 import GCLogo from '@/components/GCLogo'
-import Swiper from '@/components/Swiper'
+import SwiperImage from '@/components/SwiperImage'
 import AddToCalendarOptions from '@/app/gc/[gcid]/AddToCalendarOptions'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
@@ -75,9 +75,11 @@ export default async function PageGCDetail({params}) {
         </div>
       </section>
 
-      {images.length>0 && (<section id="gallery" className="mb-8">
-        <Swiper images={images} />
-      </section>)}
+      {images.length>0 && (
+        <section id="gallery" className="mb-8">
+          <SwiperImage images={images} />
+        </section>
+      )}
 
       <section id="address" className="mb-8">
         <div className="mt-4">

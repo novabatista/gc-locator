@@ -19,7 +19,24 @@
 
 :root {
   --background: #fafafa;
+  --background-light: color-mix(in srgb, var(--background), white 20%);
+  --background-dark: color-mix(in srgb, var(--background), black 20%);
+
   --foreground: #030303;
+  --foreground-light: color-mix(in srgb, var(--foreground), white 20%);
+  --foreground-dark: color-mix(in srgb, var(--foreground), black 20%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #030303;
+    --background-light: color-mix(in srgb, var(--background), white 20%);
+    --background-dark: color-mix(in srgb, var(--background), black 20%);
+
+    --foreground: #fafafa;
+    --foreground-light: color-mix(in srgb, var(--foreground), white 20%);
+    --foreground-dark: color-mix(in srgb, var(--foreground), black 20%);
+  }
 }
 
 @theme inline {
@@ -27,13 +44,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #030303;
-    --foreground: #fafafa;
-  }
 }
 
 body {
