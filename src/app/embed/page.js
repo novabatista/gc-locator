@@ -1,6 +1,8 @@
 import gcs from '@/assets/gcs.json'
 import GCCard from '@/components/GCCard'
 import {groupGCBySectorFlat} from '@/gc/group'
+import Swiper from '@/components/Swiper'
+import SwiperGCs from '@/app/embed/SwipperGCs'
 
 const validValues = ['1', 'true', 'yes', 'y', 'sim', 's']
 function isTruthy(value){
@@ -12,6 +14,7 @@ function isTruthy(value){
  * @param {string} [props.searchParams.type] - list, carousel
  * @param {string} [props.searchParams.map] - display map with radius
  * @param {string} [props.searchParams.sectorcolor] - apply sector colors
+ * @param {string} [props.searchParams.limit] - limit the maximum items to display
  * @returns {Promise<JSX.Element>}
  */
 export default async function PageEmbed(props) {
@@ -19,22 +22,23 @@ export default async function PageEmbed(props) {
     type='list',
     map='0',
     sectorcolor='0',
+    perpage=3,
+    limit=null,
   } = props.searchParams
 
   // const isListMode = type==='list'
   const isCarouselMode = type==='carousel'
+  const minHeight = isCarouselMode && isTruthy(map) ? '320px' : '210px'
 
-  const gcsList = groupGCBySectorFlat(gcs)
+  let gcsList = groupGCBySectorFlat(gcs)
+  if(Number(limit)){
+    gcsList = gcsList.slice(0, limit)
+  }
+  
   if(isCarouselMode){
     return (
-      <main>
-        <div className="flex flex-row gap-8 overflow-auto">
-          {gcsList.map((gc, index) => (
-            <div className="flex-none w-[375px] sm:w-auto max-w-[640px] min-h-[320px]" key={index}>
-              <GCCard gc={gc} displayMap={isTruthy(map)} applySectorColor={isTruthy(sectorcolor)} className="h-full"/>
-            </div>
-          ))}
-        </div>
+      <main className="w-full">
+        <SwiperGCs gcsList={gcsList} minHeight={minHeight} displayMap={isTruthy(map)} applySectorColor={isTruthy(sectorcolor)} perPage={perpage} />
       </main>
     )
   }

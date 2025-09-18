@@ -1,101 +1,71 @@
 'use client'
 
-import {useState} from 'react'
-import Image from 'next/image'
+import {useState, useRef, useEffect} from 'react'
+import GCCard from '@/components/GCCard'
 
-const THUMB_DIMENSION = 140
-export default function Swiper({images}) {
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [isScrolling, setIsScrolling] = useState(false)
-  const [startX, setStartX] = useState(0)
-  const [scrollLeft, setScrollLeft] = useState(0)
+const GAP = 8
+export default function Swiper({
+                                 controls = true,
+                                 perPage = 10,
+                                 children,
+                               }) {
+  const containerRef = useRef(null)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [itemWidth, setItemWidth] = useState(0)
 
-  const handleOpenImage = (image) => () => {
-    if (!isScrolling) {
-      setSelectedImage(image)
+  const itemsSize = children.length
+  const totalPages = Math.ceil( itemsSize/ perPage)
+
+  const isControlsVisible = controls && itemsSize > perPage
+
+
+  const handlePrevItem = () => {
+    const newPage = currentPage - 1 < 0 ? totalPages - 1 : currentPage - 1
+    setCurrentPage(newPage)
+  }
+
+  const handleNextItem = () => {
+    const newPage = (currentPage + 1) % totalPages
+    setCurrentPage(newPage)
+  }
+
+  useEffect(() => {
+    if (!containerRef.current) {
+      return
     }
-  }
+    const containerWidth = containerRef.current.clientWidth
+    const totalGaps = perPage - 1
+    const availableWidth = containerWidth - (totalGaps * GAP)
+    setItemWidth(Math.floor(availableWidth / perPage))
+  }, [perPage])
 
-  const handleCloseImage = () => setSelectedImage(null)
+  useEffect(() => {
+    if (!containerRef.current) {
+      return
+    }
+    const offset = currentPage * (itemWidth + GAP) * perPage
 
-  const handleMouseDown = (e) => {
-    setIsScrolling(false)
-    setStartX(e.pageX - e.currentTarget.offsetLeft)
-    setScrollLeft(e.currentTarget.scrollLeft)
-    e.currentTarget.style.cursor = 'grabbing'
-  }
+    containerRef.current.scrollTo({
+      left: offset,
+      behavior: 'smooth',
+    })
+  }, [currentPage, perPage, itemWidth])
 
-  const handleMouseLeave = (e) => {
-    setIsScrolling(false)
-    e.currentTarget.style.cursor = 'grab'
-  }
-
-  const handleMouseUp = (e) => {
-    setIsScrolling(false)
-    e.currentTarget.style.cursor = 'grab'
-  }
-
-  const handleMouseMove = (e) => {
-    if (e.currentTarget.style.cursor !== 'grabbing') return
-    e.preventDefault()
-    setIsScrolling(true)
-    const x = e.pageX - e.currentTarget.offsetLeft
-    const walk = (x - startX) * 2
-    e.currentTarget.scrollLeft = scrollLeft - walk
-  }
-
-  if (selectedImage) {
-    return (
-      <div className="fixed inset-0 z-50">
-        <div
-          className="absolute inset-0 bg-black opacity-90"
-        />
-        <div className="relative z-10 max-w-4xl max-h-screen p-4 mx-auto flex items-center justify-center h-full">
-          <button
-            onClick={handleCloseImage}
-            className="absolute top-4 right-4 text-white bg-black rounded-full p-2 hover:bg-opacity-75 cursor-pointer"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-          <img
-            src={selectedImage?.full}
-            alt=""
-            className="max-w-full max-h-full object-contain"
-          />
-        </div>
-      </div>
-    )
-  }
 
   return (
-    <div>
+    <div className="relative flex flex-row justify-center items-center">
+      {isControlsVisible && <i className="uil uil-angle-left-b text-5xl cursor-pointer" onClick={handlePrevItem}/>}
       <div
-        className="flex overflow-x-auto gap-2 cursor-grab"
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
+        ref={containerRef}
+        className={`swiper-container w-full flex overflow-x-auto gap-2`}
       >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 rounded-md overflow-hidden"
-            onClick={handleOpenImage(image)}
-          >
-            <Image
-              width={THUMB_DIMENSION}
-              height={THUMB_DIMENSION}
-              alt=""
-              src={image.thumb}
-              className={`h-[${THUMB_DIMENSION}px] w-[${THUMB_DIMENSION}px] object-cover hover:scale-120 transition-transform`}
-              draggable={false}
-            />
+        {children.map((child, index) => (
+          <div key={index} style={{width: itemWidth, flexShrink: 0}}>
+            {child}
           </div>
         ))}
       </div>
+      {isControlsVisible && <i className="uil uil-angle-right-b text-5xl cursor-pointer" onClick={handleNextItem}/>}
     </div>
   )
 }
