@@ -53,7 +53,7 @@ export function generateCirclePoints(lat, lng, radiusInMeters, numPoints = 40) {
   const earthRadius = EARTH_RADIUS_KM * 1000 // meters
   const points = [];
 
-  for (let i = 0; i < numPoints; i++) {
+  for (let i = 0; i <= numPoints; i++) {
     const angle = (i * 2 * Math.PI) / numPoints;
     const dx = (radiusInMeters * Math.cos(angle)) / (earthRadius * Math.cos(lat * Math.PI / 180));
     const dy = (radiusInMeters * Math.sin(angle)) / earthRadius;
