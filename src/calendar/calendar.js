@@ -57,6 +57,15 @@ function getNextWeekday(targetWeekday, fromDate = new Date()) {
   return nextDate;
 }
 
+const GOOGLE_ENCODE = true
+const IOS_ENCODE = false
+const FREQUENCY = 'FREQ=WEEKLY'
+
+const getText = (text, encode)=> encode ? encodeURIComponent(text) : text
+const getTitle = (gcname, encode)=> getText(`GC ${gcname}, Ooohh Gloria!!`, encode)
+const getDescription = (encode)=> getText('Venha ser igreja com a gente 😁', encode)
+const getLocation = (location, encode)=> getText(location, encode)
+
 export function googleCalendarLink(gc, schedule){
   const {address, name, schedules} = gc
   const curSchedule = schedule ?? schedules[0]
@@ -64,11 +73,11 @@ export function googleCalendarLink(gc, schedule){
   return [
     'https://calendar.google.com/calendar/render',
     '?action=TEMPLATE',
-    `&text=${encodeURIComponent(`GC ${name}, Ooohh Gloria!!`)}`,
+    `&text=${getTitle(name, GOOGLE_ENCODE)}`,
+    `&details=${getDescription(GOOGLE_ENCODE)}`,
+    `&location=${getLocation(address.text, GOOGLE_ENCODE)}`,
     `&dates=${formatDateRangeForGoogleCalendar(curSchedule)}`,
-    // '&details=',
-    `&location=${encodeURIComponent(address.text)}`,
-    '&recur=RRULE:FREQ=WEEKLY',
+    `&recur=RRULE:${FREQUENCY}`,
     '&sf=false',
     '&ctz=America/Sao_Paulo',
   ].join('')
@@ -81,22 +90,22 @@ export function iosCalendarLink(gc, schedule){
   const {start, end} = getDateRanges(curSchedule)
   const icsContent = [
     'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//NovaBatistaGC//PT-BR',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    `SUMMARY:GC ${name}, Ooohh Gloria!!`,
-    `UID:${Date.now()}@novabatista.com.br`,
-    'SEQUENCE:0',
-    'STATUS:CONFIRMED',
-    'TRANSP:TRANSPARENT',
-    `DTSTART:${formatDateIOS(start)}`,
-    `DTEND:${formatDateIOS(end)}`,
-    `LOCATION:${address.text || ""}`,
-    // 'DESCRIPTION:',
-    'RRULE:FREQ=WEEKLY',
-    'END:VEVENT',
+      'VERSION:2.0',
+      'PRODID:-//NovaBatistaGC//PT-BR',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+        `UID:${Date.now()}@novabatista.com.br`,
+        `SUMMARY:${getTitle(name, IOS_ENCODE)}`,
+        `DESCRIPTION:${getDescription(IOS_ENCODE)}`,
+        `LOCATION:${getLocation(address.text, IOS_ENCODE)}`,
+        `DTSTART:${formatDateIOS(start)}`,
+        `DTEND:${formatDateIOS(end)}`,
+        `RRULE:${FREQUENCY}`,
+        'SEQUENCE:0',
+        'STATUS:CONFIRMED',
+        'TRANSP:TRANSPARENT',
+      'END:VEVENT',
     'END:VCALENDAR'
   ].join('\r\n');
 
