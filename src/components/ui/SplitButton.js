@@ -24,13 +24,34 @@ export default function SplitButton({label, options = [], onMainClick, onOptionC
           onClick={() => setIsOpen(!isOpen)}
         />
         {isOpen && (<div
-            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+            className="
+              absolute
+              right-0
+              z-10
+              mt-2
+              w-56
+              origin-top-right
+              rounded-md
+              shadow-lg
+              ring-1
+              ring-opacity-5
+              text-[var(--color-dark)]
+              bg-[var(--color-light)]
+              ring-[var(--color-dark)]
+            ">
             <div className="py-1">
               {options.map((option, index) => (<button
                   key={index}
                   onClick={() => handleOptionClick(option)}
-                  className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
-                >
+                  className="
+                    block
+                    w-full
+                    px-4
+                    py-2
+                    text-left
+                    text-sm
+                    hover:bg-gray-100
+                  ">
                   {option.label}
                 </button>))}
             </div>

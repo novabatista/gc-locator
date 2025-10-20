@@ -18,22 +18,25 @@
 }
 
 :root {
-  --background: #fafafa;
+  --color-light: #fafafa;
+  --color-dark: #030303;
+
+  --background: var(--color-light);
   --background-light: color-mix(in srgb, var(--background), white 20%);
   --background-dark: color-mix(in srgb, var(--background), black 20%);
 
-  --foreground: #030303;
+  --foreground: var(--color-dark);
   --foreground-light: color-mix(in srgb, var(--foreground), white 20%);
   --foreground-dark: color-mix(in srgb, var(--foreground), black 20%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #030303;
+    --background: var(--color-dark);
     --background-light: color-mix(in srgb, var(--background), white 20%);
     --background-dark: color-mix(in srgb, var(--background), black 20%);
 
-    --foreground: #fafafa;
+    --foreground: var(--color-light);
     --foreground-light: color-mix(in srgb, var(--foreground), white 20%);
     --foreground-dark: color-mix(in srgb, var(--foreground), black 20%);
   }
