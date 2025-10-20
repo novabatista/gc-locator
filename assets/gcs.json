@@ -40,16 +40,8 @@
         "icon": "uil uil-instagram"
       }
     ],
-    "images":[
-      "001.jpg",
-      "002.jpg",
-      "003.jpg",
-      "004.jpg"
-    ],
-    "description": [
-      "Proin sit amet interdum eros. Cras ac ligula vitae ex fringilla aliquet quis vel lorem. Ut feugiat nisi eget dui imperdiet ultrices. Nunc molestie ullamcorper risus, sed condimentum nibh ullamcorper id. Vestibulum laoreet vitae nunc non fringilla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam pretium congue nunc, sed ullamcorper nisi aliquet a.",
-      "Ut faucibus ultricies turpis, sed mattis ex pretium non. Pellentesque dictum ligula nunc, vehicula finibus neque luctus quis. Cras magna nisl, tincidunt vitae tortor quis, hendrerit semper erat. Pellentesque eu tellus in augue dictum.\n\n"
-    ]
+    "images":[],
+    "description": []
   },
   "conexao1": {
     "id": "conexao1",
