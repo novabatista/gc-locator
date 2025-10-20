@@ -51,6 +51,7 @@ export default function SplitButton({label, options = [], onMainClick, onOptionC
                     text-left
                     text-sm
                     hover:bg-gray-100
+                    cursor-pointer
                   ">
                   {option.label}
                 </button>))}
