@@ -53,7 +53,7 @@ export default async function PageGCDetail({params}) {
       </header>
 
       <section id="description" className="mb-8">
-        {description.map((paragraph, paragraphIndex) => (<p key={paragraphIndex} className="mb-2">{paragraph}</p>))}
+        {description.map((paragraph, paragraphIndex) => (<p key={paragraphIndex} className="mb-4">{paragraph}</p>))}
       </section>
 
       <section className="flex flex-row justify-between mb-8">
