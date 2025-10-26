@@ -9,6 +9,64 @@ import AddToCalendarOptions from '@/app/gc/[gcid]/AddToCalendarOptions'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
+/**
+ * @param {object} info
+ * @param {string} info.title
+ * @param {string} info.description
+ * @param {object} info.image
+ * @param {string} info.image.url
+ * @param {number} info.image.width
+ * @param {number} info.image.height
+ * @param {string} info.image.alt
+ * @returns {{title: *, description: string, openGraph: {title: *, description: string, images: [{url, width: number, height: number, alt: *}]}}}
+ */
+export function metadataCreator(info){
+  const title = info.title ?? ""
+  const description = info.description ?? ""
+  const meta = {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+    },
+  }
+
+  if(info.image){
+    meta.openGraph.images = [
+      {
+        url: info.image.url,
+        width: info.image.width,
+        height: info.image.height,
+        alt: info.image.alt ?? "",
+      }
+    ]
+  }
+
+  return meta
+}
+
+export async function generateMetadata({params}){
+  const {gcid} = await params
+  const gc = gcs[gcid]
+  const title = `GC ${gc.name}`
+  const description = [
+    gc.contacts.map((c) => `${c.name}: ${c.phone}`).join(' | '),
+    gc.address.text,
+  ].join('\n')
+
+  return metadataCreator({
+    title,
+    description,
+    image: {
+      url: "/images/bg-opengraph.png",
+      width: 2048,
+      height: 1024,
+      alt: "",
+    },
+  })
+}
+
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
   const gc = gcs[gcid]
