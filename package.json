@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 7771",
     "fetch-maps": "node scripts/fetch-static-map.js",
+    "generate-opengraph": "node scripts/create-opengraph-images-preview.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
