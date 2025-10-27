@@ -39,7 +39,7 @@ export function metadataCreator(info){
 }
 
 export async function metadataFromGC(gc){
-  const title = gcFormater.title(gc)
+  const title = gcFormater.title(gc)+" - "+gcFormater.schedulesInline(gc)
   const description = [
     gcFormater.contactsInline(gc),
     gc.address.text,
