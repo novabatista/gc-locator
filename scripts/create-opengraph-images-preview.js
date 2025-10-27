@@ -43,7 +43,7 @@ function createImage(gc, filename) {
       `magick ${inputImage}`,
       '-resize 1200',
       text(gcFormater.title(gc), 30, 60, FONT_UNIFORM),
-      text(gcFormater.schedulesInline(gc), 80, 36),
+      text(gcFormater.schedulesInline(gc), 80, 40),
       text(gcFormater.contactsInline(gc), 160),
       text(gc.address.text, 240),
       outputPath,
