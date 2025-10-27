@@ -20,6 +20,21 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
+function text(text, top, size=46, font=FONT_GEIST) {
+  return [
+    '\\(',
+    '-background none',
+    '-fill white',
+    `-font "${font}"`,
+    `-pointsize ${size}`,
+    '-gravity north',
+    '-size 1100x', // com base no tamanho original da imagem 2048
+    `caption:"${text}"`,
+    `-geometry +0+${top}`,
+    '\\)',
+    '-composite'
+  ].join(' ')
+}
 function createImage(gc, filename) {
   const outputPath = path.join(outputDir, filename);
   return new Promise((resolve, reject) => {
@@ -27,36 +42,14 @@ function createImage(gc, filename) {
     const command = [
       `magick ${inputImage}`,
       '-resize 1200',
-      // title
-      '-background none',
-      '-fill white',
-      `-font "${FONT_UNIFORM}"`,
-      '-pointsize 60',
-      '-gravity north',
-      `-annotate +0+30 "${gcFormater.title(gc)}"`,
-
-      // contacts
-      '-background none',
-      '-fill white',
-      `-font "${FONT_GEIST}"`,
-      '-pointsize 40',
-      '-gravity north',
-      `-annotate +0+120 "${gcFormater.contactsInline(gc)}"`,
-
-      // address
-      '\\(',
-      '-background none',
-      '-fill white',
-      `-font "${FONT_GEIST}"`,
-      '-pointsize 40',
-      '-gravity north',
-      '-size 1100x', // com base no tamanho original da imagem 2048
-      `caption:"${gc.address.text}"`,
-      '-geometry +0+220',
-      '\\) -composite',
+      text(gcFormater.title(gc), 30, 60, FONT_UNIFORM),
+      text(gcFormater.schedulesInline(gc), 80, 36),
+      text(gcFormater.contactsInline(gc), 160),
+      text(gc.address.text, 240),
       outputPath,
     ].join(' ')
 
+    // console.log(command, '\n\n'); return;
     exec(command, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing command: ${error}`)
