@@ -409,14 +409,14 @@
       }
     },
     "address": {
-      "text": "R. Cantagalo - Tatuapé, São Paulo - SP, 03319-000",
-      "street_number": 430,
+      "text": "R. Mossâmedes - Vila Santo Estevão, São Paulo - SP, 03325-060",
+      "street_number": 387,
       "complement": "apto: 123",
-      "lat": -23.5466123,
-      "lng": -46.5697781,
+      "lat": -23.55457433246163,
+      "lng": -46.55508064749085,
       "fake": {
-        "lat": -23.54618312443365,
-        "lng": -46.569056269280196
+        "lat": -23.5550921585997,
+        "lng": -46.55515284198349
       }
     },
     "contacts": [
