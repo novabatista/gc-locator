@@ -9,6 +9,7 @@ export default function GCCard(props) {
   const {
     applySectorColor=true,
     displayMap=true,
+    openTarget='_self'
   } = props
 
   const {id, name, address, distance, contacts, schedules, config, sector} = props.gc
@@ -49,11 +50,11 @@ export default function GCCard(props) {
       </div>
 
       <div className="flex flex-row justify-between text-sm my-4">
-        {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} />)}
+        {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} openTarget={openTarget} />)}
       </div>
 
       <div>
-        <a className="flex flex-row items-center text-sm mb-2" href={internalUrl}>
+        <a className="flex flex-row items-center text-sm mb-2" href={internalUrl} target={openTarget}>
           <i className="uil uil-map-marker text-2xl mr-2" />
           <p className="">{address.text}</p>
           <i className="uil uil-external-link-alt ml-1" />

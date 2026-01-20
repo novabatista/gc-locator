@@ -38,7 +38,7 @@ export default async function PageEmbed(props) {
   if(isCarouselMode){
     return (
       <main className="w-full">
-        <SwiperGCs gcsList={gcsList} minHeight={minHeight} displayMap={isTruthy(map)} applySectorColor={isTruthy(sectorcolor)} perPage={perpage} />
+        <SwiperGCs gcsList={gcsList} minHeight={minHeight} displayMap={isTruthy(map)} applySectorColor={isTruthy(sectorcolor)} perPage={perpage} openTarget="_top" />
       </main>
     )
   }

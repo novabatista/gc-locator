@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 export default function ContactPhoneWA(props) {
+  const openTarget = props.openTarget ?? '_blank'
   const gcName = props.name ?? ''
   const {name, phone} = props.contact
 
@@ -9,7 +10,7 @@ export default function ContactPhoneWA(props) {
   const waUrl = `https://wa.me/${waphone}?text=${watext}`
 
   return (
-    <a className="flex flex-row items-center cursor-pointer" href={waUrl}>
+    <a className="flex flex-row items-center cursor-pointer" href={waUrl} target={openTarget}>
       <span className="flex flex-col lg:flex-row flex-1 mr-2">
         <span className="font-semibold">{name}:</span> <span className="">{phone}</span>
       </span>
