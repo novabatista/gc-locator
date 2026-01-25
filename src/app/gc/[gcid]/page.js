@@ -6,7 +6,7 @@ import {getMapStaticConfig} from '@/map/map'
 import GCLogo from '@/components/GCLogo'
 import SwiperImage from '@/components/SwiperImage'
 import AddToCalendarOptions from '@/app/gc/[gcid]/AddToCalendarOptions'
-import {metadataCreator, metadataFromGC} from '@/opengraph/metadata-creator'
+import {metadataFromGC} from '@/opengraph/metadata-creator'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
@@ -20,6 +20,7 @@ export async function generateMetadata({params}){
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
   const gc = gcs[gcid]
+
 
   if (!gc) {
     return notFound()

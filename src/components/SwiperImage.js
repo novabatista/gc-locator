@@ -3,10 +3,14 @@
 import {useState} from 'react'
 import Image from 'next/image'
 import Swiper from '@/components/Swiper'
+import useBreakpoint from '@/hook/useBreakpoint'
 
 const THUMB_DIMENSION = 140
-export default function SwiperImage({images}) {
+export default function SwiperImage({images, perpage}) {
+  const breakpoint = useBreakpoint()
   const [selectedImage, setSelectedImage] = useState(null)
+
+  const itemsPerPage = breakpoint.matcher({'base':2, 'sm': 4, 'md':6, 'xl':8})
 
   const handleOpenImage = (image) => () => {
     setSelectedImage(image)
@@ -43,7 +47,7 @@ export default function SwiperImage({images}) {
 
   return (
     <div>
-      <Swiper>
+      <Swiper perPage={itemsPerPage}>
         {images.map((image, index) => (
           <div
             key={index}
