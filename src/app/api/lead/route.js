@@ -7,7 +7,7 @@ export async function POST(request) {
   const gc = gcs[responsible.id]
   const leader = gc.contacts[responsible.contactIndex]
 
-  const guestPhoneRaw = guest.phone.replace(/\D/g, '')
+  const guestPhoneRaw = '55'+guest.phone.replace(/\D/g, '')
   const guestMessage = [
     `Olá ${guest.name}, que bom que você quer conhecer o GC ${gc.name}!`,
     '',
@@ -28,7 +28,7 @@ export async function POST(request) {
   try {
     await Promise.all([
       sendMessage(guestPhoneRaw, guestMessage.join('\n')),
-      sendMessage(leader.phone.replace(/\D/g, ''), leaderMessage),
+      sendMessage('55'+leader.phone.replace(/\D/g, ''), leaderMessage),
       // sendMessage('5511995278831', guestMessage.join('\n')),
       // sendMessage('5511995278831', leaderMessage),
     ])
