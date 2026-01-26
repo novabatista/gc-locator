@@ -8,37 +8,43 @@ export default function PageLead({params, searchParams}) {
     e.preventDefault()
 
     const form = e.target
-    const responsible = form.querySelector('select').value
-    const name = form.querySelector('input[type="text"]').value
-    const whatsapp = form.querySelector('input[placeholder="(00) 00000-0000"]').value
+    const responsible = form.querySelector('select[name="responsible"]').value
+    const guestName = form.querySelector('input[name="guest.name"]').value
+    const guestPhone = form.querySelector('input[name="guest.phone"]').value
+
+    const [responsibleGcId, responsibleContactIndex] = responsible.split('-')
 
     if (responsible === '-- selecione --') {
       alert('Por favor selecione um responsável')
       return
     }
 
-    if (!name) {
+    if (!guestName) {
       alert('Por favor preencha o nome')
       return
     }
 
-    if (!whatsapp) {
+    if (!guestPhone) {
       alert('Por favor preencha o WhatsApp')
       return
     }
 
-    // TODO: Enviar para API
-    /* fetch('/api/lead', {
+    fetch('/api/lead', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        responsible,
-        name,
-        whatsapp,
+        responsible: {
+          id: responsibleGcId,
+          contactIndex: responsibleContactIndex,
+        },
+        guest:{
+          name: guestName,
+          phone: guestPhone,
+        }
       }),
-    }) */
+    })
   }
   
   return (
@@ -47,11 +53,11 @@ export default function PageLead({params, searchParams}) {
       <form className="flex flex-col gap-8" onSubmit={handleFormSubmit}>
         <section>
           <h2 className="text-xl mb-4">Responsável</h2>
-          <select className="w-full p-2 border rounded">
+          <select className="w-full p-2 border rounded" name="responsible" required>
             <option>-- selecione --</option>
             {Object.values(gcs).map(gc =>
               gc.contacts.map((contact, index) => (
-                <option key={`${gc.id}-${index}`} value={contact.name}>
+                <option key={`${gc.id}-${index}`} value={`${gc.id}-${index}`}>
                   {contact.name} ({gc.name})
                 </option>
               )),
@@ -64,12 +70,13 @@ export default function PageLead({params, searchParams}) {
           <div className="flex flex-col gap-4">
             <div>
               <label className="block mb-2">Nome</label>
-              <input type="text" className="w-full p-2 border rounded"/>
+              <input name="guest.name" type="text" className="w-full p-2 border rounded"/>
             </div>
             <div>
               <label className="block mb-2">WhatsApp</label>
               <input
                 type="text"
+                name="guest.phone"
                 className="w-full p-2 border rounded"
                 placeholder="(00) 00000-0000"
                 onKeyPress={(e) => {
