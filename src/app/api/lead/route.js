@@ -1,6 +1,7 @@
 import {NextResponse} from 'next/server'
 import gcs from '@/assets/gcs.json'
 import {sendMessage} from '@/service/evo/message'
+import {massSentParser} from '@/service/evo/request'
 
 export async function POST(request) {
   const {responsible, guest} = await request.json()
@@ -26,13 +27,12 @@ export async function POST(request) {
   ].join('\n')
 
   try {
-    await Promise.all([
-      sendMessage(guestPhoneRaw, guestMessage.join('\n')),
-      sendMessage('55'+leader.phone.replace(/\D/g, ''), leaderMessage),
-      // sendMessage('5511995278831', guestMessage.join('\n')),
-      // sendMessage('5511995278831', leaderMessage),
-    ])
-    return NextResponse.json({ok: true})
+    const guestResp = await sendMessage(guestPhoneRaw, guestMessage.join('\n'))
+    const leaderResp = await sendMessage('55'+leader.phone.replace(/\D/g, ''), leaderMessage)
+    // const guestResp = await sendMessage('5511995278831', guestMessage.join('\n'))
+    // const leaderResp = await sendMessage('5511995278831', leaderMessage)
+
+    return NextResponse.json(massSentParser([guestResp, leaderResp]))
   }catch(ex){
     console.error(ex)
     return NextResponse.json({message: "Não foi possível enviar a mensagem"}, { status: 400 })

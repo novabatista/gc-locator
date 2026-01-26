@@ -2,20 +2,28 @@
 
 import gcs from '@/assets/gcs.json'
 import Button from '@/components/ui/Button'
+import {useState} from 'react'
 
+const RESPONSIBLE_EMPTY_VALUE = '-- selecione --'
 export default function PageLead({params, searchParams}) {
   const gcsList = Object.values(gcs).filter(gc => gc.id===gcs.mosaico1.id)
+  const [isLoading, setLoading] = useState(false)
+
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
     const form = e.target
-    const responsible = form.querySelector('select[name="responsible"]').value
-    const guestName = form.querySelector('input[name="guest.name"]').value
-    const guestPhone = form.querySelector('input[name="guest.phone"]').value
+    const responsibleEl = form.querySelector('select[name="responsible"]')
+    const guestNameEl = form.querySelector('input[name="guest.name"]')
+    const guestPhoneEl = form.querySelector('input[name="guest.phone"]')
+
+    const responsible = responsibleEl.value
+    const guestName = guestNameEl.value
+    const guestPhone = guestPhoneEl.value
 
     const [responsibleGcId, responsibleContactIndex] = responsible.split('-')
 
-    if (responsible === '-- selecione --') {
+    if (responsible === RESPONSIBLE_EMPTY_VALUE) {
       alert('Por favor selecione um responsável')
       return
     }
@@ -30,6 +38,7 @@ export default function PageLead({params, searchParams}) {
       return
     }
 
+    setLoading(true)
     fetch('/api/lead', {
       method: 'POST',
       headers: {
@@ -46,6 +55,18 @@ export default function PageLead({params, searchParams}) {
         }
       }),
     })
+      .then((r)=>r.json())
+      .then((resp)=>{
+      if(!resp.sent){
+        alert('Erro ao encaminhar visitante')
+        return
+      }
+
+      responsibleEl.value = RESPONSIBLE_EMPTY_VALUE
+      guestNameEl.value = ''
+      guestPhoneEl.value = ''
+      alert('Visitante encaminhado com sucesso!')
+    }).finally(setLoading)
   }
   
   return (
@@ -55,7 +76,7 @@ export default function PageLead({params, searchParams}) {
         <section>
           <h2 className="text-xl mb-4">Responsável</h2>
           <select className="w-full p-2 border rounded" name="responsible" required>
-            <option>-- selecione --</option>
+            <option>{RESPONSIBLE_EMPTY_VALUE}</option>
             {gcsList.map(gc =>
               gc.contacts.map((contact, index) => (
                 <option key={`${gc.id}-${index}`} value={`${gc.id}-${index}`}>
@@ -98,7 +119,9 @@ export default function PageLead({params, searchParams}) {
           </div>
         </section>
 
-        <Button type="submit">Enviar</Button>
+        <Button type="submit" disabled={isLoading} icon={isLoading ? 'uil uil-spinner-alt animate-spin' : ''}>
+          Enviar
+        </Button>
       </form>
     </main>
   )
