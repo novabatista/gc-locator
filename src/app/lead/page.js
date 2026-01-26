@@ -4,6 +4,7 @@ import gcs from '@/assets/gcs.json'
 import Button from '@/components/ui/Button'
 
 export default function PageLead({params, searchParams}) {
+  const gcsList = Object.values(gcs).filter(gc => gc.id===gcs.mosaico1.id)
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
@@ -55,7 +56,7 @@ export default function PageLead({params, searchParams}) {
           <h2 className="text-xl mb-4">Responsável</h2>
           <select className="w-full p-2 border rounded" name="responsible" required>
             <option>-- selecione --</option>
-            {Object.values(gcs).map(gc =>
+            {gcsList.map(gc =>
               gc.contacts.map((contact, index) => (
                 <option key={`${gc.id}-${index}`} value={`${gc.id}-${index}`}>
                   {contact.name} ({gc.name})

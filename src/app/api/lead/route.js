@@ -20,17 +20,17 @@ export async function POST(request) {
   const leaderMessage = [
     `*Encaminhamento de GC*`,
     '',
-    `Data: ${new Date().toLocaleDateString('pt-BR')}`,
+    `Data: ${new Date().toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo'})}`,
     `Nome: ${guest.name}`,
     `Telefone: ${guestPhoneRaw}`,
   ].join('\n')
 
   try {
     await Promise.all([
-      // sendMessage(guestPhoneRaw, guestMessage.join('\n'))
-      // sendMessage(leader.phone.replace(/\D/g, ''), leaderMessage.join('\n')),
-      sendMessage('5511995278831', guestMessage.join('\n')),
-      sendMessage('5511995278831', leaderMessage),
+      sendMessage(guestPhoneRaw, guestMessage.join('\n')),
+      sendMessage(leader.phone.replace(/\D/g, ''), leaderMessage),
+      // sendMessage('5511995278831', guestMessage.join('\n')),
+      // sendMessage('5511995278831', leaderMessage),
     ])
     return NextResponse.json({ok: true})
   }catch(ex){
