@@ -2,11 +2,15 @@ import {NextResponse} from 'next/server'
 import gcs from '@/assets/gcs.json'
 import {sendMessage} from '@/service/evo/message'
 import {massSentParser} from '@/service/evo/request'
+import {append} from '@/service/drive/sheet/sheet'
 
+const LOCALE = 'pt-BR'
+const localeConfig = {timeZone: 'America/Sao_Paulo'}
 export async function POST(request) {
   const {responsible, guest} = await request.json()
   const gc = gcs[responsible.id]
   const leader = gc.contacts[responsible.contactIndex]
+  const leadDate = new Date()
 
   const guestPhoneRaw = '55'+guest.phone.replace(/\D/g, '')
   const guestMessage = [
@@ -21,20 +25,34 @@ export async function POST(request) {
   const leaderMessage = [
     `*Encaminhamento de GC*`,
     '',
-    `Data: ${new Date().toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo'})}`,
+    `Data: ${leadDate.toLocaleString(LOCALE, localeConfig)}`,
     `Nome: ${guest.name}`,
     `Telefone: ${guestPhoneRaw}`,
   ].join('\n')
 
   try {
-    const guestResp = await sendMessage(guestPhoneRaw, guestMessage.join('\n'))
-    const leaderResp = await sendMessage('55'+leader.phone.replace(/\D/g, ''), leaderMessage)
-    // const guestResp = await sendMessage('5511995278831', guestMessage.join('\n'))
-    // const leaderResp = await sendMessage('5511995278831', leaderMessage)
+    // const guestResp = await sendMessage(guestPhoneRaw, guestMessage.join('\n'))
+    // const leaderResp = await sendMessage('55'+leader.phone.replace(/\D/g, ''), leaderMessage)
+    const guestResp = await sendMessage('5511995278831', guestMessage.join('\n'))
+    const leaderResp = await sendMessage('5511995278831', leaderMessage)
 
-    return NextResponse.json(massSentParser([guestResp, leaderResp]))
+
+    const sheetAdd = await append([
+      [leadDate.toLocaleDateString(LOCALE, localeConfig), guest.name, guest.phone, gc.name, leader.name, boolToString(leaderResp.sent), boolToString(guestResp.sent)]
+    ])
+
+    return NextResponse.json({
+      message: massSentParser([guestResp, leaderResp]),
+      sheet: {
+        sent: !!!sheetAdd.error?.code,
+      },
+    })
   }catch(ex){
     console.error(ex)
     return NextResponse.json({message: "Não foi possível enviar a mensagem"}, { status: 400 })
   }
+}
+
+function boolToString(value){
+  return value ? 'sim' : 'não'
 }
