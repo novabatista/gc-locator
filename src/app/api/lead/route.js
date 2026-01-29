@@ -12,7 +12,7 @@ export async function POST(request) {
   const leader = gc.contacts[responsible.contactIndex]
   const leadDate = new Date()
 
-  const guestPhoneRaw = '55'+guest.phone.replace(/\D/g, '')
+  const guestPhoneRaw = guest.phone.replace(/\D/g, '')
   const guestMessage = [
     `Olá ${guest.name}, que bom que você quer conhecer o GC ${gc.name}!`,
     '',
@@ -31,10 +31,10 @@ export async function POST(request) {
   ].join('\n')
 
   try {
-    // const guestResp = await sendMessage(guestPhoneRaw, guestMessage.join('\n'))
-    // const leaderResp = await sendMessage('55'+leader.phone.replace(/\D/g, ''), leaderMessage)
-    const guestResp = await sendMessage('5511995278831', guestMessage.join('\n'))
-    const leaderResp = await sendMessage('5511995278831', leaderMessage)
+    const guestResp = await sendMessage('55'+guestPhoneRaw, guestMessage.join('\n'))
+    const leaderResp = await sendMessage('55'+leader.phone.replace(/\D/g, ''), leaderMessage)
+    // const guestResp = await sendMessage('5511995278831', guestMessage.join('\n'))
+    // const leaderResp = await sendMessage('5511995278831', leaderMessage)
 
 
     const sheetAdd = await append([
