@@ -57,15 +57,15 @@ export default function PageLead({params, searchParams}) {
     })
       .then((r)=>r.json())
       .then((resp)=>{
-      if(!resp.sent){
-        alert('Erro ao encaminhar visitante')
-        return
-      }
+        if(!resp?.sheet?.sent){
+          alert('Erro ao encaminhar visitante')
+          return
+        }
 
-      responsibleEl.value = RESPONSIBLE_EMPTY_VALUE
-      guestNameEl.value = ''
-      guestPhoneEl.value = ''
-      alert('Visitante encaminhado com sucesso!')
+        responsibleEl.value = RESPONSIBLE_EMPTY_VALUE
+        guestNameEl.value = ''
+        guestPhoneEl.value = ''
+        alert('Visitante encaminhado com sucesso!')
     }).finally(setLoading)
   }
   
