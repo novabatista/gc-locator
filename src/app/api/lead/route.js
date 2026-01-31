@@ -1,14 +1,14 @@
 import {NextResponse} from 'next/server'
-import gcs from '@/assets/gcs.json'
 import {sendMessage} from '@/service/evo/message'
 import {massSentParser} from '@/service/evo/request'
 import {append} from '@/service/drive/sheet/sheet'
+import database from '@/service/database/gcs'
 
 const LOCALE = 'pt-BR'
 const localeConfig = {timeZone: 'America/Sao_Paulo'}
 export async function POST(request) {
   const {responsible, guest} = await request.json()
-  const gc = gcs[responsible.id]
+  const gc = database.find(responsible.id)
   const leader = gc.contacts[responsible.contactIndex]
   const leadDate = new Date()
 

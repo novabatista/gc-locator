@@ -1,4 +1,3 @@
-import gcs from '@/assets/gcs.json'
 import {notFound} from 'next/navigation'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
@@ -7,25 +6,26 @@ import GCLogo from '@/components/GCLogo'
 import SwiperImage from '@/components/SwiperImage'
 import AddToCalendarOptions from '@/app/gc/[gcid]/AddToCalendarOptions'
 import {metadataFromGC} from '@/opengraph/metadata-creator'
+import database from '@/service/database/gcs'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
 export async function generateMetadata({params}){
   const {gcid} = await params
-  const gc = gcs[gcid]
+  const gc = database.find(gcid)
 
   return metadataFromGC(gc)
 }
 
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
-  const gc = gcs[gcid]
 
 
-  if (!gc) {
+  if (!database.exists(gcid)) {
     return notFound()
   }
 
+  const gc = database.find(gcid)
   const {id, name, address, description, contacts, schedules, links, config} = gc
   const {lat, lng} = address.fake ?? address
 

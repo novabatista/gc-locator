@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-const {GOOGLE_SHEET_SERVICE_ACCOUNT, GOOGLE_SHEET_EMAIL, GOOGLE_SHEET_ID, GOOGLE_SHEET_API_KEY}= process.env
+const {GOOGLE_SHEET_SERVICE_ACCOUNT, GOOGLE_SHEET_EMAIL, GOOGLE_SHEET_LEAD_ID}= process.env
 const RANGE = 'leads!A2'
 
 export async function append(rows){
@@ -9,7 +9,7 @@ export async function append(rows){
   };
 
   const token = await getGoogleAccessToken();
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}/values/${RANGE}:append?valueInputOption=RAW`
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_LEAD_ID}/values/${RANGE}:append?valueInputOption=RAW`
   return fetch(
     url,
     {

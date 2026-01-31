@@ -3,6 +3,7 @@ import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {getMapStaticConfig} from '@/map/map'
 import GCLogo from '@/components/GCLogo'
+import database from '@/service/database/gcs'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
@@ -18,7 +19,7 @@ export default async function PageGCPrint({params, searchParams}) {
 
   return (
     <div className="font-sans w-full flex flex-row flex-wrap" style={{pageBreakAfter: 'always', zoom: 0.70}}>
-      {Object.values(gcs).slice(0, 99).map((gc) => {
+      {Object.values(database.all()).map((gc) => {
         const {id, name, address, contacts, schedules, links, config} = gc
         const {lat, lng} = address.fake ?? address
 
