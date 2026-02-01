@@ -1,31 +1,35 @@
-import gcs from '@/assets/gcs.json'
 import {notFound} from 'next/navigation'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {getMapStaticConfig} from '@/map/map'
-import GCLogo from '@/components/GCLogo'
 import SwiperImage from '@/components/SwiperImage'
 import AddToCalendarOptions from '@/app/gc/[gcid]/AddToCalendarOptions'
 import {metadataFromGC} from '@/opengraph/metadata-creator'
+import database from '@/service/database/gcs'
+import GCHeader from '@/components/GCHeader'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
 export async function generateMetadata({params}){
   const {gcid} = await params
-  const gc = gcs[gcid]
+  const gc = database.find(gcid)
+  if (!database.exists(gcid)) {
+    return
+  }
 
   return metadataFromGC(gc)
 }
 
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
-  const gc = gcs[gcid]
 
 
-  if (!gc) {
-    return notFound()
+  if (!database.exists(gcid)) {
+    return <p>non ecsizte {gcid}</p>
+    // return notFound()
   }
 
+  const gc = database.find(gcid)
   const {id, name, address, description, contacts, schedules, links, config} = gc
   const {lat, lng} = address.fake ?? address
 
@@ -56,10 +60,7 @@ export default async function PageGCDetail({params}) {
 
   return (
     <main className="font-sans min-h-screen w-11/12 md:w-10/12 lg:w-10/12 xl:w-8/12 2xl:w-8/12 max-w-[1200px] m-auto py-8 sm:py-12">
-      <header className="flex flex-row items-center" style={{color: config.color.primary}}>
-        <span className="text-5xl uniform-black mr-2">GC</span>
-        <GCLogo config={config} name={name} location="single" textSize="4xl" className="mr-2" width={64} height={64} />
-      </header>
+      <GCHeader gc={gc} />
 
       <section id="description" className="mb-8">
         {description.map((paragraph, paragraphIndex) => (<p key={paragraphIndex} className="mb-4">{paragraph}</p>))}

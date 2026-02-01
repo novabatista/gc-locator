@@ -1,8 +1,8 @@
-import gcs from '@/assets/gcs.json'
 import GCCard from '@/components/GCCard'
 import {groupGCBySectorFlat} from '@/gc/group'
 import Swiper from '@/components/Swiper'
 import SwiperGCs from '@/app/embed/SwipperGCs'
+import database from '@/service/database/gcs'
 
 const validValues = ['1', 'true', 'yes', 'y', 'sim', 's']
 function isTruthy(value){
@@ -30,7 +30,7 @@ export default async function PageEmbed(props) {
   const isCarouselMode = type==='carousel'
   const minHeight = isCarouselMode && isTruthy(map) ? '320px' : '210px'
 
-  let gcsList = groupGCBySectorFlat(gcs)
+  let gcsList = groupGCBySectorFlat(database.all())
   if(Number(limit)){
     gcsList = gcsList.slice(0, limit)
   }

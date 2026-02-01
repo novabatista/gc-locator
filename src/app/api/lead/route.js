@@ -1,14 +1,14 @@
 import {NextResponse} from 'next/server'
-import gcs from '@/assets/gcs.json'
 import {sendMessage} from '@/service/evo/message'
 import {massSentParser} from '@/service/evo/request'
 import {append} from '@/service/drive/sheet/sheet'
+import database from '@/service/database/gcs'
 
 const LOCALE = 'pt-BR'
 const localeConfig = {timeZone: 'America/Sao_Paulo'}
 export async function POST(request) {
   const {responsible, guest} = await request.json()
-  const gc = gcs[responsible.id]
+  const gc = database.find(responsible.id)
   const leader = gc.contacts[responsible.contactIndex]
   const leadDate = new Date()
 
@@ -37,7 +37,7 @@ export async function POST(request) {
     // const leaderResp = await sendMessage('5511995278831', leaderMessage)
 
 
-    const sheetAdd = await append([
+    const sheetAdd = await append(process.env.GOOGLE_SHEET_LEAD_ID, 'leads!A2', [
       [leadDate.toLocaleDateString(LOCALE, localeConfig), guest.name, guest.phone, gc.name, leader.name, boolToString(leaderResp.sent), boolToString(guestResp.sent)]
     ])
 

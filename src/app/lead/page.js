@@ -3,6 +3,7 @@
 import gcs from '@/assets/gcs.json'
 import Button from '@/components/ui/Button'
 import {useState} from 'react'
+import {phoneMaskChange, phoneMaskKeyPress} from '@/mask/phonemask'
 
 const RESPONSIBLE_EMPTY_VALUE = '-- selecione --'
 export default function PageLead({params, searchParams}) {
@@ -62,9 +63,7 @@ export default function PageLead({params, searchParams}) {
           return
         }
 
-        responsibleEl.value = RESPONSIBLE_EMPTY_VALUE
-        guestNameEl.value = ''
-        guestPhoneEl.value = ''
+        form.reset()
         alert('Visitante encaminhado com sucesso!')
     }).finally(setLoading)
   }
@@ -75,7 +74,7 @@ export default function PageLead({params, searchParams}) {
       <form className="flex flex-col gap-8" onSubmit={handleFormSubmit}>
         <section>
           <h2 className="text-xl mb-4">Responsável</h2>
-          <select className="w-full p-2 border rounded" name="responsible" required>
+          <select className="form-input" name="responsible" required>
             <option>{RESPONSIBLE_EMPTY_VALUE}</option>
             {gcsList.map(gc =>
               gc.contacts.map((contact, index) => (
@@ -92,28 +91,18 @@ export default function PageLead({params, searchParams}) {
           <div className="flex flex-col gap-4">
             <div>
               <label className="block mb-2">Nome</label>
-              <input name="guest.name" type="text" className="w-full p-2 border rounded"/>
+              <input name="guest.name" type="text" className="form-input"/>
             </div>
             <div>
               <label className="block mb-2">WhatsApp</label>
               <input
                 type="text"
                 name="guest.phone"
-                className="w-full p-2 border rounded"
+                className="form-input"
                 placeholder="(00) 00000-0000"
-                onKeyPress={(e) => {
-                  if (!/[0-9]/.test(e.key)) {
-                    e.preventDefault()
-                  }
-                }}
+                onKeyPress={phoneMaskKeyPress}
+                onChange={phoneMaskChange}
                 maxLength="15"
-                onChange={(e) => {
-                  let value = e.target.value.replace(/\D/g, '')
-                  if (value.length > 0) {
-                    value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7)}`
-                  }
-                  e.target.value = value
-                }}
               />
             </div>
           </div>
