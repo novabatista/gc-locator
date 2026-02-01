@@ -74,7 +74,7 @@
 /**
  * @typedef {Object} GC
  * @property {string} id - Unique GC identifier
- * @property {string} sheet_id - Google Sheets ID of members
+ * @property {string} sheetId - Google Sheets ID of members
  * @property {string} name - GC display name
  * @property {Sector} sector - Sector information
  * @property {Config} config - Configuration settings
