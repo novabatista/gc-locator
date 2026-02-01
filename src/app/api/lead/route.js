@@ -37,7 +37,7 @@ export async function POST(request) {
     // const leaderResp = await sendMessage('5511995278831', leaderMessage)
 
 
-    const sheetAdd = await append([
+    const sheetAdd = await append(process.env.GOOGLE_SHEET_LEAD_ID, 'leads!A2', [
       [leadDate.toLocaleDateString(LOCALE, localeConfig), guest.name, guest.phone, gc.name, leader.name, boolToString(leaderResp.sent), boolToString(guestResp.sent)]
     ])
 
