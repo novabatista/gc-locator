@@ -78,13 +78,15 @@ export default function PageLead({params, searchParams}) {
           <h2 className="text-xl mb-4">Responsável</h2>
           <select className="w-full p-2 border rounded" name="responsible" required>
             <option>{RESPONSIBLE_EMPTY_VALUE}</option>
-            {gcsList.map(gc =>
-              gc.contacts.map((contact, index) => (
-                <option key={`${gc.id}-${index}`} value={`${gc.id}-${index}`}>
-                  {contact.name} ({gc.name})
-                </option>
-              )),
-            )}
+            {gcsList.map( gc => (
+              <optgroup label={gc.name} key={gc.id}>
+                {gc.contacts.map((contact, index) => (
+                  <option key={`${gc.id}-${index}`} value={`${gc.id}-${index}`}>
+                    {contact.name}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
           </select>
         </section>
 
