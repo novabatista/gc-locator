@@ -6,7 +6,7 @@ import {useState} from 'react'
 
 const RESPONSIBLE_EMPTY_VALUE = '-- selecione --'
 export default function PageLead({params, searchParams}) {
-  const gcsList = Object.values(gcs).filter(gc => gc.id===gcs.mosaico1.id)
+  const gcsList = gcs
   const [isLoading, setLoading] = useState(false)
 
   const handleFormSubmit = async (e) => {
