@@ -3,10 +3,11 @@
 import gcs from '@/assets/gcs.json'
 import Button from '@/components/ui/Button'
 import {useState} from 'react'
+import database from '@/service/database/gcs'
 
 const RESPONSIBLE_EMPTY_VALUE = '-- selecione --'
 export default function PageLead({params, searchParams}) {
-  const gcsList = gcs
+  const gcsList = database.all()
   const [isLoading, setLoading] = useState(false)
 
   const handleFormSubmit = async (e) => {

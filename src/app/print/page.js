@@ -19,7 +19,7 @@ export default async function PageGCPrint({params, searchParams}) {
 
   return (
     <div className="font-sans w-full flex flex-row flex-wrap" style={{pageBreakAfter: 'always', zoom: 0.70}}>
-      {Object.values(database.all()).map((gc) => {
+      {database.all().map((gc) => {
         const {id, name, address, contacts, schedules, links, config} = gc
         const {lat, lng} = address.fake ?? address
 

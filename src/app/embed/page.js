@@ -30,7 +30,7 @@ export default async function PageEmbed(props) {
   const isCarouselMode = type==='carousel'
   const minHeight = isCarouselMode && isTruthy(map) ? '320px' : '210px'
 
-  let gcsList = groupGCBySectorFlat(database.all())
+  let gcsList = groupGCBySectorFlat(database.raw())
   if(Number(limit)){
     gcsList = gcsList.slice(0, limit)
   }
