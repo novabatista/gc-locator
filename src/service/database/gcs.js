@@ -95,9 +95,17 @@ import gcsDB from '@/assets/gcs.json'
 
 /**
  * Get all GCs from the database
- * @returns {GCsDatabase} All GCs data
+ * @returns {Array<GC>} All GCs data
  */
 function all(){
+  return Object.values(gcsDB)
+}
+
+/**
+ * Get all GCs from the database as raw object
+ * @returns {GCsDatabase} All GCs data
+ */
+function raw(){
   return gcsDB
 }
 
@@ -120,6 +128,7 @@ function find(gcId){
 }
 
 const db = {
+  raw,
   all,
   find,
   exists,

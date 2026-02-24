@@ -18,7 +18,7 @@ export function groupGCBySector(gcsData){
 
 /**
  * Sort GCs by distance from provided coordinates
- * @param {GC} gcsData - The GCs data object (from gcs.json)
+ * @param {GCsDatabase} gcsData - The GCs data object (from gcs.json)
  * @returns {Array} Sorted array of GCs with distances
  */
 export function groupGCBySectorFlat(gcsData){

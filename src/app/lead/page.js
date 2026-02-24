@@ -1,13 +1,13 @@
 'use client'
 
-import gcs from '@/assets/gcs.json'
 import Button from '@/components/ui/Button'
 import {useState} from 'react'
+import database from '@/service/database/gcs'
 import {phoneMaskChange, phoneMaskKeyPress} from '@/mask/phonemask'
 
 const RESPONSIBLE_EMPTY_VALUE = '-- selecione --'
 export default function PageLead({params, searchParams}) {
-  const gcsList = Object.values(gcs).filter(gc => gc.id===gcs.mosaico1.id)
+  const gcsList = database.all()
   const [isLoading, setLoading] = useState(false)
 
   const handleFormSubmit = async (e) => {
@@ -76,13 +76,15 @@ export default function PageLead({params, searchParams}) {
           <h2 className="text-xl mb-4">Responsável</h2>
           <select className="form-input" name="responsible" required>
             <option>{RESPONSIBLE_EMPTY_VALUE}</option>
-            {gcsList.map(gc =>
-              gc.contacts.map((contact, index) => (
-                <option key={`${gc.id}-${index}`} value={`${gc.id}-${index}`}>
-                  {contact.name} ({gc.name})
-                </option>
-              )),
-            )}
+            {gcsList.map( gc => (
+              <optgroup label={gc.name} key={gc.id}>
+                {gc.contacts.map((contact, index) => (
+                  <option key={`${gc.id}-${index}`} value={`${gc.id}-${index}`}>
+                    {contact.name}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
           </select>
         </section>
 

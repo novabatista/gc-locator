@@ -25,8 +25,7 @@ export default async function PageGCDetail({params}) {
 
 
   if (!database.exists(gcid)) {
-    return <p>non ecsizte {gcid}</p>
-    // return notFound()
+    return notFound()
   }
 
   const gc = database.find(gcid)
