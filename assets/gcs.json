@@ -71,6 +71,46 @@
       "✨ Juntos, somos mais fortes e mais parecidos com Jesus."
     ]
   },
+  "mooca1": {
+    "id": "mooca1",
+    "name": "Mosaico Mooca",
+    "sector": {
+      "id": "orange",
+      "name": "Laranja"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffb000"
+      },
+      "logo": {
+        "alias": "mosaico",
+        "full_replace": false
+      }
+    },
+    "address": {
+      "text": "R. Itabaiana - Belenzinho, São Paulo - SP, 03171-010",
+      "street_number": 250,
+      "complement": "",
+      "lat": -23.549001067530728,
+      "lng": -46.591930128083355,
+      "fake": {
+        "lat": -23.549318286641316,
+        "lng": -46.59142887400209
+      }
+    },
+    "contacts": [
+      {"name": "Neuber", "phone": "11 99527-8831"},
+      {"name": "Lilian", "phone": "11 94126-4978"}
+    ],
+    "schedules": [
+      {"day_index": 6, "weekday": "Sábados", "hour": "17:00"}
+    ],
+    "links": [
+    ],
+    "images":[],
+    "description": [],
+    "sheetId": "1Lh1U8P0QT1CqDOPf5j7aE2kvEssqD3iI_MkxROLwsuI"
+  },
   "conexao1": {
     "id": "conexao1",
     "name": "Conexão Jovem",
