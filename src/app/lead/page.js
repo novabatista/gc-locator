@@ -92,11 +92,11 @@ export default function PageLead({params, searchParams}) {
           <h2 className="text-xl mb-4">Visitante</h2>
           <div className="flex flex-col gap-4">
             <div>
-              <label className="block mb-2">Nome</label>
+              <label className="form-label mb-2">Nome</label>
               <input name="guest.name" type="text" className="form-input"/>
             </div>
             <div>
-              <label className="block mb-2">WhatsApp</label>
+              <label className="form-label mb-2">WhatsApp</label>
               <input
                 type="text"
                 name="guest.phone"

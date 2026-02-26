@@ -95,7 +95,7 @@ export default function PageGCOnboard({params}){
       <GCHeader gc={gc} />
       <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nome</label>
+          <label htmlFor="name" className="form-label">Nome</label>
           <input
             type="text"
             name="name"
@@ -104,7 +104,7 @@ export default function PageGCOnboard({params}){
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email (preferência por gmail)</label>
+          <label htmlFor="email" className="form-label">Email (preferência por gmail)</label>
           <input
             type="email"
             name="email"
@@ -113,7 +113,7 @@ export default function PageGCOnboard({params}){
           />
         </div>
         <div>
-          <label htmlFor="birthday" className="block text-sm font-medium text-gray-700">Aniversário</label>
+          <label htmlFor="birthday" className="form-label">Aniversário</label>
           <input
             type="text"
             name="birthday"
@@ -125,7 +125,7 @@ export default function PageGCOnboard({params}){
           />
         </div>
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Telefone (whatsapp)</label>
+          <label htmlFor="phone" className="form-label">Telefone (whatsapp)</label>
           <input
             type="text"
             name="phone"

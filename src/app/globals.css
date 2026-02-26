@@ -67,6 +67,9 @@ body {
 }
 
 
+.form-label {
+  @apply block text-sm font-medium text-gray-700;
+}
 .form-input {
   @apply w-full p-2 border rounded;
 }
