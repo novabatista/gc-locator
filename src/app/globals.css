@@ -31,6 +31,8 @@
   --foreground-dark: color-mix(in srgb, var(--foreground), black 20%);
 
   --accent: var(--color-accent);
+  --accent-light: color-mix(in srgb, var(--accent), white 20%);
+  --accent-dark: color-mix(in srgb, var(--accent), black 20%);
 }
 
 /*@media (prefers-color-scheme: dark) {
@@ -68,7 +70,7 @@ body {
 
 
 .form-label {
-  @apply block text-sm font-medium text-gray-700;
+  @apply block text-sm font-medium text-white;
 }
 .form-input {
   @apply w-full p-2 border rounded;
