@@ -5,6 +5,7 @@ import GCLogo from '@/assets/logo-8.svg'
 import {groupGCBySectorFlat} from '@/gc/group'
 import {sortGcsByDistanceWithRadius} from '@/gc/sort-by-distance'
 import GCMainHeader from '@/components/GCMainHeader'
+import Squares from '@/components/Squares'
 
 const MAX_SEARCH_RADIUS_KM = 4
 export default async function Home({ searchParams }) {
@@ -21,7 +22,7 @@ export default async function Home({ searchParams }) {
   }
 
   return (
-    <main className="font-sans min-h-screen w-11/12 md:w-10/12 lg:w-10/12 xl:w-8/12 2xl:w-8/12 max-w-[1200px] m-auto py-8 sm:py-12">
+    <main className="font-sans min-h-screen w-11/12 md:w-10/12 lg:w-10/12 xl:w-8/12 2xl:w-8/12 max-w-[1200px] m-auto">
       <GCMainHeader />
       <section className="flex flex-col gap-4 text-base">
         <p>
@@ -42,6 +43,10 @@ export default async function Home({ searchParams }) {
           {gcsList.map((gc, index) => <GCCard key={index} gc={gc} applySectorColor={false} />)}
         </div>
       </section>
+
+      <div className="mt-8 pt-8 sm:pt-12">
+        <Squares y="reverse"/>
+      </div>
     </main>
   )
 }
