@@ -38,8 +38,7 @@ export default function GCLogo({
 
     const CustomLogoMap = {
       'mosaico': CustomLogoMosaico,
-      // 'conexao': (applySectorColor ? CustomLogoConexaoOrange : (isDark ? CustomLogoConexaoWhite : CustomLogoConexaoBlack)),
-      'conexao': (applySectorColor ? CustomLogoConexaoOrange : CustomLogoConexaoWhite),
+      'conexao': (applySectorColor ? CustomLogoConexaoOrange : (isDark ? CustomLogoConexaoWhite : CustomLogoConexaoBlack)),
     }
 
     const comp = CustomLogoMap[alias]
