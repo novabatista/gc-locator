@@ -17,7 +17,6 @@ export default function GCLogo({
   height=32,
   applySectorColor=true,
 }) {
-  const [isDarkMode, setIsDarkMode] = useState();
   const [LogoComponent, setLogoComp] = useState();
   const [isPng, setIsPng] = useState();
 
@@ -39,7 +38,8 @@ export default function GCLogo({
 
     const CustomLogoMap = {
       'mosaico': CustomLogoMosaico,
-      'conexao': (applySectorColor ? CustomLogoConexaoOrange : (isDark ? CustomLogoConexaoWhite : CustomLogoConexaoBlack)),
+      // 'conexao': (applySectorColor ? CustomLogoConexaoOrange : (isDark ? CustomLogoConexaoWhite : CustomLogoConexaoBlack)),
+      'conexao': (applySectorColor ? CustomLogoConexaoOrange : CustomLogoConexaoWhite),
     }
 
     const comp = CustomLogoMap[alias]
