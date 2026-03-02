@@ -211,14 +211,14 @@
       }
     },
     "address": {
-      "text": "R. Bom Sucesso - Cidade Mãe do Céu, São Paulo - SP, 03305-000",
-      "street_number": 1530,
+      "text": "R. Quixadá - Vila Invernada, São Paulo - SP, 03350-060",
+      "street_number": 125,
       "complement": "",
-      "lat": -23.5503392,
-      "lng": -46.5778223,
+      "lat": -23.566899940480972,
+      "lng": -46.567081280735934,
       "fake": {
-        "lat": -23.551384,
-        "lng": -46.575679
+        "lat": -23.567724067137902,
+        "lng": -46.5674736168304
       }
     },
     "contacts": [
@@ -292,40 +292,6 @@
     "contacts": [
       {"name": "Edu", "phone": "11 99903-1063"},
       {"name": "Beatriz", "phone": "11 95375-0621"}
-    ],
-    "schedules": [
-      {"day_index": 4, "weekday":  "Quintas-feiras", "hour":  "20:00"}
-    ],
-    "links": [],
-    "images": [],
-    "description": []
-  },
-  "penha1": {
-    "id": "penha1",
-    "name": "Penha",
-    "sector": {
-      "id": "blue",
-      "name": "Azul"
-    },
-    "config": {
-      "color": {
-        "primary": "#2186ed"
-      }
-    },
-    "address": {
-      "text": "R. São Severiano - Vila Santana, São Paulo - SP, 03613-030",
-      "street_number": 54,
-      "complement": "",
-      "lat": -23.5185801,
-      "lng": -46.53493,
-      "fake": {
-        "lat": -23.518373955571985,
-        "lng": -46.53442053049735
-      }
-    },
-    "contacts": [
-      {"name": "Kleber", "phone": "11 98567-6120"},
-      {"name": "Fernanda", "phone": "11 96309-1678"}
     ],
     "schedules": [
       {"day_index": 4, "weekday":  "Quintas-feiras", "hour":  "20:00"}
@@ -508,12 +474,12 @@
     "id": "aguarasa1",
     "name": "Água Rasa",
     "sector": {
-      "id": "yellow",
-      "name": "Amarelo"
+      "id": "white",
+      "name": "Branco"
     },
     "config": {
       "color": {
-        "primary": "#ffe500"
+        "primary": "#000"
       }
     },
     "address": {
@@ -528,8 +494,8 @@
       }
     },
     "contacts": [
-      {"name": "Josué", "phone": "11 997342-9581"},
-      {"name": "Valquiria", "phone": "11 98121-8991"}
+      {"name": "Rodrigo", "phone": "11 98285-8677"},
+      {"name": "Nadyn", "phone": "11 94466-4222"}
     ],
     "schedules": [
       {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
@@ -538,32 +504,32 @@
     "images": [],
     "description": []
   },
-  "carrao1": {
-    "id": "carrao1",
-    "name": "Carrão",
+  "mooca2": {
+    "id": "mooca2",
+    "name": "Mooca",
     "sector": {
-      "id": "yellow",
-      "name": "Amarelo"
+      "id": "white",
+      "name": "Branco"
     },
     "config": {
       "color": {
-        "primary": "#ffe500"
+        "primary": "#000"
       }
     },
     "address": {
-      "text": "R. Reboujo - Chácara Santo Antônio (Zona Leste), São Paulo - SP, 03408-050",
-      "street_number": 250,
-      "complement": "apto: 32",
-      "lat": -23.5516724,
-      "lng": -46.551994,
+      "text": "R. Jaboticabal - Cidade Soberana, Guarulhos - SP, 07161-200",
+      "street_number": 385,
+      "complement": "apto: 55",
+      "lat": -23.400735138354815,
+      "lng": -46.43846905115136,
       "fake": {
-        "lat": -23.551341150140118,
-        "lng": -46.5519655234979
+        "lat": -23.401343581165353,
+        "lng": -46.43807697756331
       }
     },
     "contacts": [
-      {"name": "Ricardo", "phone": "11 94762-4869"},
-      {"name": "Aline", "phone": "11 94725-3994"}
+      {"name": "Daniel", "phone": "11 98911-3383"},
+      {"name": "Thais", "phone": "11 98487-5266"}
     ],
     "schedules": [
       {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
@@ -571,5 +537,72 @@
     "links": [],
     "images": [],
     "description": []
-  }
+  },
+  "shine1": {
+    "id": "shine1",
+    "name": "Shine",
+    "sector": {
+      "id": "white",
+      "name": "Branco"
+    },
+    "config": {
+      "color": {
+        "primary": "#000"
+      }
+    },
+    "address": {
+      "text": "R. Mossâmedes - Vila Santo Estevão, São Paulo - SP, 03325-060",
+      "street_number": 387,
+      "complement": "Fundos",
+      "lat": -23.554574231078877,
+      "lng": -46.55507729572759,
+      "fake": {
+        "lat": -23.55518376955271,
+        "lng": -46.555124974796016
+      }
+    },
+    "contacts": [
+      {"name": "Anne", "phone": "11 98508-7314"}
+    ],
+    "schedules": [
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
+    ],
+    "links": [],
+    "images": [],
+    "description": []
+  },
+  "gcr1": {
+    "id": "gcr1",
+    "name": "GCR",
+    "sector": {
+      "id": "white",
+      "name": "Branco"
+    },
+    "config": {
+      "color": {
+        "primary": "#000"
+      }
+    },
+    "address": {
+    "text": "Nova Batista - Tatuapé - R. Água Rasa, 22 - Vila Reg. Feijó, São Paulo - SP, 03343-010",
+    "street_number": 22,
+    "complement": "",
+    "lat": -23.55585486994755,
+    "lng": -46.57629886536281,
+    "fake": {
+      "lat": -23.55585486994755,
+      "lng": -46.57629886536281
+    }
+  },
+  "contacts": [
+    {"name": "Ailton", "phone": ""},
+    {"name": "Mariza", "phone": ""}
+  ],
+  "schedules": [
+    {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
+  ],
+  "links": [],
+  "images": [],
+  "description": []
+}
 }
