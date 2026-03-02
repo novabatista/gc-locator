@@ -66,7 +66,7 @@ function createImage(gc, filename) {
 }
 
 
-async function fetchAllMaps() {
+async function createOpenGraphImages() {
   const promises = [];
 
   Object.keys(gcs).forEach(gcid => {
@@ -84,4 +84,4 @@ async function fetchAllMaps() {
   }
 }
 
-fetchAllMaps();
+createOpenGraphImages();
