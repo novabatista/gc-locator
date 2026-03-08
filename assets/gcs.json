@@ -595,8 +595,8 @@
     }
   },
   "contacts": [
-    {"name": "Ailton", "phone": ""},
-    {"name": "Mariza", "phone": ""}
+    {"name": "Ailton", "phone": "11 94724-2464"},
+    {"name": "Mariza", "phone": "11 98012-8373"}
   ],
   "schedules": [
     {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
