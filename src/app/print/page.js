@@ -18,7 +18,7 @@ export default async function PageGCPrint({params, searchParams}) {
 
 
   return (
-    <div className="font-sans w-full flex flex-row flex-wrap" style={{pageBreakAfter: 'always', zoom: 0.70}}>
+    <div className="font-sans w-full flex flex-row flex-wrap" style={{pageBreakAfter: 'always'}}>
       {database.all().map((gc) => {
         const {id, name, address, contacts, schedules, links, config} = gc
         const {lat, lng} = address.fake ?? address
@@ -35,8 +35,8 @@ export default async function PageGCPrint({params, searchParams}) {
 
         return (
           <div key={id} className="font-sans w-1/2 p-6 mb-10">
-            <div className="flex flex-row justify-between gap-2">
-              <div className="flex flex-col w-7/12 gap-4">
+            <div className="flex flex-row justify-start gap-2">
+              <div className="flex flex-col w-6/12 gap-4">
                 <div className="flex flex-row items-center" style={{color: config.color.primary}}>
                   <GCLogo config={config} name={name} location="single" textSize="4xl" className="mr-2" width={64} height={64} />
                 </div>
@@ -70,7 +70,7 @@ export default async function PageGCPrint({params, searchParams}) {
                 </section>
               </div>
 
-              <section id="qrcode" className="w-5/12">
+              <section id="qrcode" className="w-6/12">
                 <Image
                   alt={imageConfig.alt}
                   src={imageConfig.src}
