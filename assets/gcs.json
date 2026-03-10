@@ -232,9 +232,9 @@
     "images": [],
     "description": []
   },
-  "aricanduva1": {
-    "id": "aricanduva1",
-    "name": "Aricanduva",
+  "carrao1": {
+    "id": "carrao1",
+    "name": "Carrão",
     "sector": {
       "id": "blue",
       "name": "Azul"
@@ -245,14 +245,14 @@
       }
     },
     "address": {
-      "text": "Av. Matapi - Jardim Santa Teresinha, São Paulo - SP, 03572-130",
-      "street_number": 40,
-      "complement": "apto: 102 Bloco 2",
-      "lat": -23.574934,
-      "lng": -46.5021076,
+      "text": "R. Vicente Frate - Vila Carrão, São Paulo - SP, 03427-020",
+      "street_number": 14,
+      "complement": "",
+      "lat": -23.553248523745008,
+      "lng": -46.53646554110447,
       "fake": {
-        "lat": -23.575402340795105,
-        "lng": -46.50238147088641
+        "lat": -23.553249523221925,
+        "lng": -46.53629527816891
       }
     },
     "contacts": [
