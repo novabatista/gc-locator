@@ -19,7 +19,8 @@
 
 :root {
   --color-light: #fafafa;
-  --color-dark: #030303;
+  --color-dark: #0a1021;
+  --color-accent: #e73148;
 
   --background: var(--color-light);
   --background-light: color-mix(in srgb, var(--background), white 20%);
@@ -28,6 +29,12 @@
   --foreground: var(--color-dark);
   --foreground-light: color-mix(in srgb, var(--foreground), white 20%);
   --foreground-dark: color-mix(in srgb, var(--foreground), black 20%);
+
+  --accent: var(--color-accent);
+  --accent-light: color-mix(in srgb, var(--accent), white 20%);
+  --accent-dark: color-mix(in srgb, var(--accent), black 20%);
+
+  --card-bg: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,12 +46,15 @@
     --foreground: var(--color-light);
     --foreground-light: color-mix(in srgb, var(--foreground), white 20%);
     --foreground-dark: color-mix(in srgb, var(--foreground), black 20%);
+
+    --card-bg: #252b35;
   }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -63,6 +73,9 @@ body {
 }
 
 
+.form-label {
+  @apply block text-sm font-medium text-white;
+}
 .form-input {
   @apply w-full p-2 border rounded;
 }

@@ -17,7 +17,6 @@ export default function GCLogo({
   height=32,
   applySectorColor=true,
 }) {
-  const [isDarkMode, setIsDarkMode] = useState();
   const [LogoComponent, setLogoComp] = useState();
   const [isPng, setIsPng] = useState();
 

@@ -35,6 +35,8 @@ export default async function PageGCDetail({params}) {
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
   const mapImageUrl = `/maps/map-${id}-full.png?v=${MAP_STATIC_CONFIG.version}`
+  const applySectorColor = false;
+  const color = applySectorColor ? config.color.primary : ''
 
   const images = gc.images.map(image => {
     if(image?.full){
@@ -59,7 +61,7 @@ export default async function PageGCDetail({params}) {
 
   return (
     <main className="font-sans min-h-screen w-11/12 md:w-10/12 lg:w-10/12 xl:w-8/12 2xl:w-8/12 max-w-[1200px] m-auto py-8 sm:py-12">
-      <GCHeader gc={gc} />
+      <GCHeader gc={gc} applySectorColor={applySectorColor} />
 
       <section id="description" className="mb-8">
         {description.map((paragraph, paragraphIndex) => (<p key={paragraphIndex} className="mb-4">{paragraph}</p>))}
@@ -67,12 +69,12 @@ export default async function PageGCDetail({params}) {
 
       <section className="flex flex-row justify-between mb-8">
         <div className="flex flex-col gap-2">
-          <span className="text-xl" style={{color: config.color.primary}}>Líderes</span>
+          <span className="text-xl font-black" style={{color}}>Líderes</span>
           {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} />)}
         </div>
 
         <div>
-          <span className="text-xl mb-1" style={{color: config.color.primary}}>Reuniões</span>
+          <span className="text-xl mb-1 font-black" style={{color}}>Reuniões</span>
           <div className="">
             {schedules.map((schedule, scheduleIndex) => (
               <div className="flex flex-col" key={scheduleIndex}>
