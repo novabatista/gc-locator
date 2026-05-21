@@ -368,40 +368,6 @@
     "images": [],
     "description": []
   },
-  "vilauniao1": {
-    "id": "vilauniao1",
-    "name": "Vila União",
-    "sector": {
-      "id": "green",
-      "name": "Verde"
-    },
-    "config": {
-      "color": {
-        "primary": "#029248"
-      }
-    },
-    "address": {
-      "text": "R. Frei Diogo das Chagas - Jardim Angela, São Paulo - SP, 03985-060",
-      "street_number": 69,
-      "complement": "",
-      "lat": -23.6047397,
-      "lng": -46.5161022,
-      "fake": {
-        "lat": -23.604793292955932,
-        "lng": -46.5164695621174
-      }
-    },
-    "contacts": [
-      {"name": "Luizão", "phone": "11 99238-8937"},
-      {"name": "Janete", "phone": "11 98949-6918"}
-    ],
-    "schedules": [
-      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
-    ],
-    "links": [],
-    "images": [],
-    "description": []
-  },
   "tatuape1": {
     "id": "tatuape1",
     "name": "Tatuapé I",
@@ -436,9 +402,9 @@
     "images": [],
     "description": []
   },
-  "tatuape2": {
-    "id": "tatuape2",
-    "name": "Tatuapé II",
+  "vilaprudente1": {
+    "id": "vilaprudente1",
+    "name": "Vila Prudente",
     "sector": {
       "id": "white",
       "name": "Branco"
@@ -449,14 +415,14 @@
       }
     },
     "address": {
-      "text": "R. Guaraciaba - Chácara Califórnia, São Paulo - SP, 03404-000",
-      "street_number": 266,
-      "complement": "apto: 101",
-      "lat": -23.5388984,
-      "lng": -46.5549256,
+      "text": "Av. Vila Ema - Vila Ema, São Paulo - SP, 03282-000",
+      "street_number": 1916,
+      "complement": "",
+      "lat": -23.580836,
+      "lng": -46.558398,
       "fake": {
-        "lat": -23.53868421356169,
-        "lng": -46.554523485543726
+        "lat": -23.580723,
+        "lng": -46.559412
       }
     },
     "contacts": [
