@@ -45,7 +45,7 @@ export default async function PageGCPrint({params, searchParams}) {
                   <div className="">
                     <span className="text-xl" style={{color: config.color.primary}}>Líderes</span>
                     <div className="flex flex-row gap-6">
-                      {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} iconVisible={false} />)}
+                      {contacts.map((contact, contactIndex) => <ContactPhoneWA key={contactIndex} contact={contact} name={name} classColor="" iconVisible={false} />)}
                     </div>
                   </div>
                 </section>
