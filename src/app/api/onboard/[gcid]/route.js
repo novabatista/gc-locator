@@ -21,7 +21,7 @@ export async function POST(request, {params}) {
       [
         today.toLocaleDateString(LOCALE, localeConfig),
         birthday,
-        phone,
+        phone.replace(/\D/g, ''),
         email,
         name
       ]
