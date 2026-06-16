@@ -74,7 +74,7 @@ body {
 
 
 .form-label {
-  @apply block text-sm font-medium text-white;
+  @apply block text-sm font-medium text-black;
 }
 .form-input {
   @apply w-full p-2 border rounded;
