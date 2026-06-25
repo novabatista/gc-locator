@@ -147,8 +147,8 @@
       }
     },
     "contacts": [
-      {"name": "Luan", "phone": "11 94744-3796"},
-      {"name": "Camile", "phone": "11 95912-2249"}
+      {"name": "Mateus", "phone": "11 94849-7938"},
+      {"name": "Erica", "phone": "11 96420-5125"}
     ],
     "schedules": [
       {"day_index": 6, "weekday": "Sábados", "hour": "16:00"}
