@@ -136,14 +136,14 @@
       }
     },
     "address": {
-      "text": "R. Quixadá - Vila Invernada, São Paulo - SP, 03350-060",
-      "street_number": 60,
+      "text": "Nova Batista - Tatuapé - R. Água Rasa, 22 - Vila Reg. Feijó, São Paulo - SP, 03343-010",
+      "street_number": 22,
       "complement": "",
-      "lat": -23.5660249,
-      "lng": -46.5672434,
+      "lat": -23.55585486994755,
+      "lng": -46.57629886536281,
       "fake": {
-        "lat": -23.565880983606537,
-        "lng": -46.56677138675617
+        "lat": -23.55585486994755,
+        "lng": -46.57629886536281
       }
     },
     "contacts": [
@@ -550,25 +550,25 @@
       }
     },
     "address": {
-    "text": "Nova Batista - Tatuapé - R. Água Rasa, 22 - Vila Reg. Feijó, São Paulo - SP, 03343-010",
-    "street_number": 22,
-    "complement": "",
-    "lat": -23.55585486994755,
-    "lng": -46.57629886536281,
-    "fake": {
+      "text": "Nova Batista - Tatuapé - R. Água Rasa, 22 - Vila Reg. Feijó, São Paulo - SP, 03343-010",
+      "street_number": 22,
+      "complement": "",
       "lat": -23.55585486994755,
-      "lng": -46.57629886536281
-    }
-  },
-  "contacts": [
-    {"name": "Ailton", "phone": "11 94724-2464"},
-    {"name": "Mariza", "phone": "11 98012-8373"}
-  ],
-  "schedules": [
-    {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
-  ],
-  "links": [],
-  "images": [],
-  "description": []
-}
+      "lng": -46.57629886536281,
+      "fake": {
+        "lat": -23.55585486994755,
+        "lng": -46.57629886536281
+      }
+    },
+    "contacts": [
+      {"name": "Ailton", "phone": "11 94724-2464"},
+      {"name": "Mariza", "phone": "11 98012-8373"}
+    ],
+    "schedules": [
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
+    ],
+    "links": [],
+    "images": [],
+    "description": []
+  }
 }
