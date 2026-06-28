@@ -136,14 +136,14 @@
       }
     },
     "address": {
-      "text": "Nova Batista - Tatuapé - R. Água Rasa, 22 - Vila Reg. Feijó, São Paulo - SP, 03343-010",
-      "street_number": 22,
+      "text": "Av. Vila Ema - Vila Ema, São Paulo - SP, 03282-000",
+      "street_number": 1916,
       "complement": "",
-      "lat": -23.55585486994755,
-      "lng": -46.57629886536281,
+      "lat": -23.580937000573478,
+      "lng": -46.558266688109086,
       "fake": {
-        "lat": -23.55585486994755,
-        "lng": -46.57629886536281
+        "lat": -23.580947000636506,
+        "lng": -46.557235570593996
       }
     },
     "contacts": [
