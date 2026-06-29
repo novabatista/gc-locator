@@ -570,5 +570,39 @@
     "links": [],
     "images": [],
     "description": []
+  },
+  "gomescardim1": {
+    "id": "gomescardim1",
+    "name": "Gomes Cardim",
+    "sector": {
+      "id": "blue",
+      "name": "Azul"
+    },
+    "config": {
+      "color": {
+        "primary": "#000"
+      }
+    },
+    "address": {
+      "text": "R. Emílio Mallet - Vila Gomes Cardim, São Paulo - SP, 03320-000",
+      "street_number": 449,
+      "complement": "",
+      "lat": -23.547061148336777,
+      "lng": -46.56953063459034,
+      "fake": {
+        "lat": -23.547535075517512,
+        "lng": -46.57050820132274
+      }
+    },
+    "contacts": [
+      {"name": "Jonas", "phone": "21 97299-2095"},
+      {"name": "Carol", "phone": "21 97129-3995"}
+    ],
+    "schedules": [
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
+    ],
+    "links": [],
+    "images": [],
+    "description": []
   }
 }
