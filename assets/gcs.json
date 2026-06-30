@@ -174,14 +174,14 @@
       }
     },
     "address": {
-      "text": "R. Egídio Alves da Costa - Sapopemba, São Paulo - SP, 03271-040",
-      "street_number": 233,
+      "text": "Av. Sapopemba - Vila Virginia, São Paulo - SP, 03988-010",
+      "street_number": 7595,
       "complement": "",
-      "lat": -23.600968,
-      "lng": -46.5171648,
+      "lat": -23,5946699,
+      "lng": -46,5251624,
       "fake": {
-        "lat": -23.601438101208565,
-        "lng": -46.517579727167465
+        "lat": -23,5947179,
+        "lng": -46,5258292
       }
     },
     "contacts": [
