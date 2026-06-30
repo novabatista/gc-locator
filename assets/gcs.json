@@ -177,11 +177,11 @@
       "text": "Av. Sapopemba - Vila Virginia, São Paulo - SP, 03988-010",
       "street_number": 7595,
       "complement": "",
-      "lat": -23,5946699,
-      "lng": -46,5251624,
+      "lat": -23.5946699,
+      "lng": -46.5251624,
       "fake": {
-        "lat": -23,5947179,
-        "lng": -46,5258292
+        "lat": -23.5947179,
+        "lng": -46.5258292
       }
     },
     "contacts": [
