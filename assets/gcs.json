@@ -415,19 +415,19 @@
       }
     },
     "address": {
-      "text": "Av. Vila Ema - Vila Ema, São Paulo - SP, 03282-000",
-      "street_number": 1916,
+      "text": "R. Cananéia - Vila Prudente, São Paulo - SP, 03132-040",
+      "street_number": 469,
       "complement": "",
-      "lat": -23.580836,
-      "lng": -46.558398,
+      "lat": -23.57950703612734,
+      "lng": -46.578710435132535,
       "fake": {
-        "lat": -23.580723,
-        "lng": -46.559412
+        "lat": -23.579866008569418,
+        "lng": -46.57911102461912
       }
     },
     "contacts": [
-      {"name": "Adriano", "phone": "11 97645-5988"},
-      {"name": "Juliana", "phone": "11 99257-2746"}
+      {"name": "Edgar", "phone": "11 98084-5277"},
+      {"name": "Tatiana", "phone": "11 98082-8106"}
     ],
     "schedules": [
       {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
