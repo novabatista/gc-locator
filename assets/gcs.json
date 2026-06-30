@@ -483,14 +483,14 @@
       }
     },
     "address": {
-      "text": "R. Jaboticabal - Cidade Soberana, Guarulhos - SP, 07161-200",
+      "text": "Rua Jaboticabal, 385 - Vila Bertioga, São Paulo - SP, 03188-000",
       "street_number": 385,
       "complement": "apto: 55",
-      "lat": -23.400735138354815,
-      "lng": -46.43846905115136,
+      "lat": -23.560560726731385,
+      "lng": -46.57913349999999,
       "fake": {
-        "lat": -23.401343581165353,
-        "lng": -46.43807697756331
+        "lat": -23.561204882263645,
+        "lng": -46.57839522198217
       }
     },
     "contacts": [
