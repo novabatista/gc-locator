@@ -1,75 +1,86 @@
-const fs = require('fs');
-const path = require('path');
-const gcs = require('../assets/gcs.json')
-const { loadEnvConfig } = require('@next/env');
-const gcFormater = require('../src/gc/formater').default
+const fs = require('fs')
+const os = require('os')
+const path = require('path')
+const {exec} = require('child_process')
+const {createClient} = require('@supabase/supabase-js')
+const {loadEnvConfig} = require('@next/env')
 
-loadEnvConfig(process.cwd());
+loadEnvConfig(process.cwd())
 
-const CWD = process.cwd()
-const PUBLIC = `${CWD}/public`
+const {NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY} = process.env
 
-
-const outputDir = PUBLIC+'/qr';
-
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+if (!NEXT_PUBLIC_SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('Missing Supabase env vars.')
+  process.exit(1)
 }
 
-function createQR(gc, type, isRoot = false) {
-  const size = type==='png' ? 20 : 10
-  const filename = `${gc.id}.${type}`
-  const outputPath = path.join(outputDir, filename);
+const supabase = createClient(NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+  auth: {persistSession: false, autoRefreshToken: false},
+})
+
+const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'qrcodes-'))
+
+function runQrencode(gcId, type, isRoot){
+  const size = type === 'png' ? 20 : 10
+  const filename = `${gcId}.${type}`
+  const outputPath = path.join(tmpDir, filename)
+  const url = `https://gc.novabatistatatuape.com.br${isRoot ? '' : `/gc/${gcId}`}?utm_source=qrcode&utm_campaign=qrcode&utm_medium=qrcode`
+  const command = [
+    'qrencode',
+    `-s ${size}`,
+    '-l H',
+    '-m 2',
+    `-t ${type}`,
+    `-o '${outputPath}'`,
+    `'${url}'`,
+  ].join(' ')
 
   return new Promise((resolve, reject) => {
-    const {exec} = require('child_process')
-    const command = [
-      'qrencode',
-      `-s ${size}`,
-      '-l H',
-      '-m 2',
-      `-t ${type}`,
-      `-o \'${outputPath}\'`,
-      `\'https://gc.novabatistatatuape.com.br${isRoot ? '' : `/gc/${gc.id}`}?utm_source=qrcode&utm_campaign=qrcode&utm_medium=qrcode\'`
-    ].join(' ')
-
-    // console.log(command); return;
-    exec(command, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing command: ${error}`)
-        reject(error)
-        return
-      }
-      if (stderr) {
-        console.error(`Command stderr: ${stderr}`)
-      }
-      console.log(command);
-      console.log(`Generated image: ${filename}`)
-      console.log('');
-      resolve()
+    exec(command, (error) => {
+      if (error) reject(error)
+      else resolve(outputPath)
     })
-  });
+  })
 }
 
-
-async function createQRCodes() {
-  const promises = [];
-  const list = Object.values(gcs);
-
-  promises.push(createQR({id: '000-base'}, 'png', true));
-  promises.push(createQR({id: '000-base'}, 'svg', true));
-  list.forEach(gc => {
-    promises.push(createQR(gc, 'png'));
-    promises.push(createQR(gc, 'svg'));
+async function uploadFile(filePath){
+  const filename = path.basename(filePath)
+  const buffer = fs.readFileSync(filePath)
+  const ext = path.extname(filename).slice(1).toLowerCase()
+  const contentType = ext === 'png' ? 'image/png' : ext === 'svg' ? 'image/svg+xml' : 'application/octet-stream'
+  const {error} = await supabase.storage.from('gc-qr').upload(filename, buffer, {
+    upsert: true,
+    contentType,
   })
+  if (error) throw new Error(`${filename}: ${error.message}`)
+  console.log(`  ✓ ${filename}`)
+}
 
-  try {
-    await Promise.all(promises);
-    console.log('All qrcode images generated successfully!');
-  } catch (error) {
-    console.error('Error generating qrcode images:', error);
-    process.exit(1);
+async function processGc(gcId, isRoot = false){
+  for (const type of ['png', 'svg']) {
+    const filePath = await runQrencode(gcId, type, isRoot)
+    await uploadFile(filePath)
   }
 }
 
-createQRCodes();
+async function main(){
+  const {data: rows, error} = await supabase.from('gcs').select('id')
+  if (error) {
+    console.error('Failed to load gcs:', error)
+    process.exit(1)
+  }
+
+  await processGc('000-base', true)
+  for (const row of rows) {
+    try {
+      await processGc(row.id)
+    } catch (ex) {
+      console.error(`  ✗ ${row.id}: ${ex.message}`)
+    }
+  }
+
+  fs.rmSync(tmpDir, {recursive: true, force: true})
+  console.log('Done.')
+}
+
+main()

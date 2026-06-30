@@ -1,9 +1,11 @@
-import gcs from '@/assets/gcs.json'
 import ContactPhoneWA from '@/components/ContactPhoneWA'
 import Image from 'next/image'
 import {getMapStaticConfig} from '@/map/map'
 import GCLogo from '@/components/GCLogo'
 import database from '@/service/database/gcs'
+import {getQrUrl} from '@/service/storage/urls'
+
+export const dynamic = 'force-dynamic'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
@@ -13,13 +15,15 @@ export default async function PageGCPrint({params, searchParams}) {
   const pageZoom = isModeDefault ? 0.40 : 0.70
   const imageSize = isModeDefault ? 320 : 300
 
+  const gcs = await database.all()
+
   return (
     <div className="font-sans w-full flex flex-row flex-wrap" style={{pageBreakAfter: 'always', zoom: pageZoom}}>
-      {database.all().map((gc) => {
+      {gcs.map((gc) => {
         const {id, name, address, contacts, schedules, links, config} = gc
 
         const imageAlt = `Mapa GC ${name}`
-        const qrcodeImageUrl = `/qr/${id}.png?v=${MAP_STATIC_CONFIG.version}`
+        const qrcodeImageUrl = `${getQrUrl(id)}?v=${MAP_STATIC_CONFIG.version}`
         const imageConfig = {
           alt: imageAlt,
           width: imageSize,

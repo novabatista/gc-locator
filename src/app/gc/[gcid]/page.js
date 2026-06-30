@@ -7,13 +7,16 @@ import AddToCalendarOptions from '@/app/gc/[gcid]/AddToCalendarOptions'
 import {metadataFromGC} from '@/opengraph/metadata-creator'
 import database from '@/service/database/gcs'
 import GCHeader from '@/components/GCHeader'
+import {getMapUrl} from '@/service/storage/urls'
+
+export const dynamic = 'force-dynamic'
 
 const MAP_STATIC_CONFIG = getMapStaticConfig()
 
 export async function generateMetadata({params}){
   const {gcid} = await params
-  const gc = database.find(gcid)
-  if (!database.exists(gcid)) {
+  const gc = await database.find(gcid)
+  if (!gc) {
     return
   }
 
@@ -23,18 +26,17 @@ export async function generateMetadata({params}){
 export default async function PageGCDetail({params}) {
   const {gcid} = await params
 
-
-  if (!database.exists(gcid)) {
+  const gc = await database.find(gcid)
+  if (!gc) {
     return notFound()
   }
 
-  const gc = database.find(gcid)
   const {id, name, address, description, contacts, schedules, links, config} = gc
   const {lat, lng} = address.fake ?? address
 
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`
-  const mapImageUrl = `/maps/map-${id}-full.png?v=${MAP_STATIC_CONFIG.version}`
+  const mapImageUrl = `${getMapUrl(id, 'full')}?v=${MAP_STATIC_CONFIG.version}`
   const applySectorColor = false;
   const color = applySectorColor ? config.color.primary : ''
 

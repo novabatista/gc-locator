@@ -1,130 +1,138 @@
-/**
- * @typedef {Object} Sector
- * @property {string} id - Sector identifier (e.g., "orange", "blue", "green", "white", "yellow")
- * @property {string} name - Sector display name
- */
+import {unstable_cache} from 'next/cache'
+import {createClient} from '@supabase/supabase-js'
+import {SECTORS} from '@/gc/sectors'
 
-/**
- * @typedef {Object} ColorConfig
- * @property {string} primary - Primary color in hex format
- */
+const CACHE_TAG = 'gcs'
+const tagFor = (id) => `gc:${id}`
 
-/**
- * @typedef {Object} LogoCardDimensions
- * @property {number} width - Card logo width in pixels
- * @property {number} height - Card logo height in pixels
- */
+let supabase
 
-/**
- * @typedef {Object} LogoSingleDimensions
- * @property {number} width - Single logo width in pixels
- * @property {number} height - Single logo height in pixels
- */
+function getClient(){
+  if (supabase) return supabase
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  if (!url || !key) {
+    throw new Error('Supabase env vars not set (NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY)')
+  }
+  supabase = createClient(url, key, {
+    auth: {persistSession: false, autoRefreshToken: false},
+  })
+  return supabase
+}
 
-/**
- * @typedef {Object} LogoConfig
- * @property {string} alias - Logo alias name
- * @property {boolean} full_replace - Whether to fully replace the logo
- * @property {LogoCardDimensions} [card] - Card logo dimensions
- * @property {LogoSingleDimensions} [single] - Single logo dimensions
- */
-
-/**
- * @typedef {Object} Config
- * @property {ColorConfig} color - Color configuration
- * @property {LogoConfig} [logo] - Logo configuration
- */
-
-/**
- * @typedef {Object} FakeCoordinates
- * @property {number} lat - Fake latitude coordinate
- * @property {number} lng - Fake longitude coordinate
- */
-
-/**
- * @typedef {Object} Address
- * @property {string} text - Full address text
- * @property {number} street_number - Street number
- * @property {string} complement - Address complement (e.g., apartment number)
- * @property {number} lat - Latitude coordinate
- * @property {number} lng - Longitude coordinate
- * @property {FakeCoordinates} fake - Fake coordinates for privacy
- */
-
-/**
- * @typedef {Object} Contact
- * @property {string} name - Contact person name
- * @property {string} phone - Contact phone number
- */
-
-/**
- * @typedef {Object} Schedule
- * @property {number} day_index - Day index (0-6, where 0 is Sunday)
- * @property {string} weekday - Weekday name in Portuguese
- * @property {string} hour - Meeting time in HH:MM format
- */
-
-/**
- * @typedef {Object} Link
- * @property {string} label - Link label/name
- * @property {string} url - Link URL
- * @property {string} icon - Icon class name
- */
-
-/**
- * @typedef {Object} GC
- * @property {string} id - Unique GC identifier
- * @property {string} sheetId - Google Sheets ID of members
- * @property {string} name - GC display name
- * @property {Sector} sector - Sector information
- * @property {Config} config - Configuration settings
- * @property {Address} address - Address information
- * @property {Contact[]} contacts - Array of contact persons
- * @property {Schedule[]} schedules - Array of meeting schedules
- * @property {Link[]} links - Array of social/external links
- * @property {string[]} images - Array of image filenames
- * @property {string[]} description - Array of description paragraphs
- */
-
-/**
- * @typedef {Object.<string, GC>} GCsDatabase
- * Database object where keys are GC IDs and values are GC objects
- */
-
-import gcsDB from '@/assets/gcs.json'
-
-/**
- * Get all GCs from the database
- * @returns {Array<GC>} All GCs data
- */
-function all(){
-  return Object.values(gcsDB)
+function hydrateDescription(value){
+  if (Array.isArray(value)) return value
+  if (typeof value === 'string') {
+    return value.length ? value.split(/\n{2,}/) : []
+  }
+  return []
 }
 
 /**
- * Get all GCs from the database as raw object
- * @returns {GCsDatabase} All GCs data
+ * Convert a DB row back into the GC shape consumers expect.
+ * Injects derived fields (sector.name, config.color) and normalizes description into array form.
  */
-function raw(){
-  return gcsDB
+function hydrate(row){
+  if (!row) return null
+  const sectorMeta = SECTORS[row.sector_id] ?? {id: row.sector_id, name: row.sector_id, color: '#000000'}
+  const data = row.data ?? {}
+
+  return {
+    id: row.id,
+    name: row.name,
+    sheetId: row.sheet_id ?? undefined,
+    sector: {id: sectorMeta.id, name: sectorMeta.name},
+    config: {
+      ...(data.config ?? {}),
+      color: {primary: sectorMeta.color},
+    },
+    address: {
+      text: row.address_text ?? '',
+      street_number: data.address?.street_number ?? null,
+      complement: data.address?.complement ?? '',
+      lat: data.address?.lat ?? 0,
+      lng: data.address?.lng ?? 0,
+      ...(data.address?.fake ? {fake: data.address.fake} : {}),
+    },
+    contacts: data.contacts ?? [],
+    schedules: Array.isArray(data.schedules) ? data.schedules : [],
+    links: Array.isArray(data.links) ? data.links : [],
+    images: Array.isArray(data.images) ? data.images : [],
+    description: hydrateDescription(data.description),
+  }
+}
+
+async function fetchAllRows(){
+  const {data, error} = await getClient().from('gcs').select('*').order('name')
+  if (error) {
+    console.error('Supabase fetch gcs failed:', error)
+    return []
+  }
+  return data
+}
+
+async function fetchOneRow(id){
+  const {data, error} = await getClient().from('gcs').select('*').eq('id', id).maybeSingle()
+  if (error) {
+    console.error(`Supabase fetch gc ${id} failed:`, error)
+    return null
+  }
+  return data
+}
+
+const getAllCached = unstable_cache(
+  async () => fetchAllRows(),
+  ['gcs:all'],
+  {tags: [CACHE_TAG]}
+)
+
+const getOneCached = (id) => unstable_cache(
+  async () => fetchOneRow(id),
+  ['gcs:one', id],
+  {tags: [CACHE_TAG, tagFor(id)]}
+)()
+
+/**
+ * Get all GCs (hydrated with derived fields).
+ * @returns {Promise<Array>}
+ */
+async function all(){
+  const rows = await getAllCached()
+  return rows.map(hydrate)
 }
 
 /**
- * Check if a GC exists in the database
- * @param {string} gcId - The GC identifier
- * @returns {boolean} True if the GC exists
+ * Fetch a specific GC by ID.
+ * @param {string} gcId
+ * @returns {Promise<Object|undefined>}
  */
-function exists(gcId){
-  return gcId in gcsDB
+async function find(gcId){
+  if (!gcId) return undefined
+  const row = await getOneCached(gcId)
+  return row ? hydrate(row) : undefined
 }
 
 /**
- * Fetch a specific GC by ID
- * @param {string} gcId - The GC identifier
- * @returns {GC|undefined} The GC object or undefined if not found
+ * Check if a GC exists.
+ * @param {string} gcId
+ * @returns {Promise<boolean>}
  */
-function find(gcId){
-  return gcsDB?.[gcId]
+async function exists(gcId){
+  const gc = await find(gcId)
+  return !!gc
+}
+
+/**
+ * Get all GCs keyed by id (raw-like, but hydrated).
+ * @returns {Promise<Object>}
+ */
+async function raw(){
+  const rows = await getAllCached()
+  const obj = {}
+  for (const row of rows) {
+    obj[row.id] = hydrate(row)
+  }
+  return obj
 }
 
 const db = {
@@ -135,3 +143,4 @@ const db = {
 }
 
 export default db
+export {CACHE_TAG, tagFor}

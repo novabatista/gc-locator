@@ -8,7 +8,7 @@ const LOCALE = 'pt-BR'
 const localeConfig = {timeZone: 'America/Sao_Paulo'}
 export async function POST(request) {
   const {responsible, guest} = await request.json()
-  const gc = database.find(responsible.id)
+  const gc = await database.find(responsible.id)
   const leader = gc.contacts[responsible.contactIndex]
   const leadDate = new Date()
 

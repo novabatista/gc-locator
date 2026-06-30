@@ -1,65 +1,75 @@
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
-const { generateStaticMapUrl, getMapStaticConfig } = require('../src/map/map');
-const gcs = require('../assets/gcs.json')
-const { loadEnvConfig } = require('@next/env');
+const https = require('https')
+const {createClient} = require('@supabase/supabase-js')
+const {loadEnvConfig} = require('@next/env')
+const {generateStaticMapUrl, getMapStaticConfig} = require('../src/map/map')
 
-loadEnvConfig(process.cwd());
+loadEnvConfig(process.cwd())
 
-const mapConfigFull = getMapStaticConfig();
-const mapConfigMin = getMapStaticConfig({width: 640, height: 180})
+const {NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY} = process.env
 
-const outputDir = path.join(process.cwd(), 'public/maps');
-
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+if (!NEXT_PUBLIC_SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('Missing Supabase env vars.')
+  process.exit(1)
 }
 
-function downloadImage(url, filename) {
-  const outputPath = path.join(outputDir, filename);
+const supabase = createClient(NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+  auth: {persistSession: false, autoRefreshToken: false},
+})
+
+const mapConfigFull = getMapStaticConfig()
+const mapConfigMin = getMapStaticConfig({width: 640, height: 180})
+
+function downloadBuffer(url){
   return new Promise((resolve, reject) => {
     https.get(url, (response) => {
       if (response.statusCode !== 200) {
-        reject(new Error(`Failed to download: ${response.statusCode}`));
-        return;
+        reject(new Error(`Download failed (${response.statusCode}) for ${url}`))
+        return
       }
-
-      const fileStream = fs.createWriteStream(outputPath);
-      response.pipe(fileStream);
-
-      fileStream.on('finish', () => {
-        fileStream.close();
-        console.log(`Downloaded: ${outputPath}`);
-        resolve();
-      });
-
-      fileStream.on('error', (err) => {
-        fs.unlink(outputPath, () => {}); // Delete file on error
-        reject(err);
-      });
-    }).on('error', reject);
-  });
+      const chunks = []
+      response.on('data', chunk => chunks.push(chunk))
+      response.on('end', () => resolve(Buffer.concat(chunks)))
+      response.on('error', reject)
+    }).on('error', reject)
+  })
 }
 
+async function uploadMap(gc, variant, mapConfig){
+  const url = generateStaticMapUrl(gc, mapConfig)
+  const filename = `map-${gc.id}-${variant}.png`
+  const buffer = await downloadBuffer(url)
+  const {error} = await supabase.storage.from('gc-maps').upload(filename, buffer, {
+    upsert: true,
+    contentType: 'image/png',
+  })
+  if (error) throw new Error(`${filename}: ${error.message}`)
+  console.log(`  ✓ ${filename}`)
+}
 
-async function fetchAllMaps() {
-  const promises = [];
-
-  Object.keys(gcs).forEach(gcid => {
-    const gc = gcs[gcid];
-
-    promises.push(downloadImage(generateStaticMapUrl(gc, mapConfigFull), `map-${gcid}-full.png`));
-    promises.push(downloadImage(generateStaticMapUrl(gc, mapConfigMin), `map-${gcid}-min.png`));
-  });
-
-  try {
-    await Promise.all(promises);
-    console.log('All maps downloaded successfully!');
-  } catch (error) {
-    console.error('Error downloading maps:', error);
-    process.exit(1);
+async function fetchAllMaps(){
+  const {data: rows, error} = await supabase.from('gcs').select('*')
+  if (error) {
+    console.error('Failed to load gcs:', error)
+    process.exit(1)
   }
+
+  for (const row of rows) {
+    const addr = row.data?.address ?? {}
+    const lat = addr.fake?.lat ?? addr.lat
+    const lng = addr.fake?.lng ?? addr.lng
+    if (!lat || !lng) {
+      console.log(`  - skipping ${row.id} (no lat/lng)`)
+      continue
+    }
+    const gc = {id: row.id, address: addr.fake ?? {lat, lng}}
+    try {
+      await uploadMap(gc, 'full', mapConfigFull)
+      await uploadMap(gc, 'min', mapConfigMin)
+    } catch (ex) {
+      console.error(`  ✗ ${row.id}: ${ex.message}`)
+    }
+  }
+  console.log('Done.')
 }
 
-fetchAllMaps();
+fetchAllMaps()

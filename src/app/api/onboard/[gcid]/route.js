@@ -6,11 +6,11 @@ const LOCALE = 'pt-BR'
 const localeConfig = {timeZone: 'America/Sao_Paulo'}
 
 export async function POST(request, {params}) {
-  const {gcid} = params
+  const {gcid} = await params
   const {name, phone, birthday, email} = await request.json()
   const today = new Date()
 
-  const gc = database.find(gcid)
+  const gc = await database.find(gcid)
 
   if (!gc) {
     return NextResponse.json({message: 'GC não encontrado'}, {status: 404})

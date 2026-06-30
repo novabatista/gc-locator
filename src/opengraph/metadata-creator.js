@@ -1,5 +1,5 @@
-import gcs from '@/assets/gcs.json'
-import gcFormater, {contactsInline} from '@/gc/formater'
+import gcFormater from '@/gc/formater'
+import {getOgUrl} from '@/service/storage/urls'
 
 /**
  * @param {object} info
@@ -49,7 +49,7 @@ export async function metadataFromGC(gc){
     title,
     description,
     image: {
-      url: `/opengraph/opengraph-${gc.id}.png`,
+      url: getOgUrl(gc.id),
       width: 1200,
       height: 600,
       alt: "",

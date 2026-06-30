@@ -1,11 +1,12 @@
-import gcs from '@/assets/gcs.json'
 import GCCard from '@/components/GCCard'
 import GCFinder from '@/components/GCFinder'
-import GCLogo from '@/assets/logo-8.svg'
 import {groupGCBySectorFlat} from '@/gc/group'
 import {sortGcsByDistanceWithRadius} from '@/gc/sort-by-distance'
 import GCMainHeader from '@/components/GCMainHeader'
 import Squares from '@/components/Squares'
+import database from '@/service/database/gcs'
+
+export const dynamic = 'force-dynamic'
 
 const MAX_SEARCH_RADIUS_KM = 4
 export default async function Home({ searchParams }) {
@@ -13,6 +14,7 @@ export default async function Home({ searchParams }) {
   const searchCoords = {lat, lng}
   const hasSearchCoords = lat && lng
 
+  const gcs = await database.raw()
   let gcsList = []
 
   if (hasSearchCoords) {

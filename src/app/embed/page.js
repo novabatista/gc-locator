@@ -4,6 +4,8 @@ import Swiper from '@/components/Swiper'
 import SwiperGCs from '@/app/embed/SwipperGCs'
 import database from '@/service/database/gcs'
 
+export const dynamic = 'force-dynamic'
+
 const validValues = ['1', 'true', 'yes', 'y', 'sim', 's']
 function isTruthy(value){
   return validValues.some(validValue => value === validValue)
@@ -30,7 +32,7 @@ export default async function PageEmbed(props) {
   const isCarouselMode = type==='carousel'
   const minHeight = isCarouselMode && isTruthy(map) ? '320px' : '210px'
 
-  let gcsList = groupGCBySectorFlat(database.raw())
+  let gcsList = groupGCBySectorFlat(await database.raw())
   if(Number(limit)){
     gcsList = gcsList.slice(0, limit)
   }
