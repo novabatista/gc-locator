@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 7771",
     "fetch-maps": "node scripts/fetch-static-map.js",
+    "export-csv": "node scripts/export-csv.js",
     "generate-opengraph": "node scripts/create-opengraph-images-preview.js",
     "generate-qrcodes": "node scripts/create-qrcodes.js",
     "build": "next build",
