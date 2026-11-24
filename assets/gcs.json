@@ -111,6 +111,46 @@
     "description": [],
     "sheetId": "1Lh1U8P0QT1CqDOPf5j7aE2kvEssqD3iI_MkxROLwsuI"
   },
+  "belem1": {
+    "id": "belem1",
+    "name": "Mosaico Belém",
+    "sector": {
+      "id": "orange",
+      "name": "Laranja"
+    },
+    "config": {
+      "color": {
+        "primary": "#ffb000"
+      },
+      "logo": {
+        "alias": "mosaico",
+        "full_replace": false
+      }
+    },
+    "address": {
+      "text": "R. Intendência - Belenzinho, São Paulo - SP, 03015-010",
+      "street_number": 347,
+      "complement": "",
+      "lat": -23.53394681455184,
+      "lng": -46.59528045014155,
+      "fake": {
+        "lat": -23.53449443728134,
+        "lng": -46.59531379316581
+      }
+    },
+    "contacts": [
+      {"name": "Maiky", "phone": "11 94860-2707"},
+      {"name": "Natalia", "phone": "11 98622-4611"}
+    ],
+    "schedules": [
+      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
+    ],
+    "links": [
+    ],
+    "images":[],
+    "description": [],
+    "sheetId": "1Lh1U8P0QT1CqDOPf5j7aE2kvEssqD3iI_MkxROLwsuI"
+  },
   "conexao1": {
     "id": "conexao1",
     "name": "Conexão Jovem",
@@ -186,44 +226,6 @@
     },
     "contacts": [
       {"name": "Leo", "phone": "11 98076-1976"}
-    ],
-    "schedules": [
-      {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}
-    ],
-    "links": [],
-    "images": [],
-    "description": []
-  },
-  "analiafranco1": {
-    "id": "analiafranco1",
-    "name": "Mosaico Anália Franco",
-    "sector": {
-      "id": "orange",
-      "name": "Laranja"
-    },
-    "config": {
-      "color": {
-        "primary": "#ffb000"
-      },
-      "logo": {
-        "alias": "mosaico",
-        "full_replace": false
-      }
-    },
-    "address": {
-      "text": "R. Quixadá - Vila Invernada, São Paulo - SP, 03350-060",
-      "street_number": 125,
-      "complement": "",
-      "lat": -23.566899940480972,
-      "lng": -46.567081280735934,
-      "fake": {
-        "lat": -23.567724067137902,
-        "lng": -46.5674736168304
-      }
-    },
-    "contacts": [
-      {"name": "Bruno", "phone": "11 97681-1720"},
-      {"name": "Jackline", "phone": "11 98920-9400"}
     ],
     "schedules": [
       {"day_index": 4, "weekday": "Quintas-feiras", "hour": "20:00"}

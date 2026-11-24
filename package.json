@@ -8,6 +8,7 @@
     "export-csv": "node scripts/export-csv.js",
     "generate-opengraph": "node scripts/create-opengraph-images-preview.js",
     "generate-qrcodes": "node scripts/create-qrcodes.js",
+    "gen:all": "npm run fetch-maps && npm run generate-opengraph && npm run generate-qrcodes",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
