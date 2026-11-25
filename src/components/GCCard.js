@@ -13,7 +13,7 @@ export default function GCCard(props) {
   } = props
 
   const {id, name, address, distance, contacts, schedules, config, sector} = props.gc
-  const {lat, lng} = address.fake ?? address
+  const {lat, lng} = address
 
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`

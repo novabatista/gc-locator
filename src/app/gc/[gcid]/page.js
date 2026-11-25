@@ -30,7 +30,7 @@ export default async function PageGCDetail({params}) {
 
   const gc = database.find(gcid)
   const {id, name, address, description, contacts, schedules, links, config} = gc
-  const {lat, lng} = address.fake ?? address
+  const {lat, lng} = address
 
   const mapImageAlt = `Mapa GC ${name}`
   const mapNavigationUrl = `https://www.google.com/maps/dir//${lat},${lng}`

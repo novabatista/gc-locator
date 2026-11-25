@@ -68,7 +68,7 @@ export function generateCirclePoints(lat, lng, radiusInMeters, numPoints = 40) {
 }
 
 export function generateStaticMapUrl(gc, config) {
-  const { lat, lng } = gc.address.fake ?? gc.address;
+  const { lat, lng } = gc.address;
   const circlePoints = generateCirclePoints(lat, lng, config.radius);
 
   return [

@@ -36,19 +36,12 @@
  */
 
 /**
- * @typedef {Object} FakeCoordinates
- * @property {number} lat - Fake latitude coordinate
- * @property {number} lng - Fake longitude coordinate
- */
-
-/**
  * @typedef {Object} Address
  * @property {string} text - Full address text
  * @property {number} street_number - Street number
  * @property {string} complement - Address complement (e.g., apartment number)
  * @property {number} lat - Latitude coordinate
  * @property {number} lng - Longitude coordinate
- * @property {FakeCoordinates} fake - Fake coordinates for privacy
  */
 
 /**
